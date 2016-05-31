@@ -19,6 +19,7 @@ public class ServiceAvecBeaucoupTropDeLog {
     }
 
     public String maMethodeQuiRenvoieUnString() {
+        // pas besoin de loger l'entrée/sortie d'une méthode : on peut faire ça par aspect
         SLF4J_LOGGER.debug("calling method");
         final String result = this.repository.methodeDansInterface(Integer.valueOf(0));
         SLF4J_LOGGER.debug("method result : {}", result);
@@ -28,14 +29,17 @@ public class ServiceAvecBeaucoupTropDeLog {
     public boolean hasObjectForId(final Object element, final String id) {
         SLF4J_LOGGER.debug("calling method with parameter object {} and id {}", element, id);
         final List<Object> objects = repository.recuperationDesDonnees(id);
+        // Si on fait du log par aspect, pas la peine de logger les sorties de méthodes appellées
         SLF4J_LOGGER.debug("Objects retrieved");
         boolean hasObject = false;
         for (final Object obj : objects) {
+            //
             SLF4J_LOGGER.debug("Checking object for equals : {}", obj);
             if (obj.equals(element)) {
                 SLF4J_LOGGER.debug("object equals reached");
                 hasObject = true;
             } else {
+                // Ne pas faire une condition juste pour un log (sauf si réellement important)
                 SLF4J_LOGGER.debug("object not equals");
             }
         }
@@ -44,6 +48,7 @@ public class ServiceAvecBeaucoupTropDeLog {
     }
 
     public void validationDonneesForId(final String id) {
+        // Au final, ici on a plus de log que de code réel
         SLF4J_LOGGER.debug("calling method with parameter {}", id);
         final List<Object> objects = repository.recuperationDesDonnees(id);
         SLF4J_LOGGER.debug("Objects retrieved");
