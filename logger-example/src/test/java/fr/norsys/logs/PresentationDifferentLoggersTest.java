@@ -1,6 +1,10 @@
 package fr.norsys.logs;
 
 import static fr.norsys.logs.PresentationDifferentLoggers.duParametrageDeLog;
+import static fr.norsys.logs.PresentationDifferentLoggers.logAvecDesParametres;
+import static fr.norsys.logs.PresentationDifferentLoggers.logErreur;
+import static fr.norsys.logs.PresentationDifferentLoggers.logErreurAvecMessageConcatene;
+import static fr.norsys.logs.PresentationDifferentLoggers.logErreurAvecMessageConstruit;
 import static fr.norsys.logs.PresentationDifferentLoggers.logSimple;
 
 import org.junit.Test;
@@ -20,22 +24,22 @@ public class PresentationDifferentLoggersTest {
 
     @Test
     public void should_be_able_to_display_error_log(){
-        PresentationDifferentLoggers.logErreur();
+        logErreur();
     }
 
     @Test
     public void should_be_able_to_display_error_log_with_concat_message(){
-        PresentationDifferentLoggers.logErreurAvecMessageConcatene();
+        logErreurAvecMessageConcatene();
     }
 
     @Test
     public void should_be_able_to_display_error_log_with_built_message(){
-        PresentationDifferentLoggers.logErreurAvecMessageConstruit();
+        logErreurAvecMessageConstruit();
     }
 
     @Test
     public void should_be_able_to_display_error_log_with_message_parameters(){
-        PresentationDifferentLoggers.logAvecDesParametres("firstParam", 42);
+        logAvecDesParametres("firstParam", 42);
     }
 
 }
