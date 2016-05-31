@@ -38,7 +38,7 @@ public class PresentationSpecificitesSlf4J {
 
     private static void doThings(){
         // cette méthode pourrai être totalement ailleurs, dans un autre package par exemple
-        MDC.put("autreParam", "do things");
+        MDC.put("autreParam", "l'autre param");
 
         LOG4J_LOGGER.info("I do things");
     }

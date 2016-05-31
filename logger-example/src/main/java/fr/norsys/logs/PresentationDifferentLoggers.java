@@ -3,13 +3,16 @@ package fr.norsys.logs;
 public class PresentationDifferentLoggers {
 
     /** declaration logger java.util standard */
-    private static final java.util.logging.Logger CORE_LOGGER = java.util.logging.Logger.getLogger(PresentationDifferentLoggers.class.getName());
+    private static final java.util.logging.Logger CORE_LOGGER = java.util.logging.Logger
+            .getLogger(PresentationDifferentLoggers.class.getName());
 
     /** declaration logger Log4J */
-    private static final org.apache.log4j.Logger LOG4J_LOGGER = org.apache.log4j.Logger.getLogger(PresentationDifferentLoggers.class);
+    private static final org.apache.log4j.Logger LOG4J_LOGGER = org.apache.log4j.Logger
+            .getLogger(PresentationDifferentLoggers.class);
 
     /** declaration logger SLF4J */
-    private static final org.slf4j.Logger SLF4J_LOGGER = org.slf4j.LoggerFactory.getLogger(PresentationDifferentLoggers.class);
+    private static final org.slf4j.Logger SLF4J_LOGGER = org.slf4j.LoggerFactory
+            .getLogger(PresentationDifferentLoggers.class);
 
     /**
      * Utilisation simple des logs
@@ -79,27 +82,32 @@ public class PresentationDifferentLoggers {
         LOG4J_LOGGER.debug("LOG4 : Du debug");
 
         // Mais ne pas faire non plus
-        LOG4J_LOGGER.debug("LOG4 : Je " + "concatène " + "plein " + "plein " + "de " + "chaines " + "de " + "caractère " + ".");
+        LOG4J_LOGGER.debug("LOG4 : Je " + "concatène " + "plein " + "plein " + "de " + "chaines " + "de "
+                + "caractère " + ".");
     }
 
     public static void duParametrageDeLog(final org.apache.log4j.Priority priorityParameter,
             final java.util.logging.Level levelParameter) {
         // log error
-        CORE_LOGGER.log(java.util.logging.Level.SEVERE, "CORE : error log");
-        LOG4J_LOGGER.log(org.apache.log4j.Level.ERROR, "LOG4 : error log");
+        CORE_LOGGER.log(java.util.logging.Level.SEVERE, "CORE : log paramétré en error");
+        LOG4J_LOGGER.log(org.apache.log4j.Level.ERROR, "LOG4 : log paramétré en error");
 
         // log warn
-        CORE_LOGGER.log(java.util.logging.Level.WARNING, "CORE : error log");
-        LOG4J_LOGGER.log(org.apache.log4j.Level.WARN, "LOG4 : warn log");
+        CORE_LOGGER.log(java.util.logging.Level.WARNING, "CORE : log paramétré en error warn");
+        LOG4J_LOGGER.log(org.apache.log4j.Level.WARN, "LOG4 : log paramétré en warn");
 
         CORE_LOGGER.log(levelParameter, "CORE : Du log selon le paramètre");
         LOG4J_LOGGER.log(priorityParameter, "LOG4 : Du log selon le paramètre");
         // Pas de paramétrage hors API dans SLF4J
     }
 
+    private static void methodeQuiPete() throws Exception {
+        throw new Exception("Ca a pété");
+    }
+
     public static void logErreur() {
         try {
-            String.valueOf(true);
+            methodeQuiPete();
         } catch (Exception e) {
             // pas d'autre solution pour logger une exception en core, utiliser log(Level, String, Throwable)
             CORE_LOGGER.log(java.util.logging.Level.SEVERE, "CORE : Une exception !", e);
@@ -109,9 +117,9 @@ public class PresentationDifferentLoggers {
         }
     }
 
-    public static void logErreurAvecMessageParametre() {
+    public static void logErreurAvecMessageConcatene() {
         try {
-            String.valueOf(true);
+            methodeQuiPete();
         } catch (Exception e) {
             // toujours log(Level, String, Throwable)
             CORE_LOGGER.log(java.util.logging.Level.SEVERE, "CORE : Une exception !: " + e.getMessage(), e);
@@ -122,9 +130,9 @@ public class PresentationDifferentLoggers {
         }
     }
 
-    public static void autreLogErreurAvecMessageParametre() {
+    public static void logErreurAvecMessageConstruit() {
         try {
-            String.valueOf(true);
+            methodeQuiPete();
         } catch (Exception e) {
             // Formattage de chaine de caractère
             String message = String.format("Une exception s'est produite : %s", e.getMessage());
@@ -138,6 +146,7 @@ public class PresentationDifferentLoggers {
         // CORE : Doit lister dans l'ordre tous les paramètres
         CORE_LOGGER.log(java.util.logging.Level.INFO, "CORE : Premier paramètre : {0}, deuxième paramètre : {1}",
                 new Object[] { premierParametre, deuxiemeParametre });
+
         // LOG4J : aucun moyen de l'API de formatter du texte
         LOG4J_LOGGER.info("LOG4 : Premier paramètre : " + premierParametre + ", deuxième paramètre : " + deuxiemeParametre);
 
