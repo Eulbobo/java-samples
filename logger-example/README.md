@@ -74,8 +74,61 @@ ce dernier ne sera effectivement construit uniquement s'il doit être utilisé
 On a l'avantage du formatage clair du message, sans l'inconvénient de sa construction si on ne l'utilise pas.
 
 #### Techniquement : Markers
-TODO
+Le système des markers (qui est un système n'existant pas ailleurs) permet d'associer des tags à certains logs. 
+Ces logs seront alors traités de manière particulière selon la configuration (autre fichier, autre appender...)
 
+Imaginons un système où un événement important devrait être notifié de manière spécifique, mais pas forcement pérenne... 
+Et imaginons que le monde de rendu de cet événement puisse changer :
+- sur la première version, on veut que ça mette un log warn
+- sur la deuxième version, on veut une notification mail
+- sur la troisème version, on veut que ça envoie le message via une socket SSL
+
+Si vous n'avez pas de Marker, vous allez devoir développer et tester trois méthodes différentes sans passer par un logger.
+
+Avec les markers, vous n'aurez qu'à définir un Appender spécifique pour chaque version.
+
+Voici un exemple de la configuration possible avec LogBack:
+```xml
+<appender name="IMPORTANT_LOG" class="ch.qos.logback.core.FileAppender">
+    <file>superImportant.log</file>
+    <append>true</append>
+    <encoder>
+        <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+    </encoder>
+    <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+        <marker>SUPER_IMPORTANT</marker>
+    </evaluator>
+</appender>
+```
+
+```java
+    Marker confidentialMarker = MarkerFactory.getMarker("SUPER_IMPORTANT");
+    logger.warn(confidentialMarker, "Ce message est super important !");
+```
+
+Et pour la deuxième version, vous n'avez qu'à changer l'appender :
+```xml
+<configuration>   
+  <appender name="IMPORTANT_LOG" class="ch.qos.logback.classic.net.SMTPAppender">
+    <smtpHost>ADDRESS-OF-YOUR-SMTP-HOST</smtpHost>
+    <to>EMAIL-DESTINATION</to>
+    <to>ANOTHER_EMAIL_DESTINATION</to>
+    <from>SENDER-EMAIL</from>
+    <subject>Important : %logger{20} - %m</subject>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+        <pattern>%date %-5level %logger{35} - %message%n</pattern>
+    </layout>  
+    <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+        <marker>SUPER_IMPORTANT</marker>
+    </evaluator>
+  </appender>
+```
+
+etc...
+
+
+A noter cependant que seule l'implémentation LogBack permet de bénéficier de cette fonctionnalité. 
+Pour toutes les autres implémentation, rien ne se passera.
 
 #### Techniquement : Redirection d'anciennes implémentations
 TODO
@@ -85,9 +138,12 @@ TODO
 Prenons l'exemple d'une application standard possédant des logs. Il est décidé d'utiliser SLF4J.
 
 Les developpeurs déclarent dont SLF4J dans le classpath de l'application, puis pour avoir des logs chez eux déclarent aussi loj4 et le bridge.
-Mais l'application déployée tournera dans un serveur qui fourni une implémentation logback permettant d'envoyer les logs sur un serveur central (type graylog).
 
-La couche d'abstraction fournie par SLF4J permet de pouvoir décorréler l'interface de l'implémentation selon les environnements. 
+Mais l'application déployée tournera dans un serveur qui fournit une implémentation logback permettant d'envoyer les logs sur un serveur central (type graylog).
+On a donc le choix de modifier comment on veut journaliser nos évènements.
+
+
+La couche d'abstraction fournie par SLF4J permet de pouvoir décorréler l'interface de l'implémentation. 
 De même, si sera plus facile de migrer vers une autre implémentation d'outil de journalisation si on utilise une interface.
 
 
@@ -95,3 +151,5 @@ Liens
 -------------------
 [Manuel de Slf4J](http://www.slf4j.org/manual.html]
 [Présentation sur Developpez.com](http://baptiste-wicht.developpez.com/tutoriels/java/slf4j/)
+[LogBack](http://logback.qos.ch/index.html)
+[Les appenders de Logback](http://logback.qos.ch/manual/appenders.html)
