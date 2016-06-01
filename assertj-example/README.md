@@ -64,5 +64,5 @@ Liens utiles
 -------------------
 
 [Projet AssertJ](http://joel-costigliola.github.io/assertj/)  
-[Sources Github du projet](https://github.com/joel-costigliola/assertj-core)
+[Sources Github du projet](https://github.com/joel-costigliola/assertj-core)  
 [Exemples d'utilisation dans le projet Github](https://github.com/joel-costigliola/assertj-examples) : les exemples sont pour les versions supportant java7 ou java8, donc pas totalement compatible avec la version java6
