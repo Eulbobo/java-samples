@@ -137,11 +137,14 @@ Seulement, dans certains cas, il n'est pas possible de tout changer d'un coup, o
 
 La solution est alors de mettre en place des ponts des anciennes api vers de nouvelles.
 
+
 Par exemple, si on a une application qui utilisait JCL, il suffit de supprimer le jar contenant l'implémentation jcl et de le remplacer par jcl-over-slf4j.
 Celui-ci dispose de la même interface que JCL, mais redirige vers une implémentation SLF4J (par exemple logback).
 Si cette même application disposait de l'utilisation de log4j, si on remplace le fichier log4j.jar par log4j-over-slf4j.jar, 
 tous les logs se retrouvent automatiquement dans logback avec le gain de n'avoir qu'un fichier de configuration pour tous les journaux.
 
+
+A noter qu'il est aussi aussi possible de créer des ponts depuis System.out et System.err vers slf4j
 
 #### Fonctionnellement : Changement d'implémentation selon l'environnement
 Prenons l'exemple d'une application standard possédant des logs. Il est décidé d'utiliser SLF4J.
