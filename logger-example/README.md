@@ -1,4 +1,4 @@
-Présentation de SLF4J
+Présentation de SLF4J (Simple Logging Facade For Java)
 ===================
 
 Présentation
@@ -6,3 +6,92 @@ Présentation
 SLF4J est un framework permettant d'ajouter une couche d'abstraction au mécanisme de journalisation, permettrant ainsi de faire varier son implémentation par configuration.
 Il apporte aussi un certain nombre d'outils et méthodes permettant de simplifier le fonctionnement de la journalisation
 
+Fonctionnement
+-------------------
+SLF4J en soit n'est qu'une interface qui n'est pas utilisable en l'état. Pour fonctionner, elle a besoin d'un pont d'implémentation.
+
+Il existe plusieurs ponts selon l'implémentation choisie
+> - slf4j-simple implémentation simple
+> - slf4j-log4j12 pour utiliser log4j
+> - slf4j-jdk14 pour utiliser le logger java.util.logging.Logger
+> - slf4j-nop quand on ne veut pas de log du tout (No Operation)
+> - slf4j-jcl pour utiliser JCL (Jakarta Commons Logging)
+
+A chaque action de journalisation dans le pont SLF4J correspond une opération sur l'implémentation cible :
+```java
+    // méthode de l'API SLF4J
+    public boolean isDebugEnabled() {
+        // logger est une implémentation log4j
+        return logger.isDebugEnabled();
+    }
+    
+    ...
+    // méthode de l'API SLF4J
+    public void info(String msg) {
+        // logger est une implémentation log4j
+        logger.log(FQCN, Level.INFO, msg, null);
+    }
+```
+
+Il existe aussi des frameworks de journalisation qui implémentent directement l'API SLF4J, 
+comme Logback (ce qui évite de devoir faire des conversions comme pour les autres)
+
+Utilisation
+-------------------
+Prenons l'exemple de l'utilisation de l'api SLF4J avec une implémentation Log4j. Nous avons besoin de 3 librairies dans le CLASSPATH
+> - slf4j-api : l'API de base
+> - slf4j-log4j12 : le bridge permettant d'encapsuler log4j avec l'interface slf4j
+> - log4j : l'implémentation de la journalisation
+
+Dans notre cas, comme nous utilisons une implémentation log4j, c'est une configuration log4j que nous devons utiliser pour paramétrer les logs
+
+Mais alors c'est quoi l'intérêt de rajouter de l'abstration ?
+-------------------
+A priori, pas grand chose étant donné que log4j fait déjà beaucoup des choses que SLF4J fait aussi. La question est donc légimite.
+
+Cependant, slf4j possède quelques petits trucs en plus (techniquement ou fonctionnellement)
+
+#### Techniquement : Paramétrage des logs
+Avec un logger log4j standard, si on veut créer un log avec un message formaté selon des paramètres, on a deux solution
+```java
+    // Solution 1 : Construire le message en amont
+    String message = String.format("Ce message %s plusieurs %s.", "possède", "paramètres");
+    LOG4J_LOGGER.info(message); // log de "Ce message possède plusieurs paramètres."
+    
+    // Solution 2 : Concaténer les éléments
+    String param1 = "possède";
+    String param2 = "plusieurs";
+    LOG4J_LOGGER.info("Ce message "+ param1 +" plusieurs "+ param2+"."); // log de "Ce message possède plusieurs paramètres."
+```
+L'inconvénient majeur de cette solution, c'est que le message est construit même s'il n'est pas utilisé.
+Dans notre cas, si on ne collecte que des mails au niveau ERROR, on aura perdu du temps à construire un message pour rien.
+
+Avec SLF4J, ce problème ne se pose pas. On peut ajouter autant de paramètre que l'on veut au message, 
+ce dernier ne sera effectivement construit uniquement s'il doit être utilisé
+```java
+    SLF4J_LOGGER.info("Ce message {} plusieurs {}.", "possède", "paramètres"); // log de "Ce message possède plusieurs paramètres."
+```
+On a l'avantage du formatage clair du message, sans l'inconvénient de sa construction si on ne l'utilise pas.
+
+#### Techniquement : Markers
+TODO
+
+
+#### Techniquement : Redirection d'anciennes implémentations
+TODO
+
+
+#### Fonctionnellement : Changement d'implémentation selon l'environnement
+Prenons l'exemple d'une application standard possédant des logs. Il est décidé d'utiliser SLF4J.
+
+Les developpeurs déclarent dont SLF4J dans le classpath de l'application, puis pour avoir des logs chez eux déclarent aussi loj4 et le bridge.
+Mais l'application déployée tournera dans un serveur qui fourni une implémentation logback permettant d'envoyer les logs sur un serveur central (type graylog).
+
+La couche d'abstraction fournie par SLF4J permet de pouvoir décorréler l'interface de l'implémentation selon les environnements. 
+De même, si sera plus facile de migrer vers une autre implémentation d'outil de journalisation si on utilise une interface.
+
+
+Liens
+-------------------
+[Manuel de Slf4J](http://www.slf4j.org/manual.html]
+[Présentation sur Developpez.com](http://baptiste-wicht.developpez.com/tutoriels/java/slf4j/)
