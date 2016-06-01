@@ -160,5 +160,6 @@ Liens
 -------------------
 [Manuel de Slf4J](http://www.slf4j.org/manual.html)  
 [Présentation sur Developpez.com](http://baptiste-wicht.developpez.com/tutoriels/java/slf4j/)  
+[Bridges depuis anciennes API](http://www.slf4j.org/legacy.html)  
 [LogBack](http://logback.qos.ch/index.html)  
-[Les appenders de Logback](http://logback.qos.ch/manual/appenders.html)  
+[Les appenders de Logback](http://logback.qos.ch/manual/appenders.html)
