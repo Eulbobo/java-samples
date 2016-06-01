@@ -37,6 +37,7 @@
 		<module>assertj-example</module>
 		<module>mockito-example</module>
 		<module>complete-example</module>
+		<module>openpojo-example</module>
 	</modules>
 
 	<build>
