@@ -5,14 +5,14 @@ import fr.norsys.tests.exceptions.RandomException;
 
 public class MethodsThrowingExceptions {
 
-    private final int failures;
+    private int failures;
 
     public MethodsThrowingExceptions(final int failures){
         this.failures = failures;
     }
 
     public void thisMethodWillFail(){
-        throw new RandomException(failures + " failures yet");
+        throw new RandomException(failures+++ " failures yet");
     }
 
     public void thisMethodMayFail(final boolean fail){
@@ -25,6 +25,7 @@ public class MethodsThrowingExceptions {
         try {
             thisMethodWillFail();
         } catch (Exception e){
+            failures++;
             throw new DiceException(e);
         }
     }
