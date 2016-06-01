@@ -131,7 +131,16 @@ A noter cependant que seule l'implémentation LogBack permet de bénéficier de 
 Pour toutes les autres implémentation, rien ne se passera.
 
 #### Techniquement : Redirection d'anciennes implémentations
-TODO
+Certaines applications ont pu au cours du temps disposer de plusieurs implémentations différentes dont certaines perdurent et dont on voudrait bien se débarasser.  
+Seulement, dans certains cas, il n'est pas possible de tout changer d'un coup, ou il est nécessaire que d'anciennes méthodes de log utilisant d'anciennes API fonctionnent toujours 
+(dans le cas de l'utilisation de framework/dépendances les utilisant par exemple).
+
+La solution est alors de mettre en place des ponts des anciennes api vers de nouvelles.
+
+Par exemple, si on a une application qui utilisait JCL, il suffit de supprimer le jar contenant l'implémentation jcl et de le remplacer par jcl-over-slf4j.
+Celui-ci dispose de la même interface que JCL, mais redirige vers une implémentation SLF4J (par exemple logback).
+Si cette même application disposait de l'utilisation de log4j, si on remplace le fichier log4j.jar par log4j-over-slf4j.jar, 
+tous les logs se retrouvent automatiquement dans logback avec le gain de n'avoir qu'un fichier de configuration pour tous les journaux.
 
 
 #### Fonctionnellement : Changement d'implémentation selon l'environnement
@@ -149,7 +158,7 @@ De même, si sera plus facile de migrer vers une autre implémentation d'outil d
 
 Liens
 -------------------
-[Manuel de Slf4J](http://www.slf4j.org/manual.html]
-[Présentation sur Developpez.com](http://baptiste-wicht.developpez.com/tutoriels/java/slf4j/)
-[LogBack](http://logback.qos.ch/index.html)
-[Les appenders de Logback](http://logback.qos.ch/manual/appenders.html)
+[Manuel de Slf4J](http://www.slf4j.org/manual.html)  
+[Présentation sur Developpez.com](http://baptiste-wicht.developpez.com/tutoriels/java/slf4j/)  
+[LogBack](http://logback.qos.ch/index.html)  
+[Les appenders de Logback](http://logback.qos.ch/manual/appenders.html)  
