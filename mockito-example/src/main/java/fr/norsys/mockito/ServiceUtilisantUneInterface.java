@@ -1,5 +1,7 @@
 package fr.norsys.mockito;
 
+import static java7.util.Objects.requireNonNull;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,6 +64,8 @@ public class ServiceUtilisantUneInterface {
      * @return bean de domaine
      */
     public BeanDeDomaine getById(final Long id) {
+        requireNonNull(id, "id parameter is mandatory");
+
         BeanDeDomaine bean = null;
         try {
             bean = repository.getBeanById(id.longValue());
