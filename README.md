@@ -6,12 +6,12 @@ Introduction
 
 > **Sous-modules:**
 
-> - [assertj-example](assertj-example) : présentation de Assertj (framework de test)
-> - [mockito-example](mockito-example) : présentation de Mockito (framework de test)
-> - [openpojo-example](openpojo-example) : présentation de OpenPojo (framework de test)
+> - [assertj-example](assertj-example) : exemples d'utilisation de Assertj (framework de test)
+> - [mockito-example](mockito-example) : exemples d'utilisation de Mockito (framework de test)
+> - [openpojo-example](openpojo-example) : exemples d'utilisation de OpenPojo (framework de test)
 > - [exception-example](exception-example) : exemples d'utilisation des exceptions
-> - [spring-core-example](spring-core-example) : présentation de spring core
-> - [logger-example](logger-example) : présentation des loggers
+> - [spring-core-example](spring-core-example) : exemples d'utilisation de spring core
+> - [logger-example](logger-example) : exemples d'utilisation des loggers
 > - [complete-example](complete-example) : mini-projet contenant tous ces élements
 
 
