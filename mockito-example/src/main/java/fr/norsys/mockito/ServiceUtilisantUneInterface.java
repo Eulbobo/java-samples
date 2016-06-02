@@ -65,6 +65,6 @@ public class ServiceUtilisantUneInterface {
      * @param etat
      */
     public void doThings() {
-        // TODO implement
+        repository.doThings();
     }
 }
