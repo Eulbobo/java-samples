@@ -61,8 +61,9 @@ public class PresentationSpecificitesSlf4JTest {
         }
         long elapsed = System.currentTimeMillis() - startDt;
 
-        // On prend la pari que ça dure moins de 10 millisecondes
-        assertThat(elapsed).isLessThan(10l);
+        // On prend le pari que ça dure moins de 10 millisecondes
+        assertThat(elapsed)
+            .isLessThan(10l);
 
         TEST_LOGGER.info("Elapsed time with debug level : {}ms", elapsed);
     }
@@ -82,8 +83,9 @@ public class PresentationSpecificitesSlf4JTest {
         }
         long elapsed = System.currentTimeMillis() - startDt;
 
-        // On prend la pari que ça dure PLUS DE 10 secondes
-        assertThat(elapsed).isGreaterThan(10000l);
+        // On prend le pari que ça dure PLUS DE 10 secondes
+        assertThat(elapsed)
+            .isGreaterThan(10000l);
 
         TEST_LOGGER.info("Elapsed time with info level : {}ms", elapsed);
     }
