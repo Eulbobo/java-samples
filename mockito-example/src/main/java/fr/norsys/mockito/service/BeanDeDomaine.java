@@ -1,11 +1,12 @@
 package fr.norsys.mockito.service;
 
 import java.math.BigDecimal;
+import java7.util.Objects;
 
 // cette classe représente un objet de domaine quelconque manipulé par le service
 public class BeanDeDomaine {
 
-    private long idBean;
+    private Long idBean;
 
     private String nomBean;
 
@@ -16,14 +17,14 @@ public class BeanDeDomaine {
     /**
      * @return the idBean
      */
-    public long getIdBean() {
+    public Long getIdBean() {
         return idBean;
     }
 
     /**
      * @param idBean the idBean to set
      */
-    public void setIdBean(final long idBean) {
+    public void setIdBean(final Long idBean) {
         this.idBean = idBean;
     }
 
@@ -74,10 +75,7 @@ public class BeanDeDomaine {
      */
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (idBean ^ (idBean >>> 32));
-        return result;
+        return Objects.hash(idBean);
     }
 
     /**
@@ -94,11 +92,9 @@ public class BeanDeDomaine {
         if (getClass() != obj.getClass()) {
             return false;
         }
+
         BeanDeDomaine other = (BeanDeDomaine) obj;
-        if (idBean != other.idBean) {
-            return false;
-        }
-        return true;
+        return Objects.equals(idBean, other.idBean);
     }
 
 }
