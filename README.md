@@ -18,3 +18,9 @@ Introduction
 A préparer : 
 - fixtures
 - builders
+
+
+Présentation
+-------------
+Tous ces projets sont construits avec Maven.
+
