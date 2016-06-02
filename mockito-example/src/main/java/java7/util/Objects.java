@@ -23,7 +23,10 @@
  * questions.
  */
 
-package java.util;
+package java7.util;
+
+import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * This class consists of {@code static} utility methods for operating
