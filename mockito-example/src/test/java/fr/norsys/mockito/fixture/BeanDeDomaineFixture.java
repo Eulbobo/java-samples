@@ -35,7 +35,7 @@ public class BeanDeDomaineFixture {
      */
     public BeanDeDomaine buildKnow() {
         return this.withId(42l)
-                .withEtat(EtatBeanDomain.EN_COURS)
+                .withEtat(EtatBeanDomain.A_TRAITER)
                 .withNom("fast-fixture")
                 .withValeur(BigDecimal.valueOf(5552))
                 .build();

@@ -28,7 +28,7 @@ public interface BeanDeDomainRepository {
      * Updates bean
      *
      * @param bean bean to update
-     * @throws DomainException if parameter is null, if bean doesn't exists or if bean level isn't updated correctly
+     * @throws DomainException if parameter is null, if bean doesn't exists
      */
     void updateBean(BeanDeDomaine bean) throws DomainException;
 

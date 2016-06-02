@@ -1,14 +1,23 @@
 package fr.norsys.mockito;
 
 import static fr.norsys.mockito.fixture.BeanDeDomaineFixture.beanDeDomaine;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
 
 import fr.norsys.mockito.service.BeanDeDomainRepository;
+import fr.norsys.mockito.service.BeanDeDomaine;
+import fr.norsys.mockito.service.DomainException;
+import fr.norsys.mockito.service.EtatBeanDomain;
 
 /**
  * La classe de test
@@ -53,56 +62,229 @@ public class ServiceUtilisantUneInterfaceTest {
         Mockito.verify(repository, Mockito.times(1)).doThings();
         // Même test que la ligne du dessus, mais avec les imports statiques et l'appel par défaut
         verify(repository).doThings();
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
     public void should_return_null_when_trying_to_get_bean_with_unknown_id() {
+        // ARRANGE
         // création d'un mock pour le repository
         BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
-        Mockito.when(repository.getBeanById(Matchers.eq(42l)))
-                .thenReturn(beanDeDomaine().buildKnow()); // utilisation de la fixture
+        // quand on appelle la méthode avec un ID inconnu, on récupère une exception
+        when(repository.getBeanById(Matchers.eq(0l)))
+                .thenThrow(DomainException.class);
 
         ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
+
+        // ACT
+        // l'appel ne doit pas provoquer d'exception même si le service en renvoie une
+        BeanDeDomaine resultBean = service.getById(0l);
+
+        // ASSERT
+        // vérification résultat avec assertj
+        assertThat(resultBean)
+                .isNull();
+
+        // vérification appel au service avec le paramètre 0l
+        verify(repository).getBeanById(0l);
+        verifyNoMoreInteractions(repository);
+    }
+
+    @Test
+    public void should_fail_when_create_or_update_parameters_is_null() {
+        // ARRANGE
+        // création d'un mock pour le repository
+        BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
+
+        // Création du service avec le repository
+        ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
+
+        // ACT
+        Throwable thrownByException = null;
+        try {
+            service.createOrUpdate(null);
+            failBecauseExceptionWasNotThrown(NullPointerException.class);
+        } catch (Exception serviceException) {
+            thrownByException = serviceException;
+        }
+
+        // ASSERT
+        assertThat(thrownByException)
+                .isNotNull()
+                .isExactlyInstanceOf(NullPointerException.class);
+        // Le service ne doit pas avoir été appelé
+        verifyZeroInteractions(repository);
+    }
+
+    @Test
+    // ce test ressemble énormément au précédent.
+    // on aurait pu le factoriser un peu plus, mais si le fonctionnement change pour un cas, on aura un seul test à
+    // modifier
+    // En java8, on aurait utilisé des lambdas
+    public void should_fail_when_getById_parameters_is_null() {
+        // ARRANGE
+        // création d'un mock pour le repository
+        BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
+
+        // Création du service avec le repository
+        ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
+
+        // ACT
+        Throwable thrownByException = null;
+        try {
+            service.getById(null);
+
+            failBecauseExceptionWasNotThrown(NullPointerException.class);
+        } catch (Exception serviceException) {
+            thrownByException = serviceException;
+        }
+
+        // ASSERT
+        assertThat(thrownByException)
+                .isNotNull()
+                .isExactlyInstanceOf(NullPointerException.class);
+        // Le service ne doit pas avoir été appelé
+        verifyZeroInteractions(repository);
     }
 
     @Test
     public void should_get_proper_bean_when_trying_to_get_bean_with_known_id() {
+        BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
+        when(repository.getBeanById(42l))
+                .thenReturn(beanDeDomaine().buildKnow());
 
-    }
+        ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
-    @Test
-    public void should_fail_when_create_or_update_parameters_are_empty() {
+        BeanDeDomaine bean = service.getById(42l);
 
+        assertThat(bean)
+                .isNotNull()
+                .isExactlyInstanceOf(BeanDeDomaine.class)
+                .isEqualsToByComparingFields(beanDeDomaine().buildKnow());
+
+        verify(repository).getBeanById(42l);
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
     public void should_create_new_bean_when_no_id_is_given_to_create_or_update() {
+        BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
+        ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
+        BeanDeDomaine bean = beanDeDomaine().buildNew();
+        service.createOrUpdate(bean);
+
+        verify(repository).createBean(any(BeanDeDomaine.class));
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
     public void should_get_etat_NOUVEAU_on_new_bean_even_if_previously_set_differently() {
+        BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
+        ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
+        BeanDeDomaine bean = beanDeDomaine()
+                .withEtat(EtatBeanDomain.EN_COURS)
+                .withNom("nom")
+                .build();
+
+        service.createOrUpdate(bean);
+
+        BeanDeDomaine expectedBean = beanDeDomaine()
+                .withEtat(EtatBeanDomain.NOUVEAU)
+                .withNom("nom")
+                .build();
+
+        assertThat(bean)
+                .isNotNull()
+                .isEqualsToByComparingFields(expectedBean);
+
+        verify(repository).createBean(any(BeanDeDomaine.class));
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
     public void should_update_bean_when_id_is_given_to_create_or_update() {
+        BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
+        ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
+        BeanDeDomaine bean = beanDeDomaine().buildKnow();
+        service.createOrUpdate(bean);
+
+        verify(repository).updateBean(any(BeanDeDomaine.class));
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
     public void should_fail_when_we_try_to_incorrectly_update_bean_level() {
+        BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
+        when(repository.getBeanById(666l)).thenReturn(beanDeDomaine().buildTerminated());
 
+        ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
+
+        try {
+            service.updateEtat(Long.valueOf(666l), EtatBeanDomain.NOUVEAU);
+
+            failBecauseExceptionWasNotThrown(ServiceException.class);
+        } catch (ServiceException serviceException) {
+            assertThat(serviceException)
+                    .hasMessageContaining("can't go from TERMINATED to NOUVEAU");
+        }
+
+        verify(repository).getBeanById(666l);
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
-    public void should_fail_when_we_trying_to_delete_Terminated_bean() {
+    public void should_success_when_we_try_to_correctly_update_bean_level() throws ServiceException {
+        BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
+        when(repository.getBeanById(42l)).thenReturn(beanDeDomaine().buildKnow());
 
+        ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
+
+        // on n'attend pas d'exception, donc on ne catch pas
+        service.updateEtat(Long.valueOf(42), EtatBeanDomain.TERMINE);
+
+        verify(repository).getBeanById(42l);
+        verify(repository).updateBean(any(BeanDeDomaine.class));
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
-    public void should_only_get_bean_by_etat() {
+    public void should_success_deleting_bean_when_state_is_Terminated() throws ServiceException {
+        BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
+        ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
+        BeanDeDomaine bean = beanDeDomaine().buildTerminated();
+        service.deleteBean(bean);
+
+        verify(repository).deleteBean(any(BeanDeDomaine.class));
+        verifyNoMoreInteractions(repository);
+    }
+
+    @Test
+    public void should_not_fail_when_trying_to_delete_non_Terminated_bean() {
+        BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
+        ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
+
+        BeanDeDomaine bean = beanDeDomaine().buildKnow();
+
+        Throwable thrownByException = null;
+        try {
+            service.deleteBean(bean);
+
+            failBecauseExceptionWasNotThrown(ServiceException.class);
+        } catch (ServiceException serviceException) {
+            thrownByException = serviceException;
+        }
+
+        assertThat(thrownByException)
+                .isNotNull()
+                .isExactlyInstanceOf(ServiceException.class)
+                .hasMessageContaining("should be TERMINATED before trying to delete");
+
+        // Le service ne doit pas avoir été appelé
+        verifyZeroInteractions(repository);
     }
 
 }

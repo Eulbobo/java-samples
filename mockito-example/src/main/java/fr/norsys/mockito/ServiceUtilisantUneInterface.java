@@ -2,6 +2,7 @@ package fr.norsys.mockito;
 
 import fr.norsys.mockito.service.BeanDeDomainRepository;
 import fr.norsys.mockito.service.BeanDeDomaine;
+import fr.norsys.mockito.service.EtatBeanDomain;
 
 public class ServiceUtilisantUneInterface {
 
@@ -27,11 +28,23 @@ public class ServiceUtilisantUneInterface {
     }
 
     /**
+     * Met à jour l'état du bean vers le nouvel état
+     *
+     * @param idBean id bean
+     * @param nouvelEtat
+     * @throws ServiceException si l'état ne peut pas être augmenté
+     */
+    public void updateEtat(final Long idBean, final EtatBeanDomain nouvelEtat) throws ServiceException {
+        // TODO implement
+    }
+
+    /**
      * Suppression bean
      *
      * @param beanDeDomaine
+     * @throws ServiceException si le bean ne peut pas être supprimé
      */
-    public void deleteBean(final BeanDeDomaine beanDeDomaine) {
+    public void deleteBean(final BeanDeDomaine beanDeDomaine) throws ServiceException  {
         // TODO implement
     }
 
@@ -52,6 +65,6 @@ public class ServiceUtilisantUneInterface {
      * @param etat
      */
     public void doThings() {
-        //TODO implement
+        // TODO implement
     }
 }
