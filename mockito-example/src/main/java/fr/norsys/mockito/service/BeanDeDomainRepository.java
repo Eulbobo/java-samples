@@ -1,6 +1,5 @@
 package fr.norsys.mockito.service;
 
-
 /**
  * Cette interface représente l'implémentation d'une couche de persistence quelconque
  * Toutes les méthodes déclarent renvoyer des exceptions de domaine (runtime)
@@ -40,5 +39,10 @@ public interface BeanDeDomainRepository {
      * @throws DomainException if parameter is null or if bean doesn't exists
      */
     void deleteBean(BeanDeDomaine bean) throws DomainException;
+
+    /**
+     * Méthode qui fait des choses
+     */
+    void doThings();
 
 }

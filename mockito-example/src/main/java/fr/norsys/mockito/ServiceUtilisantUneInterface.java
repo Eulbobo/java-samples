@@ -6,15 +6,15 @@ import fr.norsys.mockito.service.BeanDeDomaine;
 public class ServiceUtilisantUneInterface {
 
     /** instance de l'interface de service */
-    private final BeanDeDomainRepository interfaceDeService;
+    private final BeanDeDomainRepository repository;
 
     /**
      * Constructeur par défaut
      *
      * @param interfaceDeService unique façon d'injecter le service
      */
-    public ServiceUtilisantUneInterface(final BeanDeDomainRepository interfaceDeService) {
-        this.interfaceDeService = interfaceDeService;
+    public ServiceUtilisantUneInterface(final BeanDeDomainRepository repository) {
+        this.repository = repository;
     }
 
     /**
@@ -44,5 +44,14 @@ public class ServiceUtilisantUneInterface {
     public BeanDeDomaine getById(final Long id) {
         // TODO implement
         return null;
+    }
+
+    /**
+     * Faire des choses
+     *
+     * @param etat
+     */
+    public void doThings() {
+        //TODO implement
     }
 }
