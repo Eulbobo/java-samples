@@ -1,10 +1,17 @@
 package fr.norsys.mockito;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.norsys.mockito.service.BeanDeDomainRepository;
 import fr.norsys.mockito.service.BeanDeDomaine;
+import fr.norsys.mockito.service.DomainException;
 import fr.norsys.mockito.service.EtatBeanDomain;
 
 public class ServiceUtilisantUneInterface {
+
+    /** logger for class */
+    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceUtilisantUneInterface.class);
 
     /** instance de l'interface de service */
     private final BeanDeDomainRepository repository;
@@ -55,8 +62,14 @@ public class ServiceUtilisantUneInterface {
      * @return bean de domaine
      */
     public BeanDeDomaine getById(final Long id) {
-        // TODO implement
-        return null;
+        BeanDeDomaine bean = null;
+        try {
+            bean = repository.getBeanById(id.longValue());
+        } catch (DomainException e){
+            LOGGER.info("No bean with id {} known", id);
+        }
+
+        return bean;
     }
 
     /**
