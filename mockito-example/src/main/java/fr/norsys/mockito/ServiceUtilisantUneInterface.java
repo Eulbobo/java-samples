@@ -34,6 +34,10 @@ public class ServiceUtilisantUneInterface {
      */
     public void createOrUpdate(final BeanDeDomaine beanDeDomaine) {
         requireNonNull(beanDeDomaine, "bean parameter is mandatory");
+
+        if (beanDeDomaine.getIdBean() == null){
+            repository.createBean(beanDeDomaine);
+        }
         // TODO implement
     }
 

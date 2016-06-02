@@ -7,7 +7,7 @@ import fr.norsys.mockito.service.EtatBeanDomain;
 
 public class BeanDeDomaineFixture {
 
-    private long idBean;
+    private Long idBean;
 
     private String nomBean;
 
@@ -81,7 +81,7 @@ public class BeanDeDomaineFixture {
     }
 
     // Méthodes de construction de la fixture par champ
-    public BeanDeDomaineFixture withId(final long id) {
+    public BeanDeDomaineFixture withId(final Long id) {
         this.idBean = id;
         return this;
     }
