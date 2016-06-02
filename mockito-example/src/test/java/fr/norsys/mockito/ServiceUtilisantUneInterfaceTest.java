@@ -142,7 +142,9 @@ public class ServiceUtilisantUneInterfaceTest {
         // ASSERT
         assertThat(thrownByException)
                 .isNotNull()
-                .isExactlyInstanceOf(NullPointerException.class);
+                .isExactlyInstanceOf(NullPointerException.class)
+                .hasMessageContaining("id parameter is mandatory");
+
         // Le service ne doit pas avoir été appelé
         verifyZeroInteractions(repository);
     }
