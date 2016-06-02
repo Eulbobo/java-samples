@@ -61,6 +61,72 @@ public final class Objects {
     }
 
     /**
+     * Returns {@code true} if the arguments are deeply equal to each other
+     * and {@code false} otherwise.
+     *
+     * Two {@code null} values are deeply equal.  If both arguments are
+     * arrays, the algorithm in {@link Arrays#deepEquals(Object[],
+     * Object[]) Arrays.deepEquals} is used to determine equality.
+     * Otherwise, equality is determined by using the {@link
+     * Object#equals equals} method of the first argument.
+     *
+     * @param a an object
+     * @param b an object to be compared with {@code a} for deep equality
+     * @return {@code true} if the arguments are deeply equal to each other
+     * and {@code false} otherwise
+     * @see Arrays#deepEquals(Object[], Object[])
+     * @see Objects#equals(Object, Object)
+     */
+     public static boolean deepEquals(final Object a, final Object b) {
+         if (a == b) {
+            return true;
+        } else if (a == null || b == null) {
+            return false;
+        } else {
+            return deepEquals0(a, b);
+        }
+     }
+
+     /**
+      * Returns <tt>true</tt> if the two specified arrays of longs are
+      * <i>equal</i> to one another.  Two arrays are considered equal if both
+      * arrays contain the same number of elements, and all corresponding pairs
+      * of elements in the two arrays are equal.  In other words, two arrays
+      * are equal if they contain the same elements in the same order.  Also,
+      * two array references are considered equal if both are <tt>null</tt>.<p>
+      *
+      * @param a one array to be tested for equality
+      * @param a2 the other array to be tested for equality
+      * @return <tt>true</tt> if the two arrays are equal
+      */
+     static boolean deepEquals0(final Object e1, final Object e2) {
+         assert e1 != null;
+         boolean eq;
+         if (e1 instanceof Object[] && e2 instanceof Object[]) {
+            eq = Arrays.deepEquals ((Object[]) e1, (Object[]) e2);
+        } else if (e1 instanceof byte[] && e2 instanceof byte[]) {
+            eq = Arrays.equals((byte[]) e1, (byte[]) e2);
+        } else if (e1 instanceof short[] && e2 instanceof short[]) {
+            eq = Arrays.equals((short[]) e1, (short[]) e2);
+        } else if (e1 instanceof int[] && e2 instanceof int[]) {
+            eq = Arrays.equals((int[]) e1, (int[]) e2);
+        } else if (e1 instanceof long[] && e2 instanceof long[]) {
+            eq = Arrays.equals((long[]) e1, (long[]) e2);
+        } else if (e1 instanceof char[] && e2 instanceof char[]) {
+            eq = Arrays.equals((char[]) e1, (char[]) e2);
+        } else if (e1 instanceof float[] && e2 instanceof float[]) {
+            eq = Arrays.equals((float[]) e1, (float[]) e2);
+        } else if (e1 instanceof double[] && e2 instanceof double[]) {
+            eq = Arrays.equals((double[]) e1, (double[]) e2);
+        } else if (e1 instanceof boolean[] && e2 instanceof boolean[]) {
+            eq = Arrays.equals((boolean[]) e1, (boolean[]) e2);
+        } else {
+            eq = e1.equals(e2);
+        }
+         return eq;
+     }
+
+    /**
      * Returns the hash code of a non-{@code null} argument and 0 for
      * a {@code null} argument.
      *
