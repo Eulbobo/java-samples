@@ -37,8 +37,9 @@ public class ServiceUtilisantUneInterface {
 
         if (beanDeDomaine.getIdBean() == null){
             repository.createBean(beanDeDomaine);
+        } else {
+            repository.updateBean(beanDeDomaine);
         }
-        // TODO implement
     }
 
     /**
@@ -59,6 +60,9 @@ public class ServiceUtilisantUneInterface {
      * @throws ServiceException si le bean ne peut pas être supprimé
      */
     public void deleteBean(final BeanDeDomaine beanDeDomaine) throws ServiceException  {
+        if (beanDeDomaine.getEtatBean() != EtatBeanDomain.TERMINE){
+            throw new ServiceException("BeanDeDomaine should be TERMINATED before trying to delete it");
+        }
         // TODO implement
     }
 

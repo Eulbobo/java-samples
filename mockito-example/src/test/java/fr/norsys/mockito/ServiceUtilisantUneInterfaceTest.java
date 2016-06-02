@@ -266,7 +266,7 @@ public class ServiceUtilisantUneInterfaceTest {
     }
 
     @Test
-    public void should_not_fail_when_trying_to_delete_non_Terminated_bean() {
+    public void should_fail_when_trying_to_delete_non_Terminated_bean() {
         BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
         ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
