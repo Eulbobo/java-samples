@@ -111,7 +111,8 @@ public class ServiceUtilisantUneInterfaceTest {
         // ASSERT
         assertThat(thrownByException)
                 .isNotNull()
-                .isExactlyInstanceOf(NullPointerException.class);
+                .isExactlyInstanceOf(NullPointerException.class)
+                .hasMessageContaining("bean parameter is mandatory");
         // Le service ne doit pas avoir été appelé
         verifyZeroInteractions(repository);
     }

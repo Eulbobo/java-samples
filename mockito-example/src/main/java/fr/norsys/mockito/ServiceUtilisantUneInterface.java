@@ -33,6 +33,7 @@ public class ServiceUtilisantUneInterface {
      * @param beanDeDomaine
      */
     public void createOrUpdate(final BeanDeDomaine beanDeDomaine) {
+        requireNonNull(beanDeDomaine, "bean parameter is mandatory");
         // TODO implement
     }
 
