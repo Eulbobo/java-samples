@@ -63,7 +63,8 @@ public class ServiceUtilisantUneInterface {
         if (beanDeDomaine.getEtatBean() != EtatBeanDomain.TERMINE){
             throw new ServiceException("BeanDeDomaine should be TERMINATED before trying to delete it");
         }
-        // TODO implement
+
+        repository.deleteBean(beanDeDomaine);
     }
 
     /**
