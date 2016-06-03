@@ -295,5 +295,5 @@ public class ServiceUtilisantUneInterfaceTest {
 
 
 
-    // Il manque des tests, et donc il y aura des bugs en l'état : saurez -ous trouver lesquels?
+    // Il manque des tests, et donc il y aura des bugs en l'état : saurez-vous trouver lesquels?
 }
