@@ -1,6 +1,9 @@
 package fr.norsys.mockito;
 
 import static fr.norsys.mockito.fixture.BeanDeDomaineFixture.beanDeDomaine;
+import static fr.norsys.mockito.fixture.BeanDeDomaineFixture.beanDeDomaineKnow;
+import static fr.norsys.mockito.fixture.BeanDeDomaineFixture.beanDeDomaineNew;
+import static fr.norsys.mockito.fixture.BeanDeDomaineFixture.beanDeDomaineTerminated;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 import static org.mockito.Matchers.any;
@@ -154,7 +157,7 @@ public class ServiceUtilisantUneInterfaceTest {
     public void should_get_proper_bean_when_trying_to_get_bean_with_known_id() {
         BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
         when(repository.getBeanById(42l))
-                .thenReturn(beanDeDomaine().buildKnow());
+                .thenReturn(beanDeDomaineKnow());
 
         ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
@@ -163,7 +166,7 @@ public class ServiceUtilisantUneInterfaceTest {
         assertThat(bean)
                 .isNotNull()
                 .isExactlyInstanceOf(BeanDeDomaine.class)
-                .isEqualsToByComparingFields(beanDeDomaine().buildKnow());
+                .isEqualsToByComparingFields(beanDeDomaineKnow());
 
         verify(repository).getBeanById(42l);
         verifyNoMoreInteractions(repository);
@@ -174,7 +177,7 @@ public class ServiceUtilisantUneInterfaceTest {
         BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
         ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
-        BeanDeDomaine bean = beanDeDomaine().buildNew();
+        BeanDeDomaine bean = beanDeDomaineNew();
         service.createOrUpdate(bean);
 
         verify(repository).createBean(any(BeanDeDomaine.class));
@@ -211,7 +214,7 @@ public class ServiceUtilisantUneInterfaceTest {
         BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
         ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
-        BeanDeDomaine bean = beanDeDomaine().buildKnow();
+        BeanDeDomaine bean = beanDeDomaineKnow();
         service.createOrUpdate(bean);
 
         verify(repository).updateBean(any(BeanDeDomaine.class));
@@ -221,7 +224,7 @@ public class ServiceUtilisantUneInterfaceTest {
     @Test
     public void should_fail_when_we_try_to_incorrectly_update_bean_level() {
         BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
-        when(repository.getBeanById(666l)).thenReturn(beanDeDomaine().buildTerminated());
+        when(repository.getBeanById(666l)).thenReturn(beanDeDomaineTerminated());
 
         ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
@@ -241,7 +244,7 @@ public class ServiceUtilisantUneInterfaceTest {
     @Test
     public void should_success_when_we_try_to_correctly_update_bean_level() throws ServiceException {
         BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
-        when(repository.getBeanById(42l)).thenReturn(beanDeDomaine().buildKnow());
+        when(repository.getBeanById(42l)).thenReturn(beanDeDomaineKnow());
 
         ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
@@ -258,7 +261,7 @@ public class ServiceUtilisantUneInterfaceTest {
         BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
         ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
-        BeanDeDomaine bean = beanDeDomaine().buildTerminated();
+        BeanDeDomaine bean = beanDeDomaineTerminated();
         service.deleteBean(bean);
 
         verify(repository).deleteBean(any(BeanDeDomaine.class));
@@ -270,7 +273,7 @@ public class ServiceUtilisantUneInterfaceTest {
         BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
         ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
 
-        BeanDeDomaine bean = beanDeDomaine().buildKnow();
+        BeanDeDomaine bean = beanDeDomaineKnow();
 
         Throwable thrownByException = null;
         try {

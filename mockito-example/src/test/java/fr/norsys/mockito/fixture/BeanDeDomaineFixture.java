@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import fr.norsys.mockito.service.BeanDeDomaine;
 import fr.norsys.mockito.service.EtatBeanDomain;
 
+// cet objet est une fixture
+// son rôle est de fournir rapidement des instances d'objets faciles à configurer
 public class BeanDeDomaineFixture {
 
     private Long idBean;
@@ -33,8 +35,9 @@ public class BeanDeDomaineFixture {
      *
      * @return Bean De domaine
      */
-    public BeanDeDomaine buildKnow() {
-        return this.withId(42l)
+    public static BeanDeDomaine beanDeDomaineKnow() {
+        return new BeanDeDomaineFixture()
+                .withId(42l)
                 .withEtat(EtatBeanDomain.A_TRAITER)
                 .withNom("fast-fixture")
                 .withValeur(BigDecimal.valueOf(5552))
@@ -46,8 +49,9 @@ public class BeanDeDomaineFixture {
      *
      * @return Bean De domaine
      */
-    public BeanDeDomaine buildNew() {
-        return this.withEtat(EtatBeanDomain.NOUVEAU)
+    public static BeanDeDomaine beanDeDomaineNew() {
+        return new BeanDeDomaineFixture()
+                .withEtat(EtatBeanDomain.NOUVEAU)
                 .withNom("fast-new")
                 .withValeur(BigDecimal.valueOf(822))
                 .build();
@@ -58,8 +62,9 @@ public class BeanDeDomaineFixture {
      *
      * @return Bean De domaine
      */
-    public BeanDeDomaine buildTerminated() {
-        return this.withId(666l)
+    public static BeanDeDomaine beanDeDomaineTerminated() {
+        return new BeanDeDomaineFixture()
+                .withId(666l)
                 .withEtat(EtatBeanDomain.TERMINE)
                 .withNom("fast-terminated")
                 .withValeur(BigDecimal.valueOf(55))
