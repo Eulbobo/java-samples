@@ -234,7 +234,7 @@ public class ServiceUtilisantUneInterfaceTest {
             failBecauseExceptionWasNotThrown(ServiceException.class);
         } catch (ServiceException serviceException) {
             assertThat(serviceException)
-                    .hasMessageContaining("can't go from TERMINATED to NOUVEAU");
+                    .hasMessageContaining("can't go from TERMINE to NOUVEAU");
         }
 
         verify(repository).getBeanById(666l);
@@ -293,4 +293,7 @@ public class ServiceUtilisantUneInterfaceTest {
         verifyZeroInteractions(repository);
     }
 
+
+
+    // Il manque des tests, et donc il y aura des bugs en l'état : saurez -ous trouver lesquels?
 }

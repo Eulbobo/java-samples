@@ -36,6 +36,7 @@ public class ServiceUtilisantUneInterface {
         requireNonNull(beanDeDomaine, "bean parameter is mandatory");
 
         if (beanDeDomaine.getIdBean() == null){
+            beanDeDomaine.setEtatBean(EtatBeanDomain.NOUVEAU);
             repository.createBean(beanDeDomaine);
         } else {
             repository.updateBean(beanDeDomaine);
@@ -50,7 +51,17 @@ public class ServiceUtilisantUneInterface {
      * @throws ServiceException si l'état ne peut pas être augmenté
      */
     public void updateEtat(final Long idBean, final EtatBeanDomain nouvelEtat) throws ServiceException {
-        // TODO implement
+        BeanDeDomaine beanDeDomaine = repository.getBeanById(idBean);
+
+        if (nouvelEtat.ordinal() < beanDeDomaine.getEtatBean().ordinal()){
+            String message = String.format("Etat update can't go from %s to %s", beanDeDomaine.getEtatBean().name(), nouvelEtat.name());
+            throw new ServiceException(message);
+        }
+
+        beanDeDomaine.setEtatBean(nouvelEtat);
+        repository.updateBean(beanDeDomaine);
+
+        //can't go from TERMINATED to NOUVEAU
     }
 
     /**
