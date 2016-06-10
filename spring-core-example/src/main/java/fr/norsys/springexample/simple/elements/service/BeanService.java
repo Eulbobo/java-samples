@@ -5,12 +5,13 @@ import org.springframework.stereotype.Service;
 
 import fr.norsys.springexample.domain.BeanSimple;
 import fr.norsys.springexample.domain.BeanSimpleRepositoryInterface;
+import fr.norsys.springexample.domain.BeanSimpleService;
 
 /**
  * Cette classe est déclarée comme un @Service car elle sert à la manipulation des données
  */
 @Service
-public class BeanService {
+public class BeanService implements BeanSimpleService {
 
     private final BeanSimpleRepositoryInterface repository;
 
@@ -28,10 +29,12 @@ public class BeanService {
         this.repository = repository;
     }
 
+    @Override
     public BeanSimple getBean(final Long id){
         return this.repository.getById(id);
     }
 
+    @Override
     public void createOrUpdate(final Long id, final String name){
         BeanSimple beanInRepository = this.repository.getById(id);
         if (beanInRepository != null){

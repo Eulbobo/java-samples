@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.norsys.springexample.domain.BeanSimple;
+import fr.norsys.springexample.domain.BeanSimpleService;
 import fr.norsys.springexample.simple.elements.service.BeanService;
 
 public class SimpleApplicationExample {
@@ -21,7 +22,7 @@ public class SimpleApplicationExample {
         LOGGER.info("context is loaded : {}", context);
 
         // récupération d'une classe annotée unique
-        BeanService service = context.getBean(BeanService.class);
+        BeanSimpleService service = context.getBean(BeanService.class);
         LOGGER.info("On a le service : {}", service);
 
         // utilisation du service
