@@ -28,14 +28,23 @@ public class AllImplementationService implements BeanSimpleService {
 
     @Override
     public BeanSimple getBean(final Long id) {
-        // TODO Auto-generated method stub
+        for (BeanSimpleRepositoryInterface repository : allRepositories){
+            return repository.getById(id);
+        }
         return null;
     }
 
     @Override
     public void createOrUpdate(final Long id, final String name) {
-        // TODO Auto-generated method stub
-
+        BeanSimple beanInRepository =getBean(id);
+        if (beanInRepository != null){
+            beanInRepository.setName(name);
+        } else {
+            beanInRepository = new BeanSimple(id, String.valueOf("fromBasicService"));
+        }
+        for (BeanSimpleRepositoryInterface repository : allRepositories){
+            repository.save(beanInRepository);
+        }
     }
 
 }

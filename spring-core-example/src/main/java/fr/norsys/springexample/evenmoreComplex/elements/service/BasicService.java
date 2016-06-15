@@ -27,14 +27,18 @@ public class BasicService implements BeanSimpleService {
 
     @Override
     public BeanSimple getBean(final Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        return repository.getById(id);
     }
 
     @Override
     public void createOrUpdate(final Long id, final String name) {
-        // TODO Auto-generated method stub
-
+        BeanSimple beanInRepository = this.repository.getById(id);
+        if (beanInRepository != null){
+            beanInRepository.setName(name);
+        } else {
+            beanInRepository = new BeanSimple(id, String.valueOf("fromBasicService"));
+        }
+        this.repository.save(beanInRepository);
     }
 
 }
