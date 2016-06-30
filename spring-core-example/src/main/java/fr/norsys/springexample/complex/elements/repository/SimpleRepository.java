@@ -18,7 +18,7 @@ public class SimpleRepository implements BeanSimpleRepositoryInterface {
     private Integer repositoryValue;
 
     private SimpleRepository(){
-        // default constructor
+        // je vous laisse deviner ce qui se passe si vous l'enlever ce constructeur
     }
 
     public SimpleRepository(final Integer value){
