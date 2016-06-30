@@ -17,17 +17,17 @@ public class SimpleRepository implements BeanSimpleRepositoryInterface {
 
     private Integer repositoryValue;
 
-    private SimpleRepository(){
-        // je vous laisse deviner ce qui se passe si vous l'enlever ce constructeur
+    private SimpleRepository() {
+        // je vous laisse deviner ce qui se passe si vous enlevez ce constructeur
     }
 
-    public SimpleRepository(final Integer value){
+    public SimpleRepository(final Integer value) {
         this.repositoryValue = value;
     }
 
     @Override
     public BeanSimple getById(final Long id) {
-        LOGGER.info("SimpleRepository {} qui te donne ton bean d'ID {}", repositoryValue,  id);
+        LOGGER.info("SimpleRepository {} qui te donne ton bean d'ID {}", repositoryValue, id);
         return new BeanSimple(id, String.valueOf(id));
     }
 
