@@ -19,8 +19,8 @@ public class EvenMoreComplexApplicationExample {
 
     public static void main(final String[] args) {
         LOGGER.info("===========================================================");
-        // récupération du contexte via les annotations à partir d'un package
-        ApplicationContext context = new AnnotationConfigApplicationContext("fr.norsys.springexample.evenmoreComplex");
+        // récupération du contexte via la classe de configuration
+        ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         LOGGER.info("===========================================================");
         // notre contexte est chargé
         LOGGER.info("context is loaded : {}", context);
