@@ -20,18 +20,20 @@ public class ComplexService implements BeanSimpleService {
 
     /**
      * Constructeur avec un autowiring par le nom !
+     *
      * @param firstRepo : bean repository branché avec son nom
      */
     @Autowired
-    public ComplexService(final BeanSimpleRepositoryInterface firstRepo, final BeanSimpleRepositoryInterface secondRepo){
+    public ComplexService(final BeanSimpleRepositoryInterface firstRepo, final BeanSimpleRepositoryInterface secondRepo) {
         this.first = firstRepo;
         this.second = secondRepo;
     }
 
     @Override
     public BeanSimple getBean(final Long id) {
+        LOGGER.debug("Get bean by ID {}", id);
         BeanSimple bean = first.getById(id);
-        if (bean == null){
+        if (bean == null) {
             bean = second.getById(id);
         }
         return bean;
@@ -39,8 +41,9 @@ public class ComplexService implements BeanSimpleService {
 
     @Override
     public void createOrUpdate(final Long id, final String name) {
+        LOGGER.debug("create or update Bean[{}, {}]", id, name);
         BeanSimple beanInRepository = getBean(id);
-        if (beanInRepository != null){
+        if (beanInRepository != null) {
             beanInRepository.setName(name);
         } else {
             beanInRepository = new BeanSimple(id, String.valueOf("fromComplexService"));

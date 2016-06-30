@@ -15,15 +15,15 @@ public class ComplexApplicationExample {
     private static final Logger LOGGER = LoggerFactory.getLogger(ComplexApplicationExample.class);
 
     public static void main(final String[] args) {
-
+        LOGGER.info("===========================================================");
         // récupération du contexte via les annotations à partir d'un package
         ApplicationContext context = new AnnotationConfigApplicationContext("fr.norsys.springexample.complex");
-
+        LOGGER.info("===========================================================");
         // notre contexte est chargé
         LOGGER.info("context is loaded : {}", context);
 
+        LOGGER.info("-----------------------------------------------------------");
         BeanSimpleRepositoryInterface repository = null;
-
         try {
             LOGGER.info("tentative de récupération d'un repository sans préciser le nom");
             repository = context.getBean(BeanSimpleRepositoryInterface.class);
@@ -32,22 +32,27 @@ public class ComplexApplicationExample {
             LOGGER.error("Ca a foiré", e);
         }
 
+        LOGGER.info("-----------------------------------------------------------");
         // récupération par le nom : celui de la méthode dans la configuration
         repository = context.getBean("aSimpleImplementation", BeanSimpleRepositoryInterface.class);
         testRepo(repository);
 
+        LOGGER.info("-----------------------------------------------------------");
         // récupération par le nom : un autre dans la configuration
         repository = context.getBean("anotherSimpleImplementation", BeanSimpleRepositoryInterface.class);
         testRepo(repository);
 
-        // récupération par le nom : encore une fois
-        repository = context.getBean("method_name_is_the_key_to_identify_bean", BeanSimpleRepositoryInterface.class);
+        LOGGER.info("-----------------------------------------------------------");
+        // récupération par le nom : encore une fois, en castant, parce que ça marche aussi
+        repository = (BeanSimpleRepositoryInterface) context.getBean("method_name_is_the_key_to_identify_bean");
         testRepo(repository);
 
+        LOGGER.info("-----------------------------------------------------------");
         // récupération par le nom : configuré sur l'annotation
         repository = context.getBean("fffff", BeanSimpleRepositoryInterface.class);
         testRepo(repository);
 
+        LOGGER.info("-----------------------------------------------------------");
         try {
             LOGGER.info("tentative de récupération d'un repository dont le nom n'existe pas");
             repository = context.getBean("SimpleRepository", BeanSimpleRepositoryInterface.class);
@@ -56,12 +61,13 @@ public class ComplexApplicationExample {
             LOGGER.error("Ca a foiré", e);
         }
 
-        // vous savez quoi? Il existe une cinquième configuration implicite : simpleRepository (parce qu'il a un
-        // constructeur par défaut)
+        LOGGER.info("-----------------------------------------------------------");
+        // vous savez quoi? Il existe une cinquième configuration implicite : simpleRepository
         repository = context.getBean("simpleRepository", BeanSimpleRepositoryInterface.class);
         LOGGER.info("On a le repository : {}", repository);
         testRepo(repository);
 
+        LOGGER.info("-----------------------------------------------------------");
         // et un sixième !
         repository = context.getBean("anotherSimpleRepository", BeanSimpleRepositoryInterface.class);
         LOGGER.info("On a le repository : {}", repository);

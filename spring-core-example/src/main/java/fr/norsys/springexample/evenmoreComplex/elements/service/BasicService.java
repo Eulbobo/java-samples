@@ -18,22 +18,25 @@ public class BasicService implements BeanSimpleService {
 
     /**
      * Constructeur avec un autowiring par le nom !
+     *
      * @param firstRepo
      */
     @Autowired
-    public BasicService(final BeanSimpleRepositoryInterface firstRepo){
+    public BasicService(final BeanSimpleRepositoryInterface firstRepo) {
         this.repository = firstRepo;
     }
 
     @Override
     public BeanSimple getBean(final Long id) {
+        LOGGER.debug("Get bean by ID {}", id);
         return repository.getById(id);
     }
 
     @Override
     public void createOrUpdate(final Long id, final String name) {
+        LOGGER.debug("create or update Bean[{}, {}]", id, name);
         BeanSimple beanInRepository = this.repository.getById(id);
-        if (beanInRepository != null){
+        if (beanInRepository != null) {
             beanInRepository.setName(name);
         } else {
             beanInRepository = new BeanSimple(id, String.valueOf("fromBasicService"));

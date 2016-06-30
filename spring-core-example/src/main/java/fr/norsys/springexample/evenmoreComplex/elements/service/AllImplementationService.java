@@ -5,11 +5,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.norsys.springexample.domain.BeanSimple;
 import fr.norsys.springexample.domain.BeanSimpleRepositoryInterface;
 import fr.norsys.springexample.domain.BeanSimpleService;
 
+@Service
 public class AllImplementationService implements BeanSimpleService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AllImplementationService.class);
@@ -28,21 +30,24 @@ public class AllImplementationService implements BeanSimpleService {
 
     @Override
     public BeanSimple getBean(final Long id) {
-        for (BeanSimpleRepositoryInterface repository : allRepositories){
-            return repository.getById(id);
+        LOGGER.debug("Get bean by ID {}", id);
+        BeanSimple beanSimple = null;
+        for (BeanSimpleRepositoryInterface repository : allRepositories) {
+            beanSimple = repository.getById(id);
         }
-        return null;
+        return beanSimple;
     }
 
     @Override
     public void createOrUpdate(final Long id, final String name) {
-        BeanSimple beanInRepository =getBean(id);
-        if (beanInRepository != null){
+        LOGGER.debug("create or update Bean[{}, {}]", id, name);
+        BeanSimple beanInRepository = getBean(id);
+        if (beanInRepository != null) {
             beanInRepository.setName(name);
         } else {
             beanInRepository = new BeanSimple(id, String.valueOf("fromBasicService"));
         }
-        for (BeanSimpleRepositoryInterface repository : allRepositories){
+        for (BeanSimpleRepositoryInterface repository : allRepositories) {
             repository.save(beanInRepository);
         }
     }
