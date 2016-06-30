@@ -26,12 +26,12 @@ public class EvenMoreComplexApplicationExample {
         LOGGER.info("context is loaded : {}", context);
 
         // utilisation d'un repository (appel avec le nom)
-        BeanSimpleRepositoryInterface firstRepo = (BeanSimpleRepositoryInterface) context.getBean("firstRepo");
+        BeanSimpleRepositoryInterface firstRepo = context.getBean("firstRepo", BeanSimpleRepositoryInterface.class);
         firstRepo.getById(0l);
         LOGGER.info("-----------------------------------------------------------");
 
         // utilisation d'un autre repository (appel avec le nom)
-        BeanSimpleRepositoryInterface secondRepo = (BeanSimpleRepositoryInterface) context.getBean("secondRepo");
+        BeanSimpleRepositoryInterface secondRepo = context.getBean("secondRepo", BeanSimpleRepositoryInterface.class);
         secondRepo.getById(0l);
 
         LOGGER.info("-----------------------------------------------------------");
@@ -52,7 +52,7 @@ public class EvenMoreComplexApplicationExample {
         doStuffWithService(complexService);
 
         LOGGER.info("-----------------------------------------------------------");
-        BeanSimpleService allImplService = (BeanSimpleService) context.getBean("allImplementationService");
+        BeanSimpleService allImplService = context.getBean("allImplementationService", BeanSimpleService.class);
         doStuffWithService(allImplService);
     }
 
