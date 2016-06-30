@@ -30,14 +30,15 @@ public class EvenMoreComplexApplicationExample {
         firstRepo.getById(0l);
         LOGGER.info("-----------------------------------------------------------");
 
-        //utilisation d'un autre repository (appel avec le nom)
+        // utilisation d'un autre repository (appel avec le nom)
         BeanSimpleRepositoryInterface secondRepo = (BeanSimpleRepositoryInterface) context.getBean("secondRepo");
         secondRepo.getById(0l);
 
         LOGGER.info("-----------------------------------------------------------");
-      //utilisation d'un autre repository (appel avec le nom)
-        Map<String, BeanSimpleRepositoryInterface> repositories = context.getBeansOfType(BeanSimpleRepositoryInterface.class);
-        for (Entry<String, BeanSimpleRepositoryInterface> entry : repositories.entrySet()){
+        // utilisation d'un autre repository (appel avec le nom)
+        Map<String, BeanSimpleRepositoryInterface> repositories = context
+                .getBeansOfType(BeanSimpleRepositoryInterface.class);
+        for (Entry<String, BeanSimpleRepositoryInterface> entry : repositories.entrySet()) {
             LOGGER.info("Repository de nom {} avec l'implémentation {}", entry.getKey(), entry.getValue());
         }
 
@@ -55,12 +56,9 @@ public class EvenMoreComplexApplicationExample {
         doStuffWithService(allImplService);
     }
 
-
-    private static void doStuffWithService(final BeanSimpleService service){
+    private static void doStuffWithService(final BeanSimpleService service) {
         service.getBean(0l);
         service.createOrUpdate(5l, "simpleBeanSave");
     }
-
-
 
 }
