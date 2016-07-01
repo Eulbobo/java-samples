@@ -24,8 +24,8 @@ public class PlayDao implements Dao<Play, Long> {
     }
 
     @Override
-    public void save(final Play Play) {
-        baseDao.save(Play);
+    public Long save(final Play play) {
+        return baseDao.save(play).longValue();
     }
 
     @Override

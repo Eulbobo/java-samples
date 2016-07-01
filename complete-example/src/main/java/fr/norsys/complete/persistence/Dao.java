@@ -1,11 +1,10 @@
 package fr.norsys.complete.persistence;
 
-import java.io.Serializable;
 import java.util.List;
 
-public interface Dao<T, K extends Serializable> {
+public interface Dao<T, K extends Number> {
 
-    void save(final T element);
+    K save(final T element);
 
     T getById(K id);
 

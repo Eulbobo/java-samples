@@ -25,8 +25,8 @@ public class ArtistDao implements Dao<Artist, Long> {
     }
 
     @Override
-    public void save(final Artist artist) {
-        baseDao.save(artist);
+    public Long save(final Artist artist) {
+        return baseDao.save(artist).longValue();
     }
 
     @Override

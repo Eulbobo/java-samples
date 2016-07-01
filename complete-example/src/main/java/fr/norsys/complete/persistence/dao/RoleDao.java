@@ -20,8 +20,9 @@ public class RoleDao extends NamedParameterJdbcDaoSupport implements Dao<Role, L
     }
 
     @Override
-    public void save(final Role role) {
+    public Long save(final Role role) {
         // TODO
+        return null;
     }
 
     @Override

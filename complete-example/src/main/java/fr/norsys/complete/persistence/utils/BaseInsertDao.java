@@ -21,8 +21,8 @@ public class BaseInsertDao<T> {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public void save(final T element) {
+    public Number save(final T element) {
         SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate).withTableName(tableName);
-        insert.execute(beanMap.getBeanMap(element));
+        return insert.executeAndReturnKey(beanMap.getBeanMap(element));
     }
 }

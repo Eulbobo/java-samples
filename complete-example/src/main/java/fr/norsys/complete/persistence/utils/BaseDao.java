@@ -16,17 +16,24 @@ public class BaseDao<T> {
 
     private final BaseSelectDao<T> baseSelectDao;
 
+    private final BaseDeleteDao<T> baseDeleteDao;
+
     public BaseDao(final BeanMap<T> beanMap, final RowMapper<T> rowMapper, final String tableName, final DataSource dataSource){
         this.baseInsertDao = new BaseInsertDao<T>(beanMap, tableName, dataSource);
         this.baseSelectDao = new BaseSelectDao<T>(beanMap, rowMapper, tableName, dataSource);
+        this.baseDeleteDao = new BaseDeleteDao<T>(tableName, dataSource);
     }
 
-    public void save(final T element) {
-        baseInsertDao.save(element);
+    public Number save(final T element) {
+        return baseInsertDao.save(element);
     }
 
     public T getById(final String idColumnName, final Serializable id) {
         return baseSelectDao.getById(idColumnName, id);
+    }
+
+    public void deleteById(final String idColumnName, final Serializable id) {
+        baseDeleteDao.delete(idColumnName, id);
     }
 
     public List<T> findByExample(final String query, final T example) {
@@ -40,4 +47,6 @@ public class BaseDao<T> {
     public List<T> findAll() {
         return baseSelectDao.findAll();
     }
+
+
 }
