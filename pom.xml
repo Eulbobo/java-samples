@@ -10,8 +10,6 @@
 		<slf4j-version>1.7.21</slf4j-version>
 		<spring-version>4.2.6.RELEASE</spring-version>
 
-		<spring-test-version>2.5</spring-test-version>
-
 		<mockito-version>1.10.19</mockito-version>
 		<openpojo-version>0.8.4</openpojo-version>
 		<assertj-version>1.2.0</assertj-version>
@@ -36,6 +34,12 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
+				<version>${spring-version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
 				<version>${spring-version}</version>
 			</dependency>
 
@@ -81,6 +85,7 @@
 		<module>mockito-example</module>
 		<module>complete-example</module>
 		<module>openpojo-example</module>
+		<module>spring-jdbc</module>
 	</modules>
 
 	<build>
