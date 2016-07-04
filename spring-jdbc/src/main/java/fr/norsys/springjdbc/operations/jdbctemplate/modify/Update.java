@@ -3,6 +3,8 @@ package fr.norsys.springjdbc.operations.jdbctemplate.modify;
 import java.sql.Types;
 import java.util.Arrays;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -24,8 +26,8 @@ public class Update {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public Update(final JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public Update(final DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public int simpleUpdate() {

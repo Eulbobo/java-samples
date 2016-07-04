@@ -7,7 +7,7 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 
@@ -33,16 +33,10 @@ public class ApplicationTestConfiguration {
     /**
      * Définition d'un transaction manager pour les tests
      */
-//    @Bean
-//    public DataSourceTransactionManager txManager(final DataSource dataSource){
-//        return new DataSourceTransactionManager(dataSource);
-//    }
-
-    /**
-     * Création du jdbctemplate
-     */
     @Bean
-    public JdbcTemplate jdbcTemplate(final DataSource dataSource) {
-        return new JdbcTemplate(dataSource);
+    public DataSourceTransactionManager txManager(final DataSource dataSource){
+        return new DataSourceTransactionManager(dataSource);
     }
+
+
 }

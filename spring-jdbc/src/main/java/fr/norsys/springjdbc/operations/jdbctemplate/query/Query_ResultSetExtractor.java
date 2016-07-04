@@ -2,6 +2,8 @@ package fr.norsys.springjdbc.operations.jdbctemplate.query;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -20,8 +22,8 @@ public class Query_ResultSetExtractor {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public Query_ResultSetExtractor(final JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public Query_ResultSetExtractor(final DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     /**

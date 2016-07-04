@@ -3,6 +3,8 @@ package fr.norsys.springjdbc.operations.jdbctemplate.query;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -22,8 +24,8 @@ public class QueryForObject {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public QueryForObject(final JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public QueryForObject(final DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     /**

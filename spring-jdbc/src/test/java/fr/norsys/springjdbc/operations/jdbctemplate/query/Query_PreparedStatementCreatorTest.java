@@ -6,10 +6,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
@@ -22,11 +23,11 @@ import fr.norsys.springjdbc.beans.User;
 public class Query_PreparedStatementCreatorTest {
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private DataSource dataSource;
 
     @Test
     public void should_get_first_user() {
-        Query_PreparedStatementCreator creatorTest = new Query_PreparedStatementCreator(jdbcTemplate);
+        Query_PreparedStatementCreator creatorTest = new Query_PreparedStatementCreator(dataSource);
 
         User user = creatorTest.getSingleUserWithOverkill(1);
 
@@ -37,7 +38,7 @@ public class Query_PreparedStatementCreatorTest {
 
     @Test
     public void should_get_all_users() {
-        Query_PreparedStatementCreator creatorTest = new Query_PreparedStatementCreator(jdbcTemplate);
+        Query_PreparedStatementCreator creatorTest = new Query_PreparedStatementCreator(dataSource);
 
         List<User> usersList = creatorTest.getAllUsers();
 

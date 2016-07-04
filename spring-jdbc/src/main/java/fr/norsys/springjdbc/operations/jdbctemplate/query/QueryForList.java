@@ -3,6 +3,8 @@ package fr.norsys.springjdbc.operations.jdbctemplate.query;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -16,8 +18,8 @@ public class QueryForList {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public QueryForList(final JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public QueryForList(final DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     /**
