@@ -4,14 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+
+import fr.norsys.springjdbc.beans.User;
 
 @Service
 public class Users {
@@ -23,23 +23,6 @@ public class Users {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    /**
-     * Cette méthode permet de montrer l'usage du queryForObject
-     *
-     * @return nombre de colonnes dans la table
-     */
-    public int rowCountInTable() {
-        return jdbcTemplate.queryForObject("select count(1) from users", Integer.class);
-    }
-
-    /**
-     * Récupération de tous les éléments dans une map
-     *
-     * @return liste de map nom de colonne/valeur
-     */
-    public List<Map<String, Object>> getAllElements() {
-        return jdbcTemplate.queryForList("select * from users where id = 1");
-    }
 
     /**
      * Récupération d'un élément
@@ -64,7 +47,7 @@ public class Users {
                     User extracted = new User();
                     // dans cette méthode, on passe par numéro de colonne dans le résultat
                     // la première colonne a l'indice 1
-                    extracted.setId(rs.getLong(1));
+                    extracted.setId(rs.getInt(1));
                     extracted.setName(rs.getString(2));
                     extracted.setMail(rs.getString(3));
                     return extracted;
@@ -96,7 +79,7 @@ public class Users {
                     User extracted = new User();
                     // dans cette méthode, on passe par numéro de colonne dans le résultat
                     // la première colonne a l'indice 1
-                    extracted.setId(rs.getLong(1));
+                    extracted.setId(rs.getInt(1));
                     extracted.setName(rs.getString(2));
                     extracted.setMail(rs.getString(3));
                     result.add(extracted);
@@ -116,7 +99,7 @@ public class Users {
                 if (rs.next()) {
                     User extracted = new User();
                     // dans cette méthode, on utilise le nom de la colonne
-                    extracted.setId(rs.getLong("ID"));
+                    extracted.setId(rs.getInt("ID"));
                     extracted.setName(rs.getString("NAME"));
                     extracted.setMail(rs.getString("EMAIL"));
                     return extracted;
@@ -128,28 +111,4 @@ public class Users {
         return jdbcTemplate.query("select * from users where id = " + id, rse);
     }
 
-    public User getUniqueUserById(final long id) {
-        // On utilise ici un rowMapper
-        RowMapper<User> rowMapper = new RowMapper<User>() {
-
-            /**
-             * Le rowmapper possède la particularité de donner en paramètre le numéro de ligne lue
-             *
-             * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
-             */
-            @Override
-            public User mapRow(final ResultSet rs, final int rowNum) throws SQLException {
-                User extracted = new User();
-                // dans cette méthode, on utilise le nom de la colonne
-                extracted.setId(rs.getLong("ID"));
-                extracted.setName(rs.getString("NAME"));
-                extracted.setMail(rs.getString("EMAIL"));
-                return extracted;
-            }
-        };
-        // on voit qu'on a passé la requête avec un paramètre qu'on retrouve à la fin
-        // ATTENTION
-        // queryForObject renvoie une exception EmptyDatasetException si la requête ne renvoie pas une seule ligne
-        return jdbcTemplate.queryForObject("select * from users where id = ?", rowMapper, id);
-    }
 }
