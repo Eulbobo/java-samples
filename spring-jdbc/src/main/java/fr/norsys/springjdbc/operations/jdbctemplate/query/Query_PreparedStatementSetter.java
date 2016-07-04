@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import fr.norsys.springjdbc.beans.User;
 import fr.norsys.springjdbc.operations.mapper.resultsetExtractor.SingleUserResultSetExtractor;
@@ -14,10 +14,10 @@ import fr.norsys.springjdbc.operations.mapper.resultsetExtractor.SingleUserResul
 /**
  * Le PreparedStatementSetter permet de fixer des valeurs à un preparedStatement
  * Son usage est implicite dès qu'une requête possède des paramètres
- * Son usage peut être utile dans certains cas particuliers
+ * Son usage peut être utile dans certains cas particuliers (utilisation de plusieurs fois le même paramètre)
  * On l'utilise plus dans les exécutions de type batchUpdate
  */
-@Service
+@Repository
 public class Query_PreparedStatementSetter {
 
     private final JdbcTemplate jdbcTemplate;

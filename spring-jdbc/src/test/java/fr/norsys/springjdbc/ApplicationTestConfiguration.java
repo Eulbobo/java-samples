@@ -31,9 +31,15 @@ public class ApplicationTestConfiguration {
     }
 
     /**
+     * Définition d'un transaction manager pour les tests
+     */
+//    @Bean
+//    public DataSourceTransactionManager txManager(final DataSource dataSource){
+//        return new DataSourceTransactionManager(dataSource);
+//    }
+
+    /**
      * Création du jdbctemplate
-     * @param dataSource
-     * @return jdbctemplate
      */
     @Bean
     public JdbcTemplate jdbcTemplate(final DataSource dataSource) {

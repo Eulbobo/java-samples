@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import fr.norsys.springjdbc.beans.User;
 import fr.norsys.springjdbc.operations.mapper.rowCallbackHandler.SingleUserCallbackHandler;
@@ -14,7 +14,7 @@ import fr.norsys.springjdbc.operations.mapper.rowCallbackHandler.UserListCallbac
 /**
  * L'utilisation d'un callback
  */
-@Service
+@Repository
 public class Query_CallbackHandler {
 
     private final JdbcTemplate jdbcTemplate;

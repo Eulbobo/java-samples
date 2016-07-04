@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import fr.norsys.springjdbc.beans.User;
 import fr.norsys.springjdbc.operations.mapper.rowmapper.UserRowMapper;
@@ -16,7 +16,7 @@ import fr.norsys.springjdbc.operations.mapper.rowmapper.UserRowMapper;
  * - un EmptyResultDataAccessException si la requête ne renvoie pas de résultat
  * - un IncorrectResultSizeDataAccessException si la requête renvoie plus d'un résultat
  */
-@Service
+@Repository
 public class QueryForObject {
 
     private final JdbcTemplate jdbcTemplate;
@@ -53,6 +53,13 @@ public class QueryForObject {
      */
     public Integer rowCountInTable() {
         return jdbcTemplate.queryForObject("select count(1) from users", Integer.class);
+    }
+
+    /**
+     * récupération du nombre d'utilisateur avec un ID donné
+     */
+    public Integer usersWithId(final int id) {
+        return jdbcTemplate.queryForObject("select count(1) from users where id = ?", Integer.class, id);
     }
 
     /**

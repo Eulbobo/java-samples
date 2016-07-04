@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import fr.norsys.springjdbc.beans.User;
 import fr.norsys.springjdbc.operations.mapper.rowmapper.UserRowMapper;
@@ -12,7 +12,7 @@ import fr.norsys.springjdbc.operations.mapper.rowmapper.UserRowMapper;
 /**
  * L'utilisation d'un RowMapper implique systématiquement une liste de résultats
  */
-@Service
+@Repository
 public class Query_RowMapper {
 
     private final JdbcTemplate jdbcTemplate;

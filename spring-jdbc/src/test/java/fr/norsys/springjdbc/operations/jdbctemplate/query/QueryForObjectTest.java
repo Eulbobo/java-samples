@@ -39,6 +39,15 @@ public class QueryForObjectTest {
     }
 
     @Test
+    public void should_get_one_user_with_id_2() {
+        Integer nbUser = queryForObject.usersWithId(2);
+
+        assertThat(nbUser)
+                .isNotNull()
+                .isEqualTo(1);
+    }
+
+    @Test
     public void should_get_second_user_when_querying_for_id_2() {
         User user = queryForObject.getUserById(2);
 

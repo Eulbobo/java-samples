@@ -11,7 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import fr.norsys.springjdbc.beans.User;
 import fr.norsys.springjdbc.operations.mapper.rowmapper.UserRowMapper;
@@ -19,7 +19,7 @@ import fr.norsys.springjdbc.operations.mapper.rowmapper.UserRowMapper;
 /**
  * Le preparedStatementCreator permet de créer une requête en précisant les paramètres du preparedStatement utilisé
  */
-@Service
+@Repository
 public class Query_PreparedStatementCreator {
 
     private final JdbcTemplate jdbcTemplate;

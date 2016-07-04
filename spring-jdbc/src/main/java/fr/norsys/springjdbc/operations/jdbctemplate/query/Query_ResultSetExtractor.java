@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import fr.norsys.springjdbc.beans.User;
 import fr.norsys.springjdbc.operations.mapper.resultsetExtractor.SingleUserResultSetExtractor;
@@ -14,7 +14,7 @@ import fr.norsys.springjdbc.operations.mapper.resultsetExtractor.UserListResultS
  * L'usage d'un résultSetExtractor permet de récupérer ce que l'on veut d'une requête
  * La logique de parcours du résultat est dans l'extractor, sa logique doit donc correspondre à celle de la requête
  */
-@Service
+@Repository
 public class Query_ResultSetExtractor {
 
     private final JdbcTemplate jdbcTemplate;

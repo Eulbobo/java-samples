@@ -5,12 +5,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 /**
  * Le queryForList permet de récupérer une liste d'éléments
  */
-@Service
+@Repository
 public class QueryForList {
 
     private final JdbcTemplate jdbcTemplate;
