@@ -9,6 +9,10 @@ import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.SqlUpdate;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Ceci est la présentation d'une autre façon de faire un update
+ * On utilise un sqlUpdate auquel on aura passé les éléments pour la mise à jour
+ */
 @Repository
 public class UserUpdate {
 
