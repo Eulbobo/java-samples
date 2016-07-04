@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 
@@ -30,6 +31,14 @@ public class ApplicationConfiguration {
                 .ignoreFailedDrops(true)
                 .addScripts("schema.sql", "data.sql")
                 .build();
+    }
+
+    /**
+     * Définition d'un transaction manager
+     */
+    @Bean
+    public DataSourceTransactionManager txManager(final DataSource dataSource){
+        return new DataSourceTransactionManager(dataSource);
     }
 
     @Bean
