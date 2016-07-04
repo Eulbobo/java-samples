@@ -10,7 +10,7 @@ import fr.norsys.springjdbc.beans.User;
 
 /**
  * Un callbackHandler est appelé au moment du traitement du resultSet
- * Spring nous laisse la main pour le traiter comme on veut
+ * Spring gère le parcours du resultSet
  * La méthode processRow renvoie un void : à nous de trouver un moyen de traiter le résultat
  */
 public class UserListCallbackHandler implements RowCallbackHandler {
@@ -24,13 +24,11 @@ public class UserListCallbackHandler implements RowCallbackHandler {
 
     @Override
     public void processRow(final ResultSet rs) throws SQLException {
-        while (rs.next()) {
-            User extracted = new User();
-            extracted.setId(rs.getInt("ID"));
-            extracted.setName(rs.getString("NAME"));
-            extracted.setMail(rs.getString("EMAIL"));
-            userList.add(extracted);
-        }
+        User extracted = new User();
+        extracted.setId(rs.getInt("ID"));
+        extracted.setName(rs.getString("NAME"));
+        extracted.setMail(rs.getString("EMAIL"));
+        userList.add(extracted);
     }
 
 }

@@ -27,7 +27,6 @@ public class Query_PreparedStatementSetterTest {
         assertThat(user)
                 .isNotNull()
                 .isEqualTo(third());
-
     }
 
 }

@@ -9,7 +9,7 @@ import fr.norsys.springjdbc.beans.User;
 
 /**
  * Un callbackHandler est appelé au moment du traitement du resultSet
- * Spring nous laisse la main pour le traiter comme on veut
+ * Spring gère le parcours du resultSet
  * La méthode processRow renvoie un void : à nous de trouver un moyen de traiter le résultat
  */
 public class SingleUserCallbackHandler implements RowCallbackHandler {
@@ -19,15 +19,13 @@ public class SingleUserCallbackHandler implements RowCallbackHandler {
 
     @Override
     public void processRow(final ResultSet rs) throws SQLException {
-        if (rs.next()){
-            result = new User();
-            result.setId(rs.getInt("ID"));
-            result.setName(rs.getString("NAME"));
-            result.setMail(rs.getString("EMAIL"));
-        }
+        result = new User();
+        result.setId(rs.getInt("ID"));
+        result.setName(rs.getString("NAME"));
+        result.setMail(rs.getString("EMAIL"));
     }
 
-    public User getUser(){
+    public User getUser() {
         return result;
     }
 
