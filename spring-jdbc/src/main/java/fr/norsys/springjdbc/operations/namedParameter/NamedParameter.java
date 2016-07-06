@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -29,7 +30,6 @@ public class NamedParameter {
     @Autowired
     public NamedParameter(final DataSource dataSource) {
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-
     }
 
     /**
@@ -86,7 +86,7 @@ public class NamedParameter {
         return namedParameterJdbcTemplate.query(sb.toString(), params, new UserRowMapper());
     }
 
-    public void updateUser(final User user) {
+    public int updateUser(final User user) {
         String sqlUpdate = "update users set name = :userName, email = :userEmail where id = :idParam";
 
         SqlParameterSource params = new MapSqlParameterSource()
@@ -94,17 +94,19 @@ public class NamedParameter {
                 .addValue("userName", user.getName())
                 .addValue("userEmail", user.getMail());
 
-        namedParameterJdbcTemplate.update(sqlUpdate, params);
+        return namedParameterJdbcTemplate.update(sqlUpdate, params);
     }
 
-    // update
-    // batch
+    /**
+     * On peut utiliser un SqlParameterSourceUtils pour créer rapidement un array de paramètres
+     * Il faut que les noms des champs coincident avec les noms des propriété dans la requete
+     */
+    public int[] updateUsers(final User... user) {
+        String sqlUpdate = "update users set name = :name, email = :mail where id = :id";
 
-    // namedParameterJdbcTemplate.update(;
-    // SqlParameterSource source = new MapSqlParameterSource().addValue(paramName, value);
-    // namedParameterJdbcTemplate.query(sql, source, rowMapper)
-    // namedParameterJdbcTemplate.query(sql, rowMapper);
-    // namedParameterJdbcTemplate.batchUpdate(String sql, SqlParameterSource[] batchArgs);
-    // namedParameterJdbcTemplate.batchUpdate(String sql, Map<String, ?>[] batchValues) ;
+        SqlParameterSource[] params = SqlParameterSourceUtils.createBatch(user);
+
+        return namedParameterJdbcTemplate.batchUpdate(sqlUpdate, params);
+    }
 
 }

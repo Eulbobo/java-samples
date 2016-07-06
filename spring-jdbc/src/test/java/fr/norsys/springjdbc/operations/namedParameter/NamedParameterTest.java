@@ -103,4 +103,29 @@ public class NamedParameterTest {
                 .hasSize(3)
                 .containsOnly(first(), second(), third());
     }
+
+    @Transactional
+    @Rollback
+    @Test
+    public void should_update_list_of_users_in_batch() {
+        List<User> users = namedParameter.findUsersByExample(new User());
+        for (User user : users) {
+            user.setMail("mailUpdated");
+        }
+
+        int[] updated = namedParameter.updateUsers(users.toArray(new User[] {}));
+        assertThat(updated)
+                .isNotNull()
+                .isEqualTo(new int[] { 1, 1, 1 });
+
+        List<User> usersAfter = namedParameter.findUsersByExample(new User());
+        assertThat(usersAfter)
+                .isNotNull()
+                .hasSize(3);
+
+        for (User user : users) {
+            assertThat(user.getMail())
+                    .isEqualTo("mailUpdated");
+        }
+    }
 }
