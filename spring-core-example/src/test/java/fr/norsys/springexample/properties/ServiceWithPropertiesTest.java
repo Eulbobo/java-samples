@@ -23,7 +23,7 @@ public class ServiceWithPropertiesTest {
     @Configuration
     @ComponentScan("fr.norsys.springexample.properties")
     static class ContextConfiguration {
-        // config de base
+        // config de base : on récupère donc aussi la config présente dans les sources
     }
 
     @Autowired
