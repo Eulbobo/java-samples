@@ -18,7 +18,7 @@ import fr.norsys.springexample.properties.elements.service.ServiceWithProperties
 public class ServiceWithPropertiesTest {
 
     /**
-     * DÃ©finition du cadre de test
+     * Définition du cadre de test
      */
     @Configuration
     @ComponentScan("fr.norsys.springexample.properties")

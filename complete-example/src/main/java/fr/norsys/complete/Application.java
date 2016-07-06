@@ -25,6 +25,6 @@ public class Application {
 
         DataSource dataSource = context.getBean(DataSource.class);
 
-        LOGGER.info("Datasource : {}, connection : {}", dataSource, dataSource.getConnection().isClosed());
+        LOGGER.info("Datasource : {}, connection closed : {}", dataSource, dataSource.getConnection().isClosed());
     }
 }
