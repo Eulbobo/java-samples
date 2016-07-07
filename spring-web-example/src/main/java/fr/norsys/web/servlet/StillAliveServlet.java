@@ -17,7 +17,16 @@ import fr.norsys.web.service.ISpeakService;
  *
  * Elle implémente doGet uniquement, toute autre méthode renverra une erreur 405
  *
+ *
  * Tout se passe dans la configuration et l'utilisation de la classe GenericServletRequestHandler
+ *
+ * Intérêts :
+ * - on défini précisement les méthodes à utiliser (doGet, doPost, ...)
+ * - autowiring direct
+ * - configuration simple
+ *
+ * Inconvénients :
+ * - On étend HttpServlet
  */
 @Controller
 public class StillAliveServlet extends HttpServlet {

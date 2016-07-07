@@ -13,7 +13,7 @@ import org.springframework.web.HttpRequestHandler;
 import fr.norsys.web.service.ISpeakService;
 
 /**
- * Autre façon de gérer l'autowire dans une servlet : en implémentant HttpRequestHandler
+ * Autre façon de gérer l'autowire dans une pseudo servlet : en implémentant HttpRequestHandler
  *
  * La définition dans le fichier web.xml indique qu'on utilise la classe HttpRequestHandlerServlet
  * Cette servlet sert de point d'entrée générique et permet de charger les classes
@@ -26,7 +26,7 @@ import fr.norsys.web.service.ISpeakService;
  * Inconvénients :
  * - On n'a plus qu'une seule méthode handleRequest (que ce soit get, post, ou autre)
  *
- * Si on voulait faire une servlet qui peut gérer get/post/..., il faudrait refaire un HttpRequestHandlerServlet spécifique
+ * Si on voulait faire une servlet qui peut gérer get/post/..., il faudrait refaire un Handler spécifique
  * qui permet de gérer ces cas, ou créer un HttpRequestHandler spécifique qui permet cette gestion
  */
 @Controller
