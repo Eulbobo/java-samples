@@ -54,7 +54,7 @@
 	<servlet>
 		<!-- on doit utiliser le nom du bean qui implémente HttpRequestHandler -->
 		<servlet-name>goodbyeServlet</servlet-name>
-		<servlet-class>org.springframework.web.context.support.HttpRequestHandler</servlet-class>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>goodbyeServlet</servlet-name>
