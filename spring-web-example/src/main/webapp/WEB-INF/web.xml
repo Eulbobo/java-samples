@@ -1,0 +1,75 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>Spring web example</display-name>
+
+	<!-- ============================================================================================ -->
+	<!-- === Declaration des éléments nécessaire au fonctionnement de Spring dans un contexte Web === -->
+	<!-- ============================================================================================ -->
+	
+	<!-- déclaration de la classe de chargement de contexte (voir dans org.springframework.web.context.ContextLoader) -->
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+	</context-param>
+	<!-- déclaration de la classe de configuration de l'application -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>fr.norsys.web.conf.ApplicationConfiguration</param-value>
+	</context-param>
+
+	<!-- listener spring de chargement du contexte -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- =========================================================== -->
+	<!-- === Declaration des objets spécifiques de l'application === -->
+	<!-- =========================================================== -->
+
+	<!-- exemple de configuration de filtre avec accès au contexte Spring -->
+	<filter>
+		<!-- on doit utiliser le nom du bean quand on veut utiliser un DelegatingFilterProxy -->
+		<filter-name>myFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>myFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- déclaration de la servlet bonjour et de son mapping standard -->
+	<servlet>
+		<servlet-name>hello</servlet-name>
+		<servlet-class>fr.norsys.web.servlet.HelloServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>hello</servlet-name>
+		<url-pattern>/hello</url-pattern>
+	</servlet-mapping>
+
+	<!-- Déclaration d'une servlet gérée par HttpRequestHandlerServlet  -->
+	<servlet>
+		<!-- on doit utiliser le nom du bean qui implémente HttpRequestHandler -->
+		<servlet-name>goodbyeServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>goodbyeServlet</servlet-name>
+		<url-pattern>/goodBye</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Déclaration d'une servlet gérée par HttpServletHandler  -->
+	<servlet>
+		<!-- Même principe, on passe en nom de servlet un bean qui étend HttpServlet -->
+		<servlet-name>stillAliveServlet</servlet-name>
+		<!-- Ici, on utilise notre propre Handler de servlets -->
+		<servlet-class>fr.norsys.web.support.HttpServletHandler</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>stillAliveServlet</servlet-name>
+		<url-pattern>/stillAlive</url-pattern>
+	</servlet-mapping>
+</web-app>
