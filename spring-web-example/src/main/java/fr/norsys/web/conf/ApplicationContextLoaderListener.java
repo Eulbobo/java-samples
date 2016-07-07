@@ -3,6 +3,7 @@ package fr.norsys.web.conf;
 import java.util.EnumSet;
 
 import javax.servlet.DispatcherType;
+import javax.servlet.Filter;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -36,11 +37,20 @@ public class ApplicationContextLoaderListener extends ContextLoaderListener {
         declareFilters(event.getServletContext());
     }
 
-    private static <T extends HttpServlet> void addServlet(final ServletContext servletContext, final String name,
+    private static <T extends HttpServlet> void addServlet(final ServletContext servletContext, final String servletName,
             final Class<T> servlet, final String... mappings) {
-        ServletRegistration.Dynamic dynamic = servletContext.addServlet(name, servlet.getName());
+        ServletRegistration.Dynamic dynamic = servletContext.addServlet(servletName, servlet.getName());
         for (String mapping : mappings) {
             dynamic.addMapping(mapping);
+        }
+    }
+
+    private static <T extends Filter> void addFilter(final ServletContext servletContext, final String filterName,
+            final Class<T> filterClass, final String... mappings) {
+        FilterRegistration.Dynamic filter = servletContext.addFilter(filterName, filterClass.getName());
+        EnumSet<DispatcherType> disps = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD);
+        for (String mapping : mappings) {
+            filter.addMappingForUrlPatterns(disps, true, mapping);
         }
     }
 
@@ -60,9 +70,7 @@ public class ApplicationContextLoaderListener extends ContextLoaderListener {
      * Ici, on déclare les filtres pas directement annotées par @WebFilter
      */
     private static void declareFilters(final ServletContext servletContext) {
-        FilterRegistration.Dynamic filter = servletContext.addFilter("myFilter", DelegatingFilterProxy.class.getName());
-        EnumSet<DispatcherType> disps = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD);
-        filter.addMappingForUrlPatterns(disps, true, "/*");
+        addFilter(servletContext, "myFilter", DelegatingFilterProxy.class, "/*");
     }
 
     /**
