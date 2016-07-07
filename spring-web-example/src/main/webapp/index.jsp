@@ -15,5 +15,6 @@
 		<a href="javascript:doLink('/hello')" >Hello</a><br />
 		<a href="javascript:doLink('/stillAlive')" >still alive</a><br />
 		<a href="javascript:doLink('/goodBye')" >goodBye</a><br />
+		<a href="javascript:doLink('/another')" >another one</a><br />
 	</body>
 </html>

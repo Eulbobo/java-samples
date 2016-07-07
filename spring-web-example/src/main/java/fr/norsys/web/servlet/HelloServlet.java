@@ -3,6 +3,7 @@ package fr.norsys.web.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,10 @@ import fr.norsys.web.service.ISpeakService;
  *
  * Nous avons utilisé l'annotation @Controller pour préciser le rôle de la servlet.
  * On aurait aussi bien pu indiquer @Component
+ *
+ * C'est une simple servlet, donc on peut l'initialiser directement avec @WebServlet
  */
+@WebServlet(name="hello", urlPatterns= "/hello")
 @Controller
 public class HelloServlet extends HttpServlet {
 
