@@ -6,7 +6,7 @@
 		<artifactId>java-samples</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>spring-jdbc</artifactId>
+	<artifactId>spring-jdbc-example</artifactId>
 
 	<properties>
 		<oracle-version>11.2.0.4.0</oracle-version>

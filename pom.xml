@@ -97,7 +97,7 @@
 		<module>mockito-example</module>
 		<module>complete-example</module>
 		<module>openpojo-example</module>
-		<module>spring-jdbc</module>
+		<module>spring-jdbc-example</module>
 		<module>spring-web-example</module>
 	</modules>
 
