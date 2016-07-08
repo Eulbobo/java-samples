@@ -83,6 +83,21 @@ public class NamedParameterTest {
                 .isEqualTo(userBefore);
     }
 
+    @Transactional
+    @Rollback
+    @Test
+    public void should_update_known_user_wihout_mapping() {
+        User userBefore = namedParameter.getUser(1);
+        userBefore.setName("DADA");
+
+        namedParameter.updateUserWithoutMapping(userBefore);
+
+        User userAfterUpdate = namedParameter.getUser(1);
+        assertThat(userAfterUpdate)
+                .isNotNull()
+                .isEqualTo(userBefore);
+    }
+
     @Test
     public void should_find_user_when_searching_by_example_with_name_Julien() {
         User userExample = new User();

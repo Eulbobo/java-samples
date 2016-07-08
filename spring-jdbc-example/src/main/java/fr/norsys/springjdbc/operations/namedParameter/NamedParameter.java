@@ -5,6 +5,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -86,6 +87,9 @@ public class NamedParameter {
         return namedParameterJdbcTemplate.query(sb.toString(), params, new UserRowMapper());
     }
 
+    /**
+     * Mapping des champs avec un {@link MapSqlParameterSource}
+     */
     public int updateUser(final User user) {
         String sqlUpdate = "update users set name = :userName, email = :userEmail where id = :idParam";
 
@@ -98,7 +102,16 @@ public class NamedParameter {
     }
 
     /**
-     * On peut utiliser un SqlParameterSourceUtils pour créer rapidement un array de paramètres
+     * Si on donne le nom des champs dans le bean en tant que paramètres de la requête, on peut directement les mapper
+     * avec un {@link BeanPropertySqlParameterSource}
+     */
+    public int updateUserWithoutMapping(final User user) {
+        String sqlUpdate = "update users set name = :name, email = :mail where id = :id";
+        return namedParameterJdbcTemplate.update(sqlUpdate, new BeanPropertySqlParameterSource(user));
+    }
+
+    /**
+     * On peut utiliser un {@link SqlParameterSourceUtils} pour créer rapidement un array de paramètres
      * Il faut que les noms des champs coincident avec les noms des propriété dans la requete
      */
     public int[] updateUsers(final User... user) {
