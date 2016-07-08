@@ -11,6 +11,9 @@ import javax.servlet.ServletRegistration;
 import javax.servlet.http.HttpServlet;
 
 import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.context.support.HttpRequestHandlerServlet;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
@@ -25,12 +28,29 @@ public class WebAppInit implements WebApplicationInitializer {
 
     @Override
     public void onStartup(final ServletContext servletContext) throws ServletException {
+        // déclaration contexte Spring Web
+        WebApplicationContext context = getContext();
+        servletContext.addListener(new ContextLoaderListener(context));
         // déclaration servlets et filtres
         declareServlets(servletContext);
         declareFilters(servletContext);
     }
 
-    private static <T extends HttpServlet> void addServlet(final ServletContext servletContext, final String servletName,
+    /**
+     * Définition contexte Spring
+     */
+    private AnnotationConfigWebApplicationContext getContext() {
+        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        // on précise la classe de configuration principale
+        context.register(ApplicationConfiguration.class);
+        return context;
+    }
+
+    /**
+     * Ajout d'une définition de Servlet au contexte
+     */
+    private static <T extends HttpServlet> void addServlet(final ServletContext servletContext,
+            final String servletName,
             final Class<T> servlet, final String... mappings) {
         ServletRegistration.Dynamic dynamic = servletContext.addServlet(servletName, servlet.getName());
         for (String mapping : mappings) {
@@ -38,6 +58,9 @@ public class WebAppInit implements WebApplicationInitializer {
         }
     }
 
+    /**
+     * Ajout d'une définition de Filter au contexte
+     */
     private static <T extends Filter> void addFilter(final ServletContext servletContext, final String filterName,
             final Class<T> filterClass, final String... mappings) {
         FilterRegistration.Dynamic filter = servletContext.addFilter(filterName, filterClass.getName());
@@ -48,7 +71,9 @@ public class WebAppInit implements WebApplicationInitializer {
     }
 
     /**
-     * Equivalent web.xml
+     * Déclaration des filtres
+     *
+     * Equivalent web.xml :
      *
      * <filter>
      * <!-- on doit utiliser le nom du bean quand on veut utiliser un DelegatingFilterProxy -->
@@ -67,17 +92,9 @@ public class WebAppInit implements WebApplicationInitializer {
     }
 
     /**
-     * Equivalent web.xml
+     * Déclaration des Servlets
      *
-     * <!-- déclaration de la servlet bonjour et de son mapping standard -->
-     * <servlet>
-     * <servlet-name>hello</servlet-name>
-     * <servlet-class>fr.norsys.web.servlet.HelloServlet</servlet-class>
-     * </servlet>
-     * <servlet-mapping>
-     * <servlet-name>hello</servlet-name>
-     * <url-pattern>/hello</url-pattern>
-     * </servlet-mapping>
+     * Equivalent web.xml :
      *
      * <!-- Déclaration d'une servlet gérée par HttpRequestHandlerServlet -->
      * <servlet>
@@ -105,6 +122,8 @@ public class WebAppInit implements WebApplicationInitializer {
      * Ici, on déclare les servlets pas directement annotées par @WebServlet
      */
     private static void declareServlets(final ServletContext servletContext) {
+        // la servlet Hello est déjà configurée par annotation
+        // la servlet anotherServlet est déjà configurée par annotation
         addServlet(servletContext, "goodbyeServlet", HttpRequestHandlerServlet.class, "/goodBye");
         addServlet(servletContext, "stillAliveServlet", HttpServletHandler.class, "/stillAlive");
     }

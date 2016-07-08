@@ -15,14 +15,25 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import fr.norsys.web.service.ISpeakService;
 
 /**
- * Première façon de configurer une servlet : on passe par une servlet abstraite qui gère l'autowire
+ * Première façon de configurer une servlet : on utilise une méthode d'initialisation
  *
  * Nous avons utilisé l'annotation @Controller pour préciser le rôle de la servlet.
  * On aurait aussi bien pu indiquer @Component
  *
  * C'est une simple servlet, donc on peut l'initialiser directement avec @WebServlet
+ * Le tag @WebServlet correspond au mapping suivant dans web.xml :
+ *
+ * <!-- déclaration de la servlet bonjour et de son mapping standard -->
+ * <servlet>
+ * <servlet-name>hello</servlet-name>
+ * <servlet-class>fr.norsys.web.servlet.HelloServlet</servlet-class>
+ * </servlet>
+ * <servlet-mapping>
+ * <servlet-name>hello</servlet-name>
+ * <url-pattern>/hello</url-pattern>
+ * </servlet-mapping>
  */
-@WebServlet(name="hello", urlPatterns= "/hello")
+@WebServlet(name = "hello", urlPatterns = "/hello")
 @Controller
 public class HelloServlet extends HttpServlet {
 
@@ -47,6 +58,7 @@ public class HelloServlet extends HttpServlet {
 
     /**
      * Cette méthode init pourrait être déplacée dans une classe abstraite
+     *
      * @see javax.servlet.GenericServlet#init()
      */
     @Override

@@ -18,7 +18,7 @@ import fr.norsys.web.service.ISpeakService;
  * Elle implémente doGet uniquement, toute autre méthode renverra une erreur 405
  *
  *
- * Tout se passe dans la configuration et l'utilisation de la classe GenericServletRequestHandler
+ * Tout se passe dans la configuration et l'utilisation de la classe HttpServletHandler
  *
  * Intérêts :
  * - on défini précisement les méthodes à utiliser (doGet, doPost, ...)

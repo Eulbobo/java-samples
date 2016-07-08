@@ -13,6 +13,10 @@ import org.springframework.stereotype.Component;
 
 import fr.norsys.web.service.ISpeakService;
 
+/**
+ * Même configuration que pour {@link StillAliveServlet} : utilisation de
+ * {@link fr.norsys.web.support.HttpServletHandler} dans la config
+ */
 @Component
 public class AnotherServlet extends HttpServlet {
 
@@ -29,7 +33,7 @@ public class AnotherServlet extends HttpServlet {
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException,
             IOException {
-        for (ISpeakService service : services){
+        for (ISpeakService service : services) {
             resp.getWriter().write(service.speak());
             resp.getWriter().write("\n\r");
         }
