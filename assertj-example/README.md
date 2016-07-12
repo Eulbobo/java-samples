@@ -4,7 +4,7 @@ Ce projet contient différents exemples d'utilisation basiques d'assertJ
 
 Contenu du projet
 -------------------
-Le projet contient dans ses sources plusieurs classes Ã  tester.  
+Le projet contient dans ses sources plusieurs classes à tester.  
 A chaque classe correspond un test (sauf pour les exceptions qui ne sont pas testées) située dans le même package que la classe testée.
 La classe de test possède le même nom que la classe testée et possède le suffixe `Test`
 
