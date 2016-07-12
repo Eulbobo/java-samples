@@ -1,8 +1,7 @@
 Présentation d'exemples d'utilisation de Spring Core 
 ===================
-Présentation
--------------------
 
+TODO différentier tests et IT
 
 Contenu du projet
 -------------------

@@ -1,23 +1,23 @@
-PrÃ©sentation des exemples 
+Présentation des exemples 
 ===================
-PrÃ©sentation
+Présentation
 -------------------
 
 
 Contenu du projet
 -------------------
 
-DÃ©finition des types d'erreurs (Throwable, Exception, RuntimeException, Error)
-PrÃ©sentation du schÃ©ma complet (try-catch-finally)
-PrÃ©sentation du schÃ©ma limitÃ© (try-finally)
-DÃ©finition des patterns d'utilisation des erreurs
+Définition des types d'erreurs (Throwable, Exception, RuntimeException, Error)
+Présentation du schéma complet (try-catch-finally)
+Présentation du schéma limité (try-finally)
+Définition des patterns d'utilisation des erreurs
 - catch and rethrow
 - catch and log
 - catch and wrap --> c'est le meilleur cas d'utilisation
 - ne pas faire de log and rethrow
-Utilisation d'une hiÃ©rarchie d'exceptions 
+Utilisation d'une hiérarchie d'exceptions 
 - exceptions techniques
-- exceptions mÃ©tier
+- exceptions métier
 
 
 Utilisation
