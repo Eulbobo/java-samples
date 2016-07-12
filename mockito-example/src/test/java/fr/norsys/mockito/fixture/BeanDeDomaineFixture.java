@@ -2,8 +2,8 @@ package fr.norsys.mockito.fixture;
 
 import java.math.BigDecimal;
 
-import fr.norsys.mockito.service.BeanDeDomaine;
-import fr.norsys.mockito.service.EtatBeanDomain;
+import fr.norsys.mockito.domain.BeanDeDomaine;
+import fr.norsys.mockito.domain.EtatBeanDomain;
 
 // cet objet est une fixture
 // son rôle est de fournir rapidement des instances d'objets faciles à configurer

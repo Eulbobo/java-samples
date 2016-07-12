@@ -1,12 +1,11 @@
-PrÃ©sentation des exemples Mockito
+Présentation des exemples Mockito
 ===================
-Mockito est un framework permettant de simplement crÃ©er des Mock facilement, simples Ã  lire, simples Ã  mettre en place, simples Ã  maintenir.
-
+Mockito est un framework permettant de simplement créer des Mock facilement, simples à lire, simples à mettre en place, simples à maintenir.
 
 
 Contenu du projet
 -------------------
-
+Le projet contient le squelette d'une application avec 
 
 Utilisation
 -------------------
