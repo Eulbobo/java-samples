@@ -42,7 +42,7 @@ public class BeanServiceIT {
          */
         @Bean
         public BeanSimpleRepositoryInterface testService() {
-            // normalement ici il faudrait Ãªtre branché sur une source de données réelles
+            // normalement ici il faudrait être branché sur une source de données réelles
             // donc H2 ou autre
             return new DummyRepository();
         }
