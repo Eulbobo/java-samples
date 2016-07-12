@@ -3,25 +3,29 @@ Exemples java
 
 Introduction
 -------------
+Tous ces projets sont construits avec Maven3.
 
-> **Sous-modules:**
+Loggers et patterns
+-------------
+> - [logger-example](logger-example) : exemples d'utilisation des loggers
+> - [exception-example](exception-example) : exemples d'utilisation des exceptions
+> - fixtures : TODO
+> - builders : TODO
 
+Frameworks de test
+-------------
 > - [assertj-example](assertj-example) : exemples d'utilisation de Assertj (framework de test)
 > - [mockito-example](mockito-example) : exemples d'utilisation de Mockito (framework de test)
 > - [openpojo-example](openpojo-example) : exemples d'utilisation de OpenPojo (framework de test)
-> - [logger-example](logger-example) : exemples d'utilisation des loggers
-> - [exception-example](exception-example) : exemples d'utilisation des exceptions
+
+Spring
+-------------
 > - [spring-core-example](spring-core-example) : exemples d'utilisation de spring core
 > - [spring-jdbc-example](spring-jdbc-example) : exemples d'utilisation de spring jdbc
-> - [complete-example](complete-example) : mini-projet contenant tous ces élements
-> - TODO : Spring AOP, spring-web, spring-instrument, spring-messaging
+> - [spring-web-example](spring-web-example) : exemples d'utilisation de spring web et servlet api 3
+> - TODO : Spring AOP, Spring boot, Spring web mvc
 
-A préparer : 
-- fixtures
-- builders
-
-
-Présentation
+Exemple complet
 -------------
-Tous ces projets sont construits avec Maven.
+> - [complete-example](complete-example) : mini-projet contenant tous ces �lements
 
