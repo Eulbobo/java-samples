@@ -13,7 +13,7 @@ import fr.norsys.springexample.domain.BeanSimpleRepositoryInterface;
 
 /**
  * Ceci est un test unitaire qui permet de valider le fonctionnement standard de la classe
- * On mock et on lance de maniÃ¨re standard
+ * On mock et on lance de manière standard
  */
 public class BeanServiceTest {
 

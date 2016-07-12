@@ -21,7 +21,7 @@ public class ComplexService implements BeanSimpleService {
     /**
      * Constructeur avec un autowiring par le nom !
      *
-     * @param firstRepo : bean repository branchÃ© avec son nom
+     * @param firstRepo : bean repository branché avec son nom
      */
     @Autowired
     public ComplexService(final BeanSimpleRepositoryInterface firstRepo, final BeanSimpleRepositoryInterface secondRepo) {

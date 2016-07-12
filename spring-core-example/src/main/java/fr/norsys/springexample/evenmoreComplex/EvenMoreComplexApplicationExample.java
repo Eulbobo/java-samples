@@ -19,10 +19,10 @@ public class EvenMoreComplexApplicationExample {
 
     public static void main(final String[] args) {
         LOGGER.info("===========================================================");
-        // rÃ©cupÃ©ration du contexte via la classe de configuration
+        // récupération du contexte via la classe de configuration
         ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         LOGGER.info("===========================================================");
-        // notre contexte est chargÃ©
+        // notre contexte est chargé
         LOGGER.info("context is loaded : {}", context);
 
         // utilisation d'un repository (appel avec le nom)
@@ -39,7 +39,7 @@ public class EvenMoreComplexApplicationExample {
         Map<String, BeanSimpleRepositoryInterface> repositories = context
                 .getBeansOfType(BeanSimpleRepositoryInterface.class);
         for (Entry<String, BeanSimpleRepositoryInterface> entry : repositories.entrySet()) {
-            LOGGER.info("Repository de nom {} avec l'implÃ©mentation {}", entry.getKey(), entry.getValue());
+            LOGGER.info("Repository de nom {} avec l'implémentation {}", entry.getKey(), entry.getValue());
         }
 
         LOGGER.info("-----------------------------------------------------------");

@@ -8,8 +8,8 @@ import fr.norsys.springexample.domain.BeanSimple;
 import fr.norsys.springexample.domain.BeanSimpleRepositoryInterface;
 
 /**
- * le nom dans le tag @Repository donne le nom par dÃ©faut du bean
- * Cette implÃ©mentation est accessible directement avec les valeurs suivantes
+ * le nom dans le tag @Repository donne le nom par défaut du bean
+ * Cette implémentation est accessible directement avec les valeurs suivantes
  * - context.getBean("T3")
  * -  context.getBean("thirdRepo")
  */
@@ -20,7 +20,7 @@ public class ThirdRepo implements BeanSimpleRepositoryInterface {
 
     @Override
     public BeanSimple getById(final Long id) {
-        LOGGER.info("rÃ©cupÃ©ration id {}", id);
+        LOGGER.info("récupération id {}", id);
         return new BeanSimple(id, String.valueOf(id));
     }
 

@@ -8,7 +8,7 @@ import fr.norsys.springexample.domain.BeanSimple;
 import fr.norsys.springexample.domain.BeanSimpleRepositoryInterface;
 
 /**
- * Encore une autre implÃ©mentation de repository
+ * Encore une autre implémentation de repository
  */
 @Repository(value="fffff")
 public class FakeRepository implements BeanSimpleRepositoryInterface {

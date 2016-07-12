@@ -14,7 +14,7 @@ public class FirstRepo implements BeanSimpleRepositoryInterface {
 
     @Override
     public BeanSimple getById(final Long id) {
-        LOGGER.info("rÃ©cupÃ©ration id {}", id);
+        LOGGER.info("récupération id {}", id);
         return new BeanSimple(id, String.valueOf(id));
     }
 

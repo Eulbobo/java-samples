@@ -8,7 +8,7 @@ import fr.norsys.springexample.domain.BeanSimple;
 import fr.norsys.springexample.domain.BeanSimpleRepositoryInterface;
 
 /**
- * PremiÃ¨re implÃ©mentation de repository
+ * Première implémentation de repository
  */
 @Repository
 public class SimpleRepository implements BeanSimpleRepositoryInterface {

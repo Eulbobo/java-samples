@@ -1,7 +1,7 @@
 package fr.norsys.springexample.domain;
 
 /**
- * Contrat d'interface d'accÃ¨s
+ * Contrat d'interface d'accès
  */
 public interface BeanSimpleRepositoryInterface {
 
