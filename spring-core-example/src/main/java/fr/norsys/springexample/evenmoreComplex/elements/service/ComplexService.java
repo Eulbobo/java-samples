@@ -3,6 +3,7 @@ package fr.norsys.springexample.evenmoreComplex.elements.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import fr.norsys.springexample.domain.BeanSimple;
@@ -19,14 +20,15 @@ public class ComplexService implements BeanSimpleService {
     private final BeanSimpleRepositoryInterface second;
 
     /**
-     * Constructeur avec un autowiring par le nom !
+     * Constructeur avec un autowiring par qualifier
      *
-     * @param firstRepo : bean repository branché avec son nom
+     * Ici, une annotation dans le constructeur permet d'indiquer quelle implémentation on veut
      */
     @Autowired
-    public ComplexService(final BeanSimpleRepositoryInterface firstRepo, final BeanSimpleRepositoryInterface secondRepo) {
-        this.first = firstRepo;
-        this.second = secondRepo;
+    public ComplexService(final @Qualifier("firstRepo") BeanSimpleRepositoryInterface repoOne,
+            final @Qualifier("secondRepo") BeanSimpleRepositoryInterface repoTwo) {
+        this.first = repoOne;
+        this.second = repoTwo;
     }
 
     @Override

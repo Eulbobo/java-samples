@@ -19,7 +19,7 @@ public class BasicService implements BeanSimpleService {
     /**
      * Constructeur avec un autowiring par le nom !
      *
-     * @param firstRepo
+     * Le paramètre firstRepo indique le repository qu'on veut voir injecter
      */
     @Autowired
     public BasicService(final BeanSimpleRepositoryInterface firstRepo) {

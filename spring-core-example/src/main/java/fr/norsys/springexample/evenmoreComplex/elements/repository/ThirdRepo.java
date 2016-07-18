@@ -11,7 +11,7 @@ import fr.norsys.springexample.domain.BeanSimpleRepositoryInterface;
  * le nom dans le tag @Repository donne le nom par défaut du bean
  * Cette implémentation est accessible directement avec les valeurs suivantes
  * - context.getBean("T3")
- * -  context.getBean("thirdRepo")
+ * - context.getBean("thirdRepo")
  */
 @Repository("T3")
 public class ThirdRepo implements BeanSimpleRepositoryInterface {
