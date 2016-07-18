@@ -45,7 +45,7 @@ public class AllImplementationService implements BeanSimpleService {
         if (beanInRepository != null) {
             beanInRepository.setName(name);
         } else {
-            beanInRepository = new BeanSimple(id, String.valueOf("fromBasicService"));
+            beanInRepository = new BeanSimple(id, "fromAllImplService");
         }
         for (BeanSimpleRepositoryInterface repository : allRepositories) {
             repository.save(beanInRepository);

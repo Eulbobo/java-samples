@@ -32,6 +32,12 @@ public class AllImplementationServiceIT {
     public void should_be_able_to_test_fully_loaded_implementation(){
         BeanSimple bean = allImplementationService.getBean(0l);
 
-        assertThat(bean).isNotNull();
+        assertThat(bean)
+            .isNotNull();
+    }
+
+    @Test
+    public void should_be_able_to_test_fully_save_bean(){
+        allImplementationService.createOrUpdate(3l, "name");
     }
 }

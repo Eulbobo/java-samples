@@ -48,7 +48,7 @@ public class ComplexService implements BeanSimpleService {
         if (beanInRepository != null) {
             beanInRepository.setName(name);
         } else {
-            beanInRepository = new BeanSimple(id, String.valueOf("fromComplexService"));
+            beanInRepository = new BeanSimple(id, "fromComplexService");
         }
         this.first.save(beanInRepository);
         this.second.save(beanInRepository);

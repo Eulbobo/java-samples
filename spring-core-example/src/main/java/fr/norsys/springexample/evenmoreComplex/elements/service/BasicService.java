@@ -39,7 +39,7 @@ public class BasicService implements BeanSimpleService {
         if (beanInRepository != null) {
             beanInRepository.setName(name);
         } else {
-            beanInRepository = new BeanSimple(id, String.valueOf("fromBasicService"));
+            beanInRepository = new BeanSimple(id, "fromBasicService");
         }
         this.repository.save(beanInRepository);
     }
