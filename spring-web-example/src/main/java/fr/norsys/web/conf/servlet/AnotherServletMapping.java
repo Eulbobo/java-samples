@@ -7,8 +7,8 @@ import fr.norsys.web.support.HttpServletHandler;
 /**
  * L'annotation @WebServlet sert à déclarer une servlet
  *
- * Ici, nous déclarons donc une servlet de type HttpServletHandler
- * Qui sera donc liée au bean Spring nommé anotherServlet
+ * Ici, nous déclarons donc une servlet de type HttpServletHandler qui aura pour nom "anotherServlet"
+ * Elle sera donc liée par ce nom au bean nommé anotherServlet : {@link fr.norsys.web.servlet.AnotherServlet}
  *
  * Cette configuration est équivalent à avoir les lignes suivantes dans le web.xml
  *
@@ -22,7 +22,7 @@ import fr.norsys.web.support.HttpServletHandler;
  * </servlet-mapping>
  *
  *
- * Compliqué et pas super utile, autant tout déclarer dans {@link fr.norsys.web.conf.WebAppInit}
+ * Compliqué et pas super utile, autant tout déclarer dans {@link fr.norsys.web.conf.WebAppInit#declareServlets}
  */
 @WebServlet(name = "anotherServlet", urlPatterns = "/another")
 public class AnotherServletMapping extends HttpServletHandler {

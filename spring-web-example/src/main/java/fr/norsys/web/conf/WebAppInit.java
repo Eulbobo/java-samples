@@ -21,6 +21,7 @@ import fr.norsys.web.support.HttpServletHandler;
 
 /**
  * Initialisation du servlet context
+ * On étend {@link WebApplicationInitializer} pour permettre le chargement du contexte au démarrage
  *
  * Définitions des servlets et filtres
  */
@@ -123,7 +124,7 @@ public class WebAppInit implements WebApplicationInitializer {
      */
     private static void declareServlets(final ServletContext servletContext) {
         // la servlet Hello est déjà configurée par annotation
-        // la servlet anotherServlet est déjà configurée par annotation
+        // la servlet anotherServlet est déjà configurée par annotation dans AnotherServletMapping
         addServlet(servletContext, "goodbyeServlet", HttpRequestHandlerServlet.class, "/goodBye");
         addServlet(servletContext, "stillAliveServlet", HttpServletHandler.class, "/stillAlive");
     }

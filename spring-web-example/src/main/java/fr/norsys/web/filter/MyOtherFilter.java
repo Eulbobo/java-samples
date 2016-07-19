@@ -12,13 +12,13 @@ import javax.servlet.annotation.WebFilter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 /**
  * Ici on déclare un filtre en dehors du contexte Spring
+ *
+ * Pas besoin de le déclarer en @Component
  */
 @WebFilter(filterName="myOtherFilter", urlPatterns={"*"})
-@Component
 public class MyOtherFilter implements Filter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MyOtherFilter.class);

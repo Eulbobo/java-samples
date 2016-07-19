@@ -18,7 +18,8 @@ import fr.norsys.web.service.ISpeakService;
  * Première façon de configurer une servlet : on utilise une méthode d'initialisation
  *
  * Nous avons utilisé l'annotation @Controller pour préciser le rôle de la servlet.
- * On aurait aussi bien pu indiquer @Component
+ * On aurait aussi bien pu indiquer @Component. Il est nécessaire de préciser qu'il s'agit un bean Spring grâce à cette
+ * annotation
  *
  * C'est une simple servlet, donc on peut l'initialiser directement avec @WebServlet
  * Le tag @WebServlet correspond au mapping suivant dans web.xml :
@@ -33,8 +34,8 @@ import fr.norsys.web.service.ISpeakService;
  * <url-pattern>/hello</url-pattern>
  * </servlet-mapping>
  */
-@WebServlet(name = "hello", urlPatterns = "/hello")
 @Controller
+@WebServlet(name = "hello", urlPatterns = "/hello")
 public class HelloServlet extends HttpServlet {
 
     /** serial version UID for class */

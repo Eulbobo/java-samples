@@ -15,7 +15,7 @@ import fr.norsys.web.service.ISpeakService;
 
 /**
  * Même configuration que pour {@link StillAliveServlet} : utilisation de
- * {@link fr.norsys.web.support.HttpServletHandler} dans la config
+ * {@link fr.norsys.web.support.HttpServletHandler} dans la config {@link fr.norsys.web.conf.servlet.AnotherServletMapping}
  */
 @Component
 public class AnotherServlet extends HttpServlet {
