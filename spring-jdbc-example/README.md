@@ -25,6 +25,10 @@ Ordre de lecture conseillé
 - namedParameter : utilisation de namedParameterJdbcTemplate pour réaliser n'importe quelle opération
 - jdbcInsert : insertion de données
 
+Les tests sont composés de tests unitaires et de tests d'intégration.
+Pour lancer les tests unitaires, il faut lancer la commande ````mvn test```. 
+Pour les tests d'intégration, il faut lancer la commande ```mvn verify```.
+
 Autre éléments
 -------------------
 Ce projet ne couvre pas l'appel à des procédures stockées via la classe org.springframework.jdbc.core.simple.SimpleJdbcCall, mais des exemples existent dans la [documentation spring jdbc](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/jdbc.html#jdbc-simple-jdbc-call-1).
