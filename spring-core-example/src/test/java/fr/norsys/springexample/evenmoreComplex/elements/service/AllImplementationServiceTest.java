@@ -23,6 +23,8 @@ import fr.norsys.springexample.evenmoreComplex.ComplexConfiguration;
  * On remarque dans le @ContextConfiguration une nouvelle information : classes=ComplexConfiguration.class
  * Cette configuration permet de déterminer la configuration à utiliser pour notre test
  * Ca peut permettre de mutualiser les configuration de test pour différentes classes à tester
+ *
+ * On est ici dans un test unitaire, on n'injecte pas les éléments : on mock !
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ComplexConfiguration.class, loader = AnnotationConfigContextLoader.class)
@@ -89,7 +91,7 @@ public class AllImplementationServiceTest {
     }
 
     @Test
-    public void should_save_bean_in_all_repositories_and_not_update_name_when_doesnt_exist() {
+    public void should_save_bean_in_all_repositories_and_not_update_name_when_exist() {
         BeanSimpleRepositoryInterface mock1 = mock(BeanSimpleRepositoryInterface.class);
         BeanSimpleRepositoryInterface mock2 = mock(BeanSimpleRepositoryInterface.class);
 
