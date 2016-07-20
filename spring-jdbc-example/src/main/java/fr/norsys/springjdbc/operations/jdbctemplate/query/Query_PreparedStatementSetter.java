@@ -30,14 +30,14 @@ public class Query_PreparedStatementSetter {
     }
 
     /**
-     * ici, on utiliser un resultSetExtractor, mais on pourrait aussi utiliser un callback ou un rowmapper
+     * ici, on utilise un resultSetExtractor, mais on pourrait aussi utiliser un callback ou un rowmapper
      */
     public User getUserById(final int id){
         PreparedStatementSetter pss = new PreparedStatementSetter() {
 
             @Override
             public void setValues(final PreparedStatement ps) throws SQLException {
-                // on peut utiliser le ID ici uniquement parce qu'il est final
+                // on peut utiliser la varialbe 'id' ici uniquement parce qu'elle est déclarée comme final
                 ps.setInt(1, id);
             }
         };

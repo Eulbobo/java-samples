@@ -27,6 +27,9 @@ public class UserUpdate {
         sqlUpdate.compile();
     }
 
+    /**
+     * Lancement de la mise à jour à partir de la requête déclarée
+     */
     public int updateUser(final int id, final String name, final String email){
         return sqlUpdate.update(name, email, id);
     }

@@ -72,6 +72,11 @@ public class Query_PreparedStatementCreator {
          * Création d'un resultSetExtractor qui lit à l'envers
          */
         ResultSetExtractor<User> rse = new ResultSetExtractor<User>() {
+
+            /**
+             * Extraction de tous les résultats
+             * Dans un ResultSetExtractor, c'est à nous de gérer le parcours du ResultSet
+             */
             @Override
             public User extractData(final ResultSet rs) throws SQLException, DataAccessException {
                 User finalUser = new User();

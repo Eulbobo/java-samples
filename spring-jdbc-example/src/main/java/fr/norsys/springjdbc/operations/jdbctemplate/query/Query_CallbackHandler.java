@@ -14,7 +14,7 @@ import fr.norsys.springjdbc.operations.mapper.rowCallbackHandler.SingleUserCallb
 import fr.norsys.springjdbc.operations.mapper.rowCallbackHandler.UserListCallbackHandler;
 
 /**
- * L'utilisation d'un callback
+ * L'utilisation d'un callbackHandler
  */
 @Repository
 public class Query_CallbackHandler {
@@ -34,7 +34,7 @@ public class Query_CallbackHandler {
     public User getUniqueUser() {
         SingleUserCallbackHandler callBack = new SingleUserCallbackHandler();
         jdbcTemplate.query("select * from users where id = 1", callBack);
-        // pas intéressant d'utiliser un callback ici
+        // pas intéressant d'utiliser un callback ici, un RowMapper serait plus adapté
         return callBack.getUser();
     }
 
@@ -48,7 +48,7 @@ public class Query_CallbackHandler {
         SingleUserCallbackHandler callBack = new SingleUserCallbackHandler();
         // on peut toujours ajouter des paramètres
         jdbcTemplate.query("select * from users where id = ?", callBack, id);
-        // pas intéressant d'utiliser un callback ici
+        // pas intéressant d'utiliser un callback ici encore
         return callBack.getUser();
     }
 

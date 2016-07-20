@@ -32,6 +32,8 @@ public class Query_RowMapper {
         return jdbcTemplate.query("select * from users", new UserRowMapper());
     }
 
+    // exemples de mauvaises utilisations potentielles
+
     /**
      * Récupération d'une liste vide
      * @return User
@@ -39,8 +41,6 @@ public class Query_RowMapper {
     public List<User> getUsersWithNullId(){
         return jdbcTemplate.query("select * from users where id is null", new UserRowMapper());
     }
-
-    // exemples de mauvaises utilisations potentielles
 
     /**
      * Récupération d'une liste avec un seul résultat

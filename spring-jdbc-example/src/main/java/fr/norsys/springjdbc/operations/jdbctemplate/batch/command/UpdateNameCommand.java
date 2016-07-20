@@ -1,5 +1,8 @@
 package fr.norsys.springjdbc.operations.jdbctemplate.batch.command;
 
+/**
+ * Commande pour la mise à jour
+ */
 public class UpdateNameCommand {
 
     private final int id;

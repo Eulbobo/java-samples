@@ -11,7 +11,11 @@ import org.springframework.stereotype.Repository;
 import fr.norsys.springjdbc.beans.User;
 
 /**
- * Quelques exemples d'utilisation du {@link SimpleJdbcInsert}, en utilisant une sequence ou autoincrement
+ * Quelques exemples d'utilisation du {@link SimpleJdbcInsert}, en utilisant un autoincrement
+ *
+ * Il n'existe pas d'implémentation du type SimpleJdbcInsert qui permette de gérer les séquences
+ * Une solution serait d'implémenter une copie du SimpleJdbcInsert en lui fournissant un générateur de clé
+ * Et le générateur se chargerait de récupérer la valeur désirée de la séquence
  */
 @Repository
 public class JdbcInsertUsageWithSequence {

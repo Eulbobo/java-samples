@@ -18,6 +18,9 @@ import org.springframework.stereotype.Repository;
 import fr.norsys.springjdbc.beans.User;
 import fr.norsys.springjdbc.operations.jdbctemplate.batch.command.UpdateNameCommand;
 
+/**
+ * Exemples d'utilisation de traitements de masse
+ */
 @Repository
 public class Batch {
 

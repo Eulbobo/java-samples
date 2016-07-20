@@ -35,7 +35,7 @@ public class Query_ResultSetExtractor {
     }
 
     /**
-     * Récupération d'un résultat unique
+     * Récupération d'un résultat unique avec un paramètre
      * @return User
      */
     public User getUniqueUserById(final int id){
@@ -55,7 +55,11 @@ public class Query_ResultSetExtractor {
 
     /**
      * Récupération d'un résultat unique depuis une liste
-     * @return User
+     *
+     * Le SingleUserResultSetExtractor renvoie le premier élément
+     * Mais la requête ne limite pas le nombre de résultats renvoyés
+     *
+     * --> le résultat dépend du bon vouloir de l'ordre renvoyé par la base
      */
     public User getFirstUserFromAll(){
         return jdbcTemplate.query("select * from users", new SingleUserResultSetExtractor());
@@ -63,6 +67,9 @@ public class Query_ResultSetExtractor {
 
     /**
      * Récupération d'une liste de résultats même si elle ne renvoie qu'un seul élément
+     *
+     * Si on s'attend à un seul User, autant récupérer directement un user unique
+     *
      * @return User
      */
     public List<User> getAllFirstUser(){
@@ -71,6 +78,7 @@ public class Query_ResultSetExtractor {
 
     /**
      * Récupération d'une liste de résultats vide
+     *
      * @return User
      */
     public List<User> getUsersWithNullId(){
