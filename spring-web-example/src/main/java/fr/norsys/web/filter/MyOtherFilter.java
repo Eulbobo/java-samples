@@ -17,6 +17,8 @@ import org.slf4j.LoggerFactory;
  * Ici on déclare un filtre en dehors du contexte Spring
  *
  * Pas besoin de le déclarer en @Component
+ *
+ * Il n'est pas visible depuis Spring, mais visible par le conteneur
  */
 @WebFilter(filterName="myOtherFilter", urlPatterns={"*"})
 public class MyOtherFilter implements Filter {

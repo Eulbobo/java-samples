@@ -87,6 +87,7 @@ public class WebAppInit implements WebApplicationInitializer {
      * </filter-mapping>
      *
      * Ici, on déclare les filtres pas directement annotées par @WebFilter
+     * Le nom du filtre correspond au nom du bean Spring (par défaut, le nom de la classe)
      */
     private static void declareFilters(final ServletContext servletContext) {
         addFilter(servletContext, "myFilter", DelegatingFilterProxy.class, "/*");

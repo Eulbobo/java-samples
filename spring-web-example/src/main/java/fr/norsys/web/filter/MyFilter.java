@@ -22,7 +22,7 @@ import fr.norsys.web.service.ISpeakService;
  * Mais uniquement parce qu'il est utilisé par un {@link org.springframework.web.filter.DelegatingFilterProxy} dans la
  * configuration {@link fr.norsys.web.conf.WebAppInit#declareFilters}
  *
- * Il étend {@link javax.servlet.Filter}
+ * Il est visible de Spring, mais pas directement du conteneur
  */
 @Component
 public class MyFilter implements Filter {

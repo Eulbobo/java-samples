@@ -65,7 +65,7 @@ public class HelloServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        // déclenchement de l'autowiring de la servlet déclarée dans web.xml
+        // déclenchement de l'autowiring de la classe
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     }
 
