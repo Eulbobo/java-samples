@@ -23,7 +23,8 @@ Spring
 > - [spring-core-example](spring-core-example) : exemples d'utilisation de spring core
 > - [spring-jdbc-example](spring-jdbc-example) : exemples d'utilisation de spring jdbc
 > - [spring-web-example](spring-web-example) : exemples d'utilisation de spring web et servlet api 3
-> - TODO : Spring AOP, Spring boot, Spring web mvc
+> - [spring-aop-example](spring-aop-example) : exemples d'utilisation de spring aop et aspectJ
+> - TODO : Spring boot, Spring web mvc
 
 Exemple complet
 -------------

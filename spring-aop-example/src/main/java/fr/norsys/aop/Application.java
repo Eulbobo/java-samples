@@ -27,9 +27,20 @@ public class Application {
         UserService service = context.getBean(UserService.class);
 
         LOGGER.info("get user from ID");
+        LOGGER.info("-----------------------------------------------------------");
         service.getFromId(Long.valueOf(12));
+        LOGGER.info("-----------------------------------------------------------");
+        service.getFromId(15L);
+        LOGGER.info("-----------------------------------------------------------");
+
+        LOGGER.info("get user from ID and name");
+        LOGGER.info("-----------------------------------------------------------");
+        service.getFromIdAndName(22L, "other name");
+        LOGGER.info("-----------------------------------------------------------");
 
         LOGGER.info("find all");
+        LOGGER.info("-----------------------------------------------------------");
         service.findAll();
+        LOGGER.info("-----------------------------------------------------------");
     }
 }

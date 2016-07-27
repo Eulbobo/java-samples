@@ -1,6 +1,6 @@
 package fr.norsys.aop.support;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +12,6 @@ public class ThreadWait {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ThreadWait.class);
 
-    private static final Random RNG = new Random();
-
     public static void sleep(final long millis){
         try {
             Thread.sleep(millis);
@@ -23,6 +21,6 @@ public class ThreadWait {
     }
 
     public static void sleep(){
-        sleep(RNG.nextInt(100));
+        sleep(ThreadLocalRandom.current().nextInt(100));
     }
 }
