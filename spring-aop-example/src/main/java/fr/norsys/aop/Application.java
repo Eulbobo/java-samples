@@ -1,10 +1,14 @@
 package fr.norsys.aop;
 
+import java.sql.SQLException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.util.Assert;
 
+import fr.norsys.aop.domain.exception.DomainException;
 import fr.norsys.aop.domain.service.UserService;
 
 /**
@@ -42,5 +46,21 @@ public class Application {
         LOGGER.info("-----------------------------------------------------------");
         service.findAll();
         LOGGER.info("-----------------------------------------------------------");
+
+
+        try {
+            service.delete(null);
+        } catch (DomainException e) {
+            LOGGER.info("On récupère une exception de type {} ", e.getClass() );
+        }
+
+        try {
+            service.saveOrUpdate(null);
+        } catch (SQLException e) {
+            LOGGER.info("On ne passera jamais par ici...");
+            Assert.state(false);
+        } catch (DomainException e){
+            LOGGER.info("On récupère une exception de type {} ", e.getClass() );
+        }
     }
 }

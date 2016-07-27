@@ -1,9 +1,10 @@
 package fr.norsys.aop.application;
 
-import static fr.norsys.aop.support.ThreadWait.sleep;
-
+import java.sql.SQLException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ import fr.norsys.aop.persistence.UserDao;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final UserDao userDao;
 
@@ -36,15 +39,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveOrUpdate(final User user) {
-        // Meh.
-        sleep();
+    public void saveOrUpdate(final User user) throws SQLException {
+        LOGGER.info("Je renvoie une erreur de type {}", SQLException.class);
+        throw new SQLException();
     }
 
     @Override
     public void delete(final User user) {
-        // Meh.
-        sleep();
+        LOGGER.info("Je renvoie une erreur de type {}", UnsupportedOperationException.class);
+        throw new UnsupportedOperationException();
     }
 
     @Override
