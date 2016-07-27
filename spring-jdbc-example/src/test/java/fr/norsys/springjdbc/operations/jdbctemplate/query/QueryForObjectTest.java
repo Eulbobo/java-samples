@@ -34,7 +34,7 @@ public class QueryForObjectTest {
 
         assertThat(user)
                 .isNotNull()
-                .isEqualsToByComparingFields(first())
+                .isEqualToComparingFieldByField(first())
                 .isEqualTo(first());
     }
 
@@ -53,7 +53,7 @@ public class QueryForObjectTest {
 
         assertThat(user)
                 .isNotNull()
-                .isEqualsToByComparingFields(second())
+                .isEqualToComparingFieldByField(second())
                 .isEqualTo(second());
     }
 

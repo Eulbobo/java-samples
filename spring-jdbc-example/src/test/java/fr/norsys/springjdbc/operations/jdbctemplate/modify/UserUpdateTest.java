@@ -45,6 +45,6 @@ public class UserUpdateTest {
                 .isEqualTo(1);
         assertThat(userAfter)
                 .isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(expectedUser);
+                .isEqualToIgnoringNullFields(expectedUser);
     }
 }

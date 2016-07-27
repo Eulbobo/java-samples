@@ -44,7 +44,7 @@ public class UpdateTest {
                 .isEqualTo(1);
         assertThat(userAfter)
                 .isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(expectedUser);
+                .isEqualToIgnoringNullFields(expectedUser);
     }
 
     @Transactional
@@ -62,7 +62,7 @@ public class UpdateTest {
                 .isEqualTo(1);
         assertThat(userAfter)
                 .isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(expectedUser);
+                .isEqualToIgnoringNullFields(expectedUser);
     }
 
     @Transactional
@@ -80,7 +80,7 @@ public class UpdateTest {
                 .isEqualTo(1);
         assertThat(userAfter)
                 .isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(expectedUser);
+                .isEqualToIgnoringNullFields(expectedUser);
     }
 
     @Transactional

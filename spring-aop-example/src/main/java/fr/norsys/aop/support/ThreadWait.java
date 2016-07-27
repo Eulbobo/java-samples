@@ -5,6 +5,9 @@ import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Classe qui permet d'attendre simplement
+ */
 public class ThreadWait {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ThreadWait.class);
@@ -14,7 +17,7 @@ public class ThreadWait {
     public static void sleep(final long millis){
         try {
             Thread.sleep(millis);
-        } catch (InterruptedException e) {
+        } catch (final InterruptedException e) {
             LOGGER.error("Error while waiting", e);
         }
     }

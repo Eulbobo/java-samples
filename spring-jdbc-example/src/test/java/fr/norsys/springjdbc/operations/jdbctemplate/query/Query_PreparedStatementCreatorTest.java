@@ -33,7 +33,7 @@ public class Query_PreparedStatementCreatorTest {
 
         assertThat(user)
                 .isNotNull()
-                .isEqualsToByComparingFields(first());
+                .isEqualToComparingFieldByField(first());
     }
 
     @Test

@@ -8,8 +8,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * Project configuration class
  */
 @Configuration
-@EnableAspectJAutoProxy(proxyTargetClass=true)
 @ComponentScan("fr.norsys.aop")
+@EnableAspectJAutoProxy(proxyTargetClass=true)
 public class ApplicationConfiguration {
 
     // no specific bean configuration here

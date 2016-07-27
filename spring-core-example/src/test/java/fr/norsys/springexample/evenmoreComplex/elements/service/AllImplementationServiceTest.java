@@ -61,7 +61,7 @@ public class AllImplementationServiceTest {
         BeanSimple bean = service.getBean(0l);
         assertThat(bean)
                 .isNotNull()
-                .isEqualsToByComparingFields(new BeanSimple(3l, "mock3"));
+                .isEqualToComparingFieldByField(new BeanSimple(3l, "mock3"));
 
         verify(mock1).getById(0l);
         verify(mock2).getById(0l);

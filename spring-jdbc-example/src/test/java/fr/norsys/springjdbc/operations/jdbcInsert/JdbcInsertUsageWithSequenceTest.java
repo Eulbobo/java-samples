@@ -82,7 +82,7 @@ public class JdbcInsertUsageWithSequenceTest {
         User insertedUser = usersAfter.get(0);
         assertThat(insertedUser)
                 .isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(expectedInsert);
+                .isEqualToIgnoringGivenFields(expectedInsert, "id");
     }
 
     @Test
@@ -114,7 +114,7 @@ public class JdbcInsertUsageWithSequenceTest {
         User insertedUser = usersAfter.get(0);
         assertThat(insertedUser)
                 .isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(expectedInsert);
+                .isEqualToIgnoringGivenFields(expectedInsert, "id");
 
         assertThat(id)
                 .isNotNull();
@@ -144,7 +144,7 @@ public class JdbcInsertUsageWithSequenceTest {
         User insertedUser = usersAfter.get(0);
         assertThat(insertedUser)
                 .isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(expectedInsert);
+                .isEqualToIgnoringGivenFields(expectedInsert, "id");
 
         assertThat(toInsert.getId())
                 .isNotNull()
@@ -175,7 +175,7 @@ public class JdbcInsertUsageWithSequenceTest {
         User insertedUser = usersAfter.get(0);
         assertThat(insertedUser)
                 .isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(expectedInsert);
+                .isEqualToIgnoringGivenFields(expectedInsert, "id");
 
         assertThat(keyHolder)
                 .isNotNull();

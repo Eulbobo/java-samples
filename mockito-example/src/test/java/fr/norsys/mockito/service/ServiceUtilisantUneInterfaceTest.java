@@ -21,8 +21,6 @@ import fr.norsys.mockito.domain.BeanDeDomainRepository;
 import fr.norsys.mockito.domain.BeanDeDomaine;
 import fr.norsys.mockito.domain.DomainException;
 import fr.norsys.mockito.domain.EtatBeanDomain;
-import fr.norsys.mockito.service.ServiceException;
-import fr.norsys.mockito.service.ServiceUtilisantUneInterface;
 
 /**
  * La classe de test
@@ -168,7 +166,7 @@ public class ServiceUtilisantUneInterfaceTest {
         assertThat(bean)
                 .isNotNull()
                 .isExactlyInstanceOf(BeanDeDomaine.class)
-                .isEqualsToByComparingFields(beanDeDomaineKnow());
+                .isEqualToComparingFieldByField(beanDeDomaineKnow());
 
         verify(repository).getBeanById(42l);
         verifyNoMoreInteractions(repository);
@@ -205,7 +203,7 @@ public class ServiceUtilisantUneInterfaceTest {
 
         assertThat(bean)
                 .isNotNull()
-                .isEqualsToByComparingFields(expectedBean);
+                .isEqualToComparingFieldByField(expectedBean);
 
         verify(repository).createBean(any(BeanDeDomaine.class));
         verifyNoMoreInteractions(repository);

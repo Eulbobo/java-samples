@@ -47,7 +47,7 @@ public class ComplexServiceTest {
 
         assertThat(bean)
                 .isNotNull()
-                .isEqualsToByComparingFields(new BeanSimple(1l, "returned by repo1"));
+                .isEqualToComparingFieldByField(new BeanSimple(1l, "returned by repo1"));
     }
 
     @Test

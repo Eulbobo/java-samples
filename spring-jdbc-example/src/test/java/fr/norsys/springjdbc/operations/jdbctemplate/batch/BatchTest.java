@@ -168,7 +168,7 @@ public class BatchTest {
 
         User firstUser = query.getUserById(1);
         assertThat(firstUser).isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(user().withName("JULIEN").withMail("JULIEN@NORSYS.FR").build());
+                .isEqualToIgnoringGivenFields(user().withName("JULIEN").withMail("JULIEN@NORSYS.FR").build(), "id");
     }
 
     @Transactional
@@ -186,11 +186,11 @@ public class BatchTest {
 
         User firstUser = query.getUserById(1);
         assertThat(firstUser).isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(user().withName("Dada").build());
+                .isEqualToIgnoringGivenFields(user().withName("Dada").build(), "id", "mail");
 
         User secondUser = query.getUserById(2);
         assertThat(secondUser).isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(user().withName("Didi").build());
+                .isEqualToIgnoringGivenFields(user().withName("Didi").build(), "id", "mail");
     }
 
     @Transactional
@@ -207,11 +207,11 @@ public class BatchTest {
 
         User firstUser = query.getUserById(1);
         assertThat(firstUser).isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(user().withName("Zouzou").build());
+                .isEqualToIgnoringGivenFields(user().withName("Zouzou").build(), "id", "mail");
 
         User secondUser = query.getUserById(2);
         assertThat(secondUser).isNotNull()
-                .isLenientEqualsToByIgnoringNullFields(user().withName("Didi").build());
+                .isEqualToIgnoringGivenFields(user().withName("Didi").build(), "id", "mail");
     }
 
     @Transactional

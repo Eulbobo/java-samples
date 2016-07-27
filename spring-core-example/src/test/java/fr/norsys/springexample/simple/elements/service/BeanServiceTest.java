@@ -26,7 +26,7 @@ public class BeanServiceTest {
         BeanSimple bean = service.getBean(5l);
 
         assertThat(bean).isNotNull()
-            .isEqualsToByComparingFields(new BeanSimple(5L, "my bean"));
+            .isEqualToComparingFieldByField(new BeanSimple(5L, "my bean"));
 
         verify(repository).getById(anyLong());
     }

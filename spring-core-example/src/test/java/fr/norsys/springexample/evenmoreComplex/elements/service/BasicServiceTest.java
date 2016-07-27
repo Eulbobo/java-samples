@@ -43,7 +43,7 @@ public class BasicServiceTest {
 
         assertThat(bean)
                 .isNotNull()
-                .isEqualsToByComparingFields(new BeanSimple(4l, "returned"));
+                .isEqualToComparingFieldByField(new BeanSimple(4l, "returned"));
     }
 
     @Test
