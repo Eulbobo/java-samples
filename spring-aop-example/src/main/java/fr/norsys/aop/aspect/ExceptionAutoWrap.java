@@ -3,6 +3,8 @@ package fr.norsys.aop.aspect;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import fr.norsys.aop.domain.exception.DomainException;
@@ -10,6 +12,8 @@ import fr.norsys.aop.domain.exception.DomainException;
 @Aspect
 @Component
 public class ExceptionAutoWrap {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionAutoWrap.class);
 
     /**
      * Définition d'un Pointcut : une définition de règles spécifiques qui peuvent être utilisées seules ou avec
@@ -24,16 +28,47 @@ public class ExceptionAutoWrap {
     }
 
     /**
-     * Toutes les exceptions renvoyées au sein d'un bean Spring sera automatiquement Wrappe
+     * Définition d'un Pointcut : l'exécution de la méthode UserServiceImpl.thisWillFailMiserabily()
+     */
+    @Pointcut("execution(void fr.norsys.aop.application.UserServiceImpl.thisWillFailMiserabily()))")
+    private void failingMethod() {
+        // un pointcut est juste une signature de méthode
+    }
+
+    /**
+     * Toutes les exceptions renvoyées au sein d'un bean Spring sera automatiquement Wrappe en exception de domaine
      * C'EST PAS UNE BONNE IDEE !
      *
-     * C'est juste pour l'exemple
+     *  C'est juste pour l'exemple
+     *
+     *
+     * Ici, on voit que le point d'entrée est "insideNorsys", donc dans le package fr.norsys.. et qui ne correspond pas
+     * au pointcut "failingMethod()"
+     * Ca permet de tout de suite voir l'intérêt de créer des pointcuts nommés clairements afin que les expressions sur
+     * les advices soient clairs.
      */
-    @AfterThrowing(pointcut = "insideNorsys()", throwing = "exception")
+    @AfterThrowing(pointcut = "insideNorsys() && !failingMethod()", throwing = "exception")
     private void catchLogAndRethrow(final Exception exception) throws Exception {
         if (exception.getClass().isAssignableFrom(DomainException.class)) {
             throw exception;
         }
+        LOGGER.info("Wrapping exception {} into {}", exception, "DomainException");
         throw new DomainException(exception);
+    }
+
+    /**
+     * Toutes les RuntimeException renvoyées au sein d'un bean Spring sera automatiquement encapsulées en Exception standard
+     * C'EST PAS UNE BONNE IDEE !
+     *
+     * Le système génère alors automatiquement une {@link java.lang.reflect.UndeclaredThrowableException} de type
+     * Runtime pour réussir à respecter le fait qu'une Checked Exception remonte à un endroit où il ne devrait pas y en
+     * avoir sans être explicitement gérée
+     *
+     * C'est juste pour l'exemple
+     */
+    @AfterThrowing(pointcut = "failingMethod()", throwing = "exception")
+    private void wrapIntoNotRuntimeException(final RuntimeException exception) throws Exception {
+        LOGGER.info("Wrapping exception {} into standard other exception {}", exception, "");
+        throw new Exception(exception);
     }
 }

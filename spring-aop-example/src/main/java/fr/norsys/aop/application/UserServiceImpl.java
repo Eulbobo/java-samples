@@ -30,6 +30,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getFromIdAndName(final Long id, final String name) {
+        // l'appel à ces méthodes se passe via le proxy, l'aspect se déclenchera
+        userDao.methodePublique();
         return userDao.getUser(id, name);
     }
 
@@ -53,6 +55,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userDao.findAll();
+    }
+
+    @Override
+    public void thisWillFailMiserabily() {
+        LOGGER.info("Je renvoie une erreur de type {}", UnsupportedOperationException.class);
+        throw new UnsupportedOperationException();
     }
 
 }

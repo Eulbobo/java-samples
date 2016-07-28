@@ -17,12 +17,21 @@ import fr.norsys.aop.domain.bean.User;
 @Repository
 public class UserDao {
 
+    public void methodePublique() {
+        // je suis une méthode publique
+    }
+
     public List<User> findAll() {
+        // L'appel direct à des méthodes interne ne PEUT PAS être tissée avec un aspect si on ne passe pas par le
+        // conteneur Spring pour nous fournir les implémentations.
         sleep();
+        methodePublique();
         return new ArrayList<User>();
     }
 
     public User getUser(final Long id, final String name) {
+        // Même chose que plus haut
+        methodePublique();
         User user = new User();
         user.setId(id);
         user.setName(name);

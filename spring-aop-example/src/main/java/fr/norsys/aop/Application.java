@@ -47,11 +47,10 @@ public class Application {
         service.findAll();
         LOGGER.info("-----------------------------------------------------------");
 
-
         try {
             service.delete(null);
         } catch (DomainException e) {
-            LOGGER.info("On récupère une exception de type {} ", e.getClass() );
+            LOGGER.info("On récupère une exception de type {} ", e.getClass());
         }
 
         try {
@@ -59,8 +58,15 @@ public class Application {
         } catch (SQLException e) {
             LOGGER.info("On ne passera jamais par ici...");
             Assert.state(false);
-        } catch (DomainException e){
-            LOGGER.info("On récupère une exception de type {} ", e.getClass() );
+        } catch (DomainException e) {
+            LOGGER.info("On récupère une exception de type {} ", e.getClass());
         }
+
+        try {
+            service.thisWillFailMiserabily();
+        } catch (Exception e) {
+            LOGGER.info("On récupère une exception de type {} ", e.getClass());
+        }
+
     }
 }
