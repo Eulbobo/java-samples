@@ -8,6 +8,8 @@ package fr.norsys.tests;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
+import org.assertj.core.api.Assertions;
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 // Ca reste du test pilotÃ© par junit
 import org.junit.Test;
 
@@ -30,7 +32,7 @@ public class MethodsThrowingExceptionsTest {
     public void should_raise_RandomException_when_calling_thisMethodWillFail() {
         MethodsThrowingExceptions method = new MethodsThrowingExceptions(42);
 
-        // ceci est une mÃ©thode de test des exceptions
+        // ceci est une méthode de test des exceptions
         Throwable thrownByMethod = null;
         try {
             method.thisMethodWillFail();
@@ -41,7 +43,7 @@ public class MethodsThrowingExceptionsTest {
         // s'il n'y a pas eu d'exceptions, le fail est direct
         assertThat(thrownByMethod)
                 .isNotNull()
-                // on teste l'instance de l'exception renvoyÃ©e
+                // on teste l'instance de l'exception renvoyée
                 .isExactlyInstanceOf(RandomException.class)
                 // on teste le message
                 .hasMessage("42 failures yet")
@@ -53,7 +55,7 @@ public class MethodsThrowingExceptionsTest {
     public void should_raise_RandomException_when_passing_true() {
         MethodsThrowingExceptions method = new MethodsThrowingExceptions(22);
 
-        // autre faÃ§on de tester la levÃ©e d'exception
+        // autre façon de tester la levée d'exception
         try {
             method.thisMethodMayFail(true);
             // Ici, il faut faire fail parce que l'exception aurait du avoir lieu
@@ -74,7 +76,7 @@ public class MethodsThrowingExceptionsTest {
     public void should_raise_DiceException_when_rolling_dice() {
         MethodsThrowingExceptions method = new MethodsThrowingExceptions(21);
 
-        // mÃ©thode hybride entre les deux prÃ©cÃ©dentes
+        // méthode hybride entre les deux précédentes
         Exception thrownByMethod = null;
         try {
             method.rollDice();
@@ -86,6 +88,26 @@ public class MethodsThrowingExceptionsTest {
         } catch (Exception exception) {
             thrownByMethod = exception;
         }
+
+        assertThat(thrownByMethod)
+                .isInstanceOf(RandomException.class)
+                .isExactlyInstanceOf(DiceException.class)
+                .hasMessageContaining("21 failures yet");
+    }
+
+
+    @Test
+    public void should_raise_DiceException_when_rolling_dice_with_a_beautiful_test() {
+        final MethodsThrowingExceptions method = new MethodsThrowingExceptions(21);
+
+        // la meilleure façon de tester si on est en Java7 avec assertJ 2.X
+        Throwable thrownByMethod = Assertions.catchThrowable(new ThrowingCallable() {
+            @Override
+            public void call() throws Throwable {
+                method.rollDice();
+                failBecauseExceptionWasNotThrown(DiceException.class);
+            }
+        });
 
         assertThat(thrownByMethod)
                 .isInstanceOf(RandomException.class)

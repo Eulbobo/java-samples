@@ -6,6 +6,8 @@ import static fr.norsys.springjdbc.bean.UserFixture.second;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
+import org.assertj.core.api.Assertions;
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ import fr.norsys.springjdbc.beans.User;
 public class QueryForObjectTest {
 
     @Autowired
-    private QueryForObject queryForObject;
+    protected QueryForObject queryForObject;
 
     @Test
     public void should_get_first_user() {
@@ -69,12 +71,18 @@ public class QueryForObjectTest {
     @Test
     public void should_raise_and_exception_when_querying_for_unknow_object() {
 
-        try {
-            queryForObject.getIdForUser(4);
-            failBecauseExceptionWasNotThrown(EmptyResultDataAccessException.class);
-        } catch (EmptyResultDataAccessException e) {
-            // success
-        }
+        Throwable thrown = Assertions.catchThrowable(new ThrowingCallable() {
+
+            @Override
+            public void call() throws Throwable {
+                queryForObject.getIdForUser(4);
+                failBecauseExceptionWasNotThrown(EmptyResultDataAccessException.class);
+            }
+        });
+
+        Assertions.assertThat(thrown)
+                .isNotNull()
+                .isInstanceOf(EmptyResultDataAccessException.class);
     }
 
     @Test
