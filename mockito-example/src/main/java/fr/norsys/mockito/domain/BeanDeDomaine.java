@@ -1,7 +1,8 @@
 package fr.norsys.mockito.domain;
 
 import java.math.BigDecimal;
-import java7.util.Objects;
+import java.util.Objects;
+
 
 // cette classe représente un objet de domaine quelconque manipulé par le service
 public class BeanDeDomaine {

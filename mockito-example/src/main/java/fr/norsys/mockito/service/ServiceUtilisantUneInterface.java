@@ -1,6 +1,6 @@
 package fr.norsys.mockito.service;
 
-import static java7.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

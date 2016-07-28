@@ -13,6 +13,8 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
+import org.assertj.core.api.Assertions;
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.Test;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
@@ -145,6 +147,34 @@ public class ServiceUtilisantUneInterfaceTest {
 
         // ASSERT
         assertThat(thrownByException)
+                .isNotNull()
+                .isExactlyInstanceOf(NullPointerException.class)
+                .hasMessageContaining("id parameter is mandatory");
+
+        // Le service ne doit pas avoir été appelé
+        verifyZeroInteractions(repository);
+    }
+
+    @Test
+    // meme test que precedemment, mais plus joli
+    public void should_fail_when_getById_parameters_is_null2() {
+        // ARRANGE
+        // création d'un mock pour le repository
+        BeanDeDomainRepository repository = mock(BeanDeDomainRepository.class);
+
+        // Création du service avec le repository
+        final ServiceUtilisantUneInterface service = new ServiceUtilisantUneInterface(repository);
+
+        // ACT
+        Throwable thrownByCall = Assertions.catchThrowable(new ThrowingCallable() {
+            @Override
+            public void call() throws Throwable {
+                service.getById(null);
+
+            }
+        });
+        // ASSERT
+        assertThat(thrownByCall)
                 .isNotNull()
                 .isExactlyInstanceOf(NullPointerException.class)
                 .hasMessageContaining("id parameter is mandatory");
