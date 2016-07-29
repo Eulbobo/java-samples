@@ -52,11 +52,20 @@ Syntaxe de base AspectJ
 -------------------
 Toutes les expressions de `PointCut` utilisées dans les exemples sont des expressions provenant directement de AspectJ.
 
-### Recherche de signatures de méthodes
-L'expression qui permet de désigner une signature de méthode est la suivante :
-- commence par le mot clé `execution` puis possède une expression de définition de la signature de la méthode à matcher
-- la signature se compose comme suit : <visibilite désirée> <type de retour> <package>.<classe>.<methode>(<arguments>)
-- on ne peut préciser un type de retour (en précisant le package) que si on a précise la visibilité `(* User UserServiceImpl.*(..))` est une expression invalide
+Chaque expression est qualifiée par un désignateur qui permet de désignée la cible :
+- execution : correspondance avec l'exécution d'une signature de méthode
+- within : correspondante au sein d'un ensemble (package, classe)
+- bean : correspondance avec un bean de même nom
+- this : correspondance au sein d'un type classe où le proxy implémente un type
+- target : correspondance aux proxy pour lesquels l'objet cible implémente un type (classe, interface)
+- args : correspondance aux éléments ayant les paramètres correspondants (type)
+- @target : correspondance aux éléments pour lequels l'objet cible possède une annotation du type donnée à l'exécution (l'annotation doit être préservée au runtime)
+- @args : correspondance aux éléments pour lesquels les arguments passés possèdent l'annotation donnée à l'exécution (l'annotation doit être préservée au runtime)
+- @within : correspondance aux éléments pour lequels la classe de l'objet cible possède une annotation donnée à l'exécution (l'annotation doit être préservée au runtime)
+- @annotation : correspondance aux éléments annotés (l'annotation doit être préservée au runtime)
+
+### execution
+Exemples d'utilisation de l'expression `execution` : correspondance avec l'exécution d'une signature de méthode
 
 #### Toutes les méthodes dans une classe particulière
 L'expression est la suivante : ```execution(* fr.norsys.aop.application.UserServiceImpl.*(..))```
@@ -76,8 +85,8 @@ L'expression est la suivante : ```execution(public fr.norsys.aop.domain.bean.Use
 L'expression est la suivante : ```execution(public fr.norsys.aop.domain.bean.User fr.norsys.aop.application.UserServiceImpl.*(Long id, ..))```
 
 
-### Recherche de types signatures de méthodes
-Contrairement au cas vu avant, ce mode de fonctionnement fait une recherche par type de classe. Mais permet de faire d'autres choses
+### within
+Exemples d'utilisation de l'expression `within` : correspondante au sein d'un ensemble (package, classe)
 
 #### Toutes les méthodes des classes dans un package
 L'expression est la suivante : ```within(fr.norsys.aop.application.*)```
@@ -99,14 +108,71 @@ si l'aspect se trouve dans le package `fr.norsys.aop.application`
 L'expression est la suivante : ```within(fr.norsys.aop.domain.service.UserService+)```
 Toutes les implémentations, quel que soit leur package, sera matchée
 
-### Recherche de beans par leur nom
-Cela permet de mapper directement le nom des beans Spring pour les aspects
+### bean 
+Exemples d'utilisation de l'expression `bean` : correspondance avec un bean de même nom
 
 #### Tous les beans nommés `Manager`
 L'expression est la suivante : ```bean(Manager)```
 
 #### Tous les beans qui ont un nom finissant par `Impl`
 L'expression est la suivante : ```bean(*Impl)```
+
+### target - this
+Exemples d'utilisation de l'expression `this` : correspondance au sein d'un proxy qui implémente un type et `target` : correspondance aux proxy pour lesquels l'objet cible implémente un type.
+Différence avec target : ici, la correspondance est faite sur l'objet proxy généré. Un proxy est une classe fille générée automatiquement d'une classe à proxifier, mais on peut aussi lui faire implémenter/étendre d'autre classes. D'où la différence entre les deux éléments.
+L'usage de `target` est à préférer à `this` qui est à réserver dans le cas de création de proxy spécifiques.
+
+#### Tous les beans proxy qui implémentent la classe `UserService`
+L'expression est la suivante : ```this(fr.norsys.aop.domain.service.UserService)```
+
+#### Tous les beans proxy dans lesquels l'object cible qui implémentent la classe `UserServiceImpl`
+L'expression est la suivante : ```target(fr.norsys.aop.application.UserServiceImpl)```
+
+### args
+Exemples d'utilisation de l'expression `args` : correspondance aux éléments ayant les paramètres correspondants (type)
+
+#### Toutes les méthodes auxquelles on passe un seul argument de type Long
+L'expression est la suivante : ```args(java.lang.Long)```
+
+#### Toutes les méthodes auxquelles on passe un type Long en premier
+L'expression est la suivante : ```args(java.lang.Long, ..)```
+A noter que cette expression correspondra aux signatures de méthode suivantes
+- void doThings(Long value);
+- void doOthersThings(Long value, String stringValue);
+
+#### Autre façon de faire : utiliser la déclaration de la méthode
+Exemple d'expression combinée à la déclaration
+```java
+	@Before("args(longValue)")
+    private static void logForLong(final Long longValue) {
+        LOGGER.info("Passage du paramètre {}", longValue);
+    }
+```
+Dans cet exemple, on passe le nom du paramètre, dont le type est récupéré dans la signature. Attention, le nom de la variable est case sensitive
+
+### @annotation - @target
+- `@target` : correspondance aux éléments pour lequels l'objet cible possède une annotation du type donnée à l'exécution (l'annotation doit être préservée au runtime).
+- `@annotation` : correspondance aux éléments annotés de la classe cible (l'annotation doit être préservée au runtime)
+Les deux expressions `@annotation` et `target` sont très proches et fonctionnent sur le même principe que `this` vs `target`. 
+L'expression `@target` vérifie le type à l'exécution, tandis que `@annotation` vérifie le type par rapport au type déclaré dans la classe cible avant proxification.
+Pour s'assurer du fonctionnement d'un aspect par annotation, il faut donc préférer le `@annotation`.
+
+#### Toutes les méthodes qui possèdent l'annotation `@Log`
+Imaginons une annotations @Log qui soit preservée à l'exécution et que l'on puisse mettre sur une méthode. Pour exécuter du code autour de ces méthodes, l'expression est la suivante : ```@annotation(fr.norsys.aop.annotation.Log)```
+
+### @within
+Exemples d'utilisation de l'expression `@within` : correspondance aux éléments pour lequels la classe de l'objet cible possède une annotation donnée à l'exécution (l'annotation doit être préservée au runtime)
+Une fois de plus, celà ressemble beaucoup à l'usage de `@annotation` sauf qu'on parle ici d'une annotation au niveau de la classe
+
+#### Toutes les classes qui portent l'annotation `@Loggable`
+L'expression est la suivante : ```@within(fr.norsys.aop.annotation.Loggable)```
+
+### @args 
+Exemples d'utilisation de l'expression `@args` : correspondance aux éléments pour lesquels les arguments passés possèdent l'annotation donnée à l'exécution (l'annotation doit être préservée au runtime)
+
+#### Toutes les méthodes qui prennent pour seul paramètre un objet dont la classe cible possède l'annotation `@Id` (si la classe est fournie par le conteneur)
+L'expression est la suivante : ```@args(fr.norsys.aop.annotation.Id)```
+
 
 ### Combinaison des règles
 Toutes les règles de Pointcut vues jusqu'à présent peuvent être liées entre elles pour créer des expression plus complexes.
@@ -121,8 +187,7 @@ L'expression est la suivante : ```bean(*Impl) || bean(*Dao)```
 #### Exemple de tous les beans finissant par `Impl`sauf ceux du package `fr.norsys.aop`
 L'expression est la suivante : ```bean(*Impl) && !within(fr.norsys.aop.*)```
 
-
-TODO fonctionnement des arguments
+TODO binding form
 
 Contenu du projet
 -------------------
@@ -143,6 +208,6 @@ TODO
 
 Liens
 -------------------
-> - [Documentation de référence Spring Core](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/index.html)
+> - [Documentation de référence Spring aop](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html)
 > - [Spring Aop par JmDoudoux](http://www.jmdoudoux.fr/java/dej/chap-spring-aop.htm)
 > - [Exemples d'expressions aspectJ](http://howtodoinjava.com/spring/spring-aop/writing-spring-aop-aspectj-pointcut-expressions-with-examples/)

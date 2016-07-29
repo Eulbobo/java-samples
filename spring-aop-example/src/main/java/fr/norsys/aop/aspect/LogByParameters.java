@@ -36,13 +36,21 @@ public class LogByParameters {
     }
 
     /**
+     * Définition d'un pointcut pour lequel on a un seul argument de type Long
+     */
+    @Pointcut("args(longValue)")
+    private void withLongParameter(final Long longValue) {
+        // un pointcut est juste une signature de méthode
+    }
+
+    /**
      * Ici, on crée une règle où on dit qu'on veut un aspect sur les Bean Spring dans le package
      * fr.norsys.aop.application auquel on passe on a un paramètre unique de type Long
      *
      * Et on rajoute en plus des infos sur le join point
      */
-    @Before("insideNorsysServices() && args(longValue)")
-    private static void logForLongWithPointcutInfo(final JoinPoint joinPoint, final Long longValue) {
-        LOGGER.info("Y'a le service {} qui va bouffer un {}", joinPoint.getSignature().toShortString(), longValue);
+    @Before("insideNorsysServices() && withLongParameter(longVal)")
+    private static void logForLongWithPointcutInfo(final JoinPoint joinPoint, final Long longVal) {
+        LOGGER.info("Y'a le service {} qui va bouffer un {}", joinPoint.getSignature().toShortString(), longVal);
     }
 }

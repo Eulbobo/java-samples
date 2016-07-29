@@ -76,7 +76,7 @@ public class LogAroundEverything {
      */
     @Before("insideNorsys()")
     private static void logBeforeWithPointCut(final JoinPoint joinPoint) throws Throwable {
-        LOGGER.info("About to enter {} with parameters {}", joinPoint.getSignature().toShortString(),
+        LOGGER.info("On entre dans {} avec les paramètres {}", joinPoint.getSignature().toShortString(),
                 joinPoint.getArgs());
     }
 
@@ -86,7 +86,7 @@ public class LogAroundEverything {
      */
     @After("insideNorsys()")
     private static void logAfterWithoutParams() {
-        LOGGER.info("We just exited someting");
+        LOGGER.info("On est sorti d'une méthode");
     }
 
 }
