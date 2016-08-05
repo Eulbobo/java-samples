@@ -33,16 +33,18 @@ public class LogAroundEverything {
      * La méthode est publique, mais elle pourrait aussi être private.
      *
      * @param joinPoint le point d'entrée inspecté correspondant à l'expression aspectJ
+     * @return ce qui est retourné par la méthode
      * @throws Throwable pour renvoyer tout de suite les exceptions qui ont lieu
      */
     @Around("execution(* *(..))")
-    public static void logAround(final ProceedingJoinPoint joinPoint) throws Throwable {
+    public static Object logAround(final ProceedingJoinPoint joinPoint) throws Throwable {
         long begin = System.currentTimeMillis();
 
         LOGGER.info("About to enter {} with parameters {}", joinPoint.getSignature().toShortString(),
                 joinPoint.getArgs());
         try {
-            joinPoint.proceed();
+            // si on ne retourne rien, tout ce qui est récupéré est 'null'
+            return joinPoint.proceed();
         } finally {
             LOGGER.info("Exiting {}, elapsed time : {}ms", joinPoint.getSignature().toShortString(),
                     System.currentTimeMillis() - begin);

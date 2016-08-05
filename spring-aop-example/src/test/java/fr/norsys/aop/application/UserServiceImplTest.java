@@ -1,5 +1,6 @@
 package fr.norsys.aop.application;
 
+import static fr.norsys.aop.fixture.UserFixture.user;
 import static org.assertj.core.groups.Tuple.tuple;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -17,14 +18,11 @@ import fr.norsys.aop.domain.bean.User;
 import fr.norsys.aop.domain.service.UserService;
 import fr.norsys.aop.persistence.UserDao;
 
+/**
+ * Test unitaire du service sans l'injection Spring : on teste le comportement normal du service
+ * tel que décrit dans le code source
+ */
 public class UserServiceImplTest {
-
-    private static User user(final long id, final String name) {
-        User user = new User();
-        user.setId(id);
-        user.setName(name);
-        return user;
-    }
 
     @Test
     public void should_get_user_from_dao_when_getting_by_id() {
@@ -98,15 +96,37 @@ public class UserServiceImplTest {
 
     }
 
-    public void saveOrUpdate(final User user) throws SQLException {
-        throw new SQLException();
+    @Test
+    public void delete_should_raise_and_UnsupportedOperationException() {
+        final UserService service = new UserServiceImpl(mock(UserDao.class));
+
+        Throwable throwable = Assertions.catchThrowable(new ThrowingCallable() {
+            @Override
+            public void call() throws Throwable {
+                service.delete(user(1l, "one"));
+            }
+        });
+
+        Assertions.assertThat(throwable)
+                .isNotNull()
+                .isInstanceOf(UnsupportedOperationException.class);
+
     }
 
-    public void delete(final User user) {
-        throw new UnsupportedOperationException();
-    }
+    @Test
+    public void thisWillFailMiserabily_should_raise_and_UnsupportedOperationException() {
+        final UserService service = new UserServiceImpl(mock(UserDao.class));
 
-    public void thisWillFailMiserabily() {
-        throw new UnsupportedOperationException();
+        Throwable throwable = Assertions.catchThrowable(new ThrowingCallable() {
+            @Override
+            public void call() throws Throwable {
+                service.thisWillFailMiserabily();
+            }
+        });
+
+        Assertions.assertThat(throwable)
+                .isNotNull()
+                .isInstanceOf(UnsupportedOperationException.class);
+
     }
 }

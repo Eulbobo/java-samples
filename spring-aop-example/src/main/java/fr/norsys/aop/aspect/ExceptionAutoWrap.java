@@ -48,8 +48,8 @@ public class ExceptionAutoWrap {
      * les advices soient clairs.
      */
     @AfterThrowing(pointcut = "insideNorsys() && !failingMethod()", throwing = "exception")
-    private void catchLogAndRethrow(final Exception exception) throws Exception {
-        if (exception.getClass().isAssignableFrom(DomainException.class)) {
+    public void catchLogAndRethrow(final Exception exception) throws Exception {
+        if (DomainException.class.isAssignableFrom(exception.getClass())) {
             throw exception;
         }
         LOGGER.info("Wrapping exception {} into {}", exception, "DomainException");
@@ -67,7 +67,7 @@ public class ExceptionAutoWrap {
      * C'est juste pour l'exemple
      */
     @AfterThrowing(pointcut = "failingMethod()", throwing = "exception")
-    private void wrapIntoNotRuntimeException(final RuntimeException exception) throws Exception {
+    public void wrapIntoNotRuntimeException(final RuntimeException exception) throws Exception {
         LOGGER.info("Wrapping exception {} into standard other exception {}", exception, "");
         throw new Exception(exception);
     }
