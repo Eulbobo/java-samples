@@ -206,7 +206,7 @@ Cela fonctionne avec toutes les expressions, et c'est particulièrement utile dan
 
 Contenu du projet
 -------------------
-Le projet ne contient pas de tests sur les aspects, pour deux raisons principales
+Le projet ne contient presque pas de tests sur les aspects, pour deux raisons principales
 - presque tous les aspects sont déclarés comme privés
 - ils n'ont pas d'impact sur le code (sauf pour les cas des exceptions à ne pas faire)
 
@@ -216,11 +216,7 @@ Vu que la plupart des aspects ne devraient pas avoir d'effet sur le code autour 
 Par contre, il est possible de tester le bon fonctionnement de l'intégralité du code avec les aspects tels qu'ils existent.
 Et il est aussi possible de tester le bon fonctionnement du code en désactivant l'utilisaton des aspects. Ce qui permet dans les tests de voir deux types de tests bien distincts au fonctionnement totalement différents selon qu'on fasse un test unitaire ou d'intégration.
 
-Le projet contient une classe `Application` exécutable qui permet de lancer les méthodes principales du service `UserService` afin de voir l'effet des aspects (sur les logs)
-
-Utilisation
--------------------
-TODO
+Le projet contient une classe `Application` exécutable qui permet de lancer les méthodes principales du service `UserService` afin de voir l'effet des aspects (sur les logs). Cette classe lance les principales méthodes sur deux contextes Spring différents : le contexte avec Aspect et le contexte sans Aspect.
 
 Liens
 -------------------
