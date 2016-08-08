@@ -49,8 +49,8 @@ public class LogByParameters {
      *
      * Et on rajoute en plus des infos sur le join point
      */
-    @Before("insideNorsysServices() && withLongParameter(longVal)")
-    private static void logForLongWithPointcutInfo(final JoinPoint joinPoint, final Long longVal) {
-        LOGGER.info("Y'a le service {} qui va bouffer un {}", joinPoint.getSignature().toShortString(), longVal);
+    @Before("insideNorsysServices() && withLongParameter(myLongValue)")
+    private static void logForLongWithPointcutInfo(final JoinPoint joinPoint, final Long myLongValue) {
+        LOGGER.info("Y'a le service {} qui va bouffer un {}", joinPoint.getSignature().toShortString(), myLongValue);
     }
 }

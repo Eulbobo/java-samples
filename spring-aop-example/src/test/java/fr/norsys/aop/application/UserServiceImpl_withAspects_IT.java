@@ -11,24 +11,22 @@ import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import fr.norsys.aop.ApplicationConfiguration;
 import fr.norsys.aop.domain.bean.User;
 import fr.norsys.aop.domain.exception.DomainException;
 import fr.norsys.aop.domain.service.UserService;
+import fr.norsys.configuration.ApplicationConfigurationWithAspect;
 
 /**
  * Test d'intégration du service : ici, nous avons des aspects invisibles qui pourtant ont une action sur le comportement
  * Les résultats ne sont pas les mêmes que ceux attendus lors des tests unitaires
  */
-@ComponentScan("fr.norsys.aop")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ApplicationConfiguration.class, loader = AnnotationConfigContextLoader.class)
-public class UserServiceImplIT {
+@ContextConfiguration(classes = ApplicationConfigurationWithAspect.class, loader = AnnotationConfigContextLoader.class)
+public class UserServiceImpl_withAspects_IT {
 
     /** package protected pour faciliter l'accès depuis les anonymous inner class */
     @Autowired

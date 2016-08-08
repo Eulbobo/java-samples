@@ -174,7 +174,11 @@ Exemples d'utilisation de l'expression `@args` : correspondance aux éléments pou
 L'expression est la suivante : ```@args(fr.norsys.aop.annotation.Id)```
 
 
-### Combinaison des règles
+Syntaxe avancée
+-------------------
+Toutes les règles précédentes peuvent être combinées entre elles avec des opérateurs logiques, ou être spécialisées grâce au système de 'binding form'
+
+### Opérateurs logiques
 Toutes les règles de Pointcut vues jusqu'à présent peuvent être liées entre elles pour créer des expression plus complexes.
 Les opérateurs pour réaliser cela sont les suivants (les mêmes qu'en java):
 - `||` : ou logique
@@ -187,7 +191,18 @@ L'expression est la suivante : ```bean(*Impl) || bean(*Dao)```
 #### Exemple de tous les beans finissant par `Impl`sauf ceux du package `fr.norsys.aop`
 L'expression est la suivante : ```bean(*Impl) && !within(fr.norsys.aop.*)```
 
-TODO binding form
+### Binding Form
+Le binding form permet de définir une variable par son nom dans le point de coupe, et de déclarer son type dans le greffon.
+
+Ainsi, on peut vouloir une expression de la forme `arg(firstValue, ..)` qui signifiera : n'importe quel méthode qui a au moins un paramètre.
+Définission le point de coupe comme suit :
+```java
+    @Pointcut("annotation(firstValue, ..)")
+    private void hasArgument(Long firstValue) { }
+```
+On a défini un point de coupe sur les méthodes qui prenaient en paramètre 1 ou plusieurs arguments dont le premier est de type Long.
+
+Cela fonctionne avec toutes les expressions, et c'est particulièrement utile dans le cas de greffon tels que `@AfterThrowing`, `@AfterReturning`, où tous les greffons où il est important de connaitre les éléments en entrée et/ou sortie.
 
 Contenu du projet
 -------------------
@@ -196,11 +211,12 @@ Le projet ne contient pas de tests sur les aspects, pour deux raisons principale
 - ils n'ont pas d'impact sur le code (sauf pour les cas des exceptions à ne pas faire)
 
 Si les aspects avaient eu des méthodes publiques, il aurait été possible de les tester correctement.
+Vu que la plupart des aspects ne devraient pas avoir d'effet sur le code autour d'eux, il est difficile de tester leur comportement a moins de pouvoir injecter (par setter ou par constructeur) des éléments variables afin de suivre leur bon fonctionnement.
 
 Par contre, il est possible de tester le bon fonctionnement de l'intégralité du code avec les aspects tels qu'ils existent.
 Et il est aussi possible de tester le bon fonctionnement du code en désactivant l'utilisaton des aspects. Ce qui permet dans les tests de voir deux types de tests bien distincts au fonctionnement totalement différents selon qu'on fasse un test unitaire ou d'intégration.
 
-TODO terminer
+Le projet contient une classe `Application` exécutable qui permet de lancer les méthodes principales du service `UserService` afin de voir l'effet des aspects (sur les logs)
 
 Utilisation
 -------------------

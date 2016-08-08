@@ -6,10 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.util.Assert;
 
 import fr.norsys.aop.domain.exception.DomainException;
 import fr.norsys.aop.domain.service.UserService;
+import fr.norsys.configuration.ApplicationConfigurationWithAspect;
+import fr.norsys.configuration.ApplicationConfigurationWithoutAspect;
 
 /**
  * Point d'entrée de l'application pour tester les aspects
@@ -19,9 +20,19 @@ public class Application {
     private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
     public static void main(final String[] args) {
-        LOGGER.info("===========================================================");
-        // récupération du contexte via les annotations à partir d'un package
-        ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
+        LOGGER.info("===================================================================");
+        LOGGER.info("====== Lancement sans les aspects branchés dans le contexte =======");
+        LOGGER.info("===================================================================");
+
+        launchWithContext(new AnnotationConfigApplicationContext(ApplicationConfigurationWithoutAspect.class));
+
+        LOGGER.info("===================================================================");
+        LOGGER.info("====== Lancement avec les aspects branchés dans le contexte =======");
+        LOGGER.info("===================================================================");
+        launchWithContext(new AnnotationConfigApplicationContext(ApplicationConfigurationWithAspect.class));
+    }
+
+    private static void launchWithContext(final ApplicationContext context) {
         LOGGER.info("===========================================================");
         // notre contexte est chargé
         LOGGER.info("context is loaded : {}", context);
@@ -51,13 +62,14 @@ public class Application {
             service.delete(null);
         } catch (DomainException e) {
             LOGGER.info("On récupère une exception de type {} ", e.getClass());
+        } catch (UnsupportedOperationException e) {
+            LOGGER.info("On ne passera jamais par ici avec les aspect branché...");
         }
 
         try {
             service.saveOrUpdate(null);
         } catch (SQLException e) {
-            LOGGER.info("On ne passera jamais par ici...");
-            Assert.state(false);
+            LOGGER.info("On ne passera jamais par ici avec les aspect branché...");
         } catch (DomainException e) {
             LOGGER.info("On récupère une exception de type {} ", e.getClass());
         }
@@ -67,6 +79,5 @@ public class Application {
         } catch (Exception e) {
             LOGGER.info("On récupère une exception de type {} ", e.getClass());
         }
-
     }
 }
