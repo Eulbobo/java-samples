@@ -14,11 +14,20 @@ public interface UserService {
 
     User getFromIdAndName(Long id, String name);
 
+    /**
+     * Cette méthode renvoie toujours une {@link SQLException}
+     */
     void saveOrUpdate(User user) throws SQLException;
 
-    void delete(User user);
+    /**
+     * Cette méthode renvoie toujours une {@link UnsupportedOperationException}
+     */
+    void delete(User user) throws UnsupportedOperationException ;
 
     List<User> findAll();
 
-    void thisWillFailMiserabily();
+    /**
+     * Cette méthode renvoie toujours une {@link UnsupportedOperationException}
+     */
+    void thisWillFailMiserabily() throws UnsupportedOperationException ;
 }

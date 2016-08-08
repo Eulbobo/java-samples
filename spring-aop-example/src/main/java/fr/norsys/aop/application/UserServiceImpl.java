@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 
     @Log("Ca va péter")
     @Override
-    public void delete(final User user) {
+    public void delete(final User user) throws UnsupportedOperationException {
         LOGGER.info("Je renvoie une erreur de type {}", UnsupportedOperationException.class);
         throw new UnsupportedOperationException();
     }
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void thisWillFailMiserabily() {
+    public void thisWillFailMiserabily() throws UnsupportedOperationException {
         LOGGER.info("Je renvoie une erreur de type {}", UnsupportedOperationException.class);
         throw new UnsupportedOperationException();
     }
