@@ -1,39 +1,39 @@
-Présentation des exemples de logger
+PrÃ©sentation des exemples de logger
 ===================
-Présentation
+PrÃ©sentation
 -------------------
-Ce projet contient différents exemples de logger de différentes implémentations.
+Ce projet contient diffÃ©rents exemples de logger de diffÃ©rentes implÃ©mentations.
 
-Les trois exemples d'implémentation choisis sont :
+Les trois exemples d'implÃ©mentation choisis sont :
 - java.util.logging : API de journalisation dans le coeur java depuis la version 1.4
-- log4j : API de journalisation très utilisée pour sa légèreté et facilité d'utilisation
-- [slf4j](https://git.norsys.fr/jboniol/documentation-generale/wikis/SLF4J) : framework d'abstration de journalisation
+- log4j : API de journalisation trÃ¨s utilisÃ©e pour sa lÃ©gÃ¨retÃ© et facilitÃ© d'utilisation
+- [slf4j](../../wikis/SLF4J) : framework d'abstration de journalisation
 
 Contenu du projet
 -------------------
-Ce projet prossède plusieurs classes d'exemple d'utilisation des différents frameworks
-> - PresentationDifferentLoggers : classe présentant l'utilisation des différents loggers
-> - PresentationSpecificitesSlf4J : classe présentant les spécificités de slf4j
+Ce projet prossÃ¨de plusieurs classes d'exemple d'utilisation des diffÃ©rents frameworks
+> - PresentationDifferentLoggers : classe prÃ©sentant l'utilisation des diffÃ©rents loggers
+> - PresentationSpecificitesSlf4J : classe prÃ©sentant les spÃ©cificitÃ©s de slf4j
 
 Et aussi des exemples d'utilisation
 > - ServiceAvecBeaucoupTropDeLog : un service avec beaucoup trop de logs (pollution d'information)
-> - ServiceAvecDesLogs : un service correctement loggé
-> - ServiceAvecPasAssezDeLog : un service incorrectement loggé
+> - ServiceAvecDesLogs : un service correctement loggÃ©
+> - ServiceAvecPasAssezDeLog : un service incorrectement loggÃ©
 
-La configuration des loggers se trouve dans le répertoire src/test/resources
+La configuration des loggers se trouve dans le rÃ©pertoire src/test/resources
 - log4j.properties : fichier de configuration de log4j pour les tests
 - logging.properties : fichier de configuration de java.logging pour les tests
 
-Chaque classe contient des commentaires explicatif du fonctionnement des différents éléments
+Chaque classe contient des commentaires explicatif du fonctionnement des diffÃ©rents Ã©lÃ©ments
 
-Le projet contient aussi des classes de test permettant d'observer le rendu des différents loggers selon leur utilisation
+Le projet contient aussi des classes de test permettant d'observer le rendu des diffÃ©rents loggers selon leur utilisation
 
-Les tests ont été réalisés avec JUnit et assertJ.
+Les tests ont Ã©tÃ© rÃ©alisÃ©s avec JUnit et assertJ.
 
 Utilisation
 -------------------
-Afin de pouvoir lancer les tests, vous avez deux possibilité
-- Mettez vous en ligne de commande dans le répertoire au niveau du fichier pom.xml, et lancez la commande `mvn test`
+Afin de pouvoir lancer les tests, vous avez deux possibilitÃ©
+- Mettez vous en ligne de commande dans le rÃ©pertoire au niveau du fichier pom.xml, et lancez la commande `mvn test`
 - Dans Eclipse, clic droit sur le package src/test/java -> Run as -> JUnit test
 
 Liens
