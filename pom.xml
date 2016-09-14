@@ -14,10 +14,14 @@
 		<openpojo-version>0.8.4</openpojo-version>
 		<assertj-version>2.4.1</assertj-version>
 		<junit-version>4.11</junit-version>
-		
+
 		<java.version>1.7</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
+
+		<jacoco.version>0.5.7.201204190339</jacoco.version>
+
+		<servlet-api.version>3.1.0</servlet-api.version>
 	</properties>
 
 	<dependencyManagement>
@@ -70,6 +74,13 @@
 				<version>${spring-version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${servlet-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
 			<!-- test -->
 			<dependency>
 				<groupId>com.openpojo</groupId>
@@ -116,6 +127,7 @@
 		<module>spring-web-example</module>
 		<module>spring-aop-example</module>
 		<module>spring-boot-example</module>
+		<module>spring-webmvc-example</module>
 	</modules>
 
 	<build>
@@ -153,6 +165,28 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<plugins>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${jacoco.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>report</id>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
 		</plugins>
 	</build>
 </project>
