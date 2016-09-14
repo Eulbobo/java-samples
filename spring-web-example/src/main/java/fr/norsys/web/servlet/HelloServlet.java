@@ -41,9 +41,6 @@ public class HelloServlet extends HttpServlet {
     /** serial version UID for class */
     private static final long serialVersionUID = -1477455680620149464L;
 
-    /**
-     * Configuration service par propriété
-     */
     @Autowired
     private ISpeakService helloService;
 
@@ -67,6 +64,7 @@ public class HelloServlet extends HttpServlet {
         super.init();
         // déclenchement de l'autowiring de la classe
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+        // on ne peut pas faire d'autowire par constructeur dans ce cas là
     }
 
 }

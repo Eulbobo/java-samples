@@ -18,7 +18,8 @@ import fr.norsys.web.service.ISpeakService;
  * Elle implémente doGet uniquement, toute autre méthode renverra une erreur 405
  *
  *
- * Tout se passe dans la configuration et l'utilisation de la classe HttpServletHandler {@link fr.norsys.web.conf.WebAppInit#declareServlets}
+ * Tout se passe dans la configuration et l'utilisation de la classe HttpServletHandler
+ * {@link fr.norsys.web.conf.WebAppInit#declareServlets}
  *
  * Intérêts :
  * - on défini précisement les méthodes à utiliser (doGet, doPost, ...)
@@ -34,8 +35,12 @@ public class StillAliveServlet extends HttpServlet {
     /** serial version UID for class */
     private static final long serialVersionUID = 7764931528523254478L;
 
+    private final ISpeakService stillAliveService;
+
     @Autowired
-    private ISpeakService stillAliveService;
+    public StillAliveServlet(final ISpeakService stillAliveService) {
+        this.stillAliveService = stillAliveService;
+    }
 
     /**
      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest,

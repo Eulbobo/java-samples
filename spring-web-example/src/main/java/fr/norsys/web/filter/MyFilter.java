@@ -29,8 +29,12 @@ public class MyFilter implements Filter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MyFilter.class);
 
+    private final ISpeakService filterService;
+
     @Autowired
-    private ISpeakService filterService;
+    public MyFilter(final ISpeakService filterService) {
+        this.filterService = filterService;
+    }
 
     @Override
     public void init(final FilterConfig filterConfig) throws ServletException {

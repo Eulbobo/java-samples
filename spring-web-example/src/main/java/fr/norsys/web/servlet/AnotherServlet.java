@@ -15,7 +15,8 @@ import fr.norsys.web.service.ISpeakService;
 
 /**
  * Même configuration que pour {@link StillAliveServlet} : utilisation de
- * {@link fr.norsys.web.support.HttpServletHandler} dans la config {@link fr.norsys.web.conf.servlet.AnotherServletMapping}
+ * {@link fr.norsys.web.support.HttpServletHandler} dans la config
+ * {@link fr.norsys.web.conf.servlet.AnotherServletMapping}
  */
 @Component
 public class AnotherServlet extends HttpServlet {
@@ -23,8 +24,12 @@ public class AnotherServlet extends HttpServlet {
     /** serial version UID for class */
     private static final long serialVersionUID = 7764931528523254478L;
 
+    private final List<ISpeakService> services;
+
     @Autowired
-    private List<ISpeakService> services;
+    public AnotherServlet(final List<ISpeakService> services) {
+        this.services = services;
+    }
 
     /**
      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest,

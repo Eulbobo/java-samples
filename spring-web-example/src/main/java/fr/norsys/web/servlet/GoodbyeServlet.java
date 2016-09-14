@@ -32,11 +32,12 @@ import fr.norsys.web.service.ISpeakService;
 @Controller
 public class GoodbyeServlet implements HttpRequestHandler {
 
-    /**
-     * Configuration service par propriété
-     */
+    private final ISpeakService goodbyeService;
+
     @Autowired
-    private ISpeakService goodbyeService;
+    public GoodbyeServlet(final ISpeakService goodbyeService) {
+        this.goodbyeService = goodbyeService;
+    }
 
     @Override
     public void handleRequest(final HttpServletRequest request, final HttpServletResponse response)
