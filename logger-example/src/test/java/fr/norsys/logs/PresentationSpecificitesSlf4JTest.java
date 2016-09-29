@@ -31,11 +31,11 @@ public class PresentationSpecificitesSlf4JTest {
 
     @Test
     public void should_create_beautiful_log_with_parameters() {
-        utilisationCrochetsBasique("log", "paramètres");
+        utilisationCrochetsBasique("log", "param\u00e8tres");
         utilisationCrochetsBasique("chat", "pattes");
         utilisationCrochetsBasique("menu", "options");
-        utilisationCrochetsBasique("film que j'ai beaucoup aimé. Particulièrement parce que j'y suis allé", "potes");
-        utilisationCrochetsBasique("logger qui me permet de ne jamais rater mon formattage", "paramètres");
+        utilisationCrochetsBasique("film que j'ai beaucoup aim\u00e9. Particuli\u00e8rement parce que j'y suis all\u00e9", "potes");
+        utilisationCrochetsBasique("logger qui me permet de ne jamais rater mon formattage", "param\u00e8tres");
     }
 
     @Test

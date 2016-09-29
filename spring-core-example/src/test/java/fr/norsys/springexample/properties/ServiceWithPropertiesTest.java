@@ -45,7 +45,7 @@ public class ServiceWithPropertiesTest {
         assertThat(value)
                 .isNotNull()
                 .isEqualTo(
-                        "ceci est une très longue ligne configurée sur plusieurs lignes dans le fichier de propriétés");
+                        "ceci est une tr\u00e8s longue ligne configur\u00e9e sur plusieurs lignes dans le fichier de propri\u00e9t\u00e9s");
     }
 
     @Test
