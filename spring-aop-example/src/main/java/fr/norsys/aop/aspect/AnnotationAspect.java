@@ -32,7 +32,7 @@ public class AnnotationAspect {
     @Around("logAnnotation()")
     private Object logAround(final ProceedingJoinPoint joinPoint) throws Throwable {
         Object result = null;
-        LOGGER.info("Entrée dans {} avec l'annotation @Log", joinPoint.getSignature().toShortString());
+        LOGGER.info("Entr\u00e9e dans {} avec l'annotation @Log", joinPoint.getSignature().toShortString());
         try {
             result = joinPoint.proceed();
         } finally {
@@ -48,12 +48,12 @@ public class AnnotationAspect {
 
     @After("logWithinClass()")
     private void logAfterForAnnotatedClass() {
-        LOGGER.info("Sortie de la méthode d'une classe annotée");
+        LOGGER.info("Sortie de la m\u00e9thode d'une classe annot\u00e9e");
     }
 
     @Before("@annotation(annotation)")
     private void logBeforeAnnotation(final Log annotation) {
-        LOGGER.info("Avant une méthode qui possible l'annotation avec la valeur d'annotation : >{}<",
+        LOGGER.info("Avant une m\u00e9thode qui possible l'annotation avec la valeur d'annotation : >{}<",
                 annotation.value());
     }
 

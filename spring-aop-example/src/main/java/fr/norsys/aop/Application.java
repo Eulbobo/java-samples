@@ -21,13 +21,13 @@ public class Application {
 
     public static void main(final String[] args) {
         LOGGER.info("===================================================================");
-        LOGGER.info("====== Lancement sans les aspects branchés dans le contexte =======");
+        LOGGER.info("====== Lancement sans les aspects branch\u00e9s dans le contexte =======");
         LOGGER.info("===================================================================");
 
         launchWithContext(new AnnotationConfigApplicationContext(ApplicationConfigurationWithoutAspect.class));
 
         LOGGER.info("===================================================================");
-        LOGGER.info("====== Lancement avec les aspects branchés dans le contexte =======");
+        LOGGER.info("====== Lancement avec les aspects branch\u00e9s dans le contexte =======");
         LOGGER.info("===================================================================");
         launchWithContext(new AnnotationConfigApplicationContext(ApplicationConfigurationWithAspect.class));
     }
@@ -63,13 +63,13 @@ public class Application {
         } catch (DomainException e) {
             LOGGER.info("On récupère une exception de type {} ", e.getClass());
         } catch (UnsupportedOperationException e) {
-            LOGGER.info("On ne passera jamais par ici avec les aspect branché...");
+            LOGGER.info("On ne passera jamais par ici avec les aspect branch\u00e9...");
         }
 
         try {
             service.saveOrUpdate(null);
         } catch (SQLException e) {
-            LOGGER.info("On ne passera jamais par ici avec les aspect branché...");
+            LOGGER.info("On ne passera jamais par ici avec les aspect branch\u00e9...");
         } catch (DomainException e) {
             LOGGER.info("On récupère une exception de type {} ", e.getClass());
         }
