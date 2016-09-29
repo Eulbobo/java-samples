@@ -1,4 +1,4 @@
-Exemples java
+Exemples java [![Build Status](https://travis-ci.org/Eulbobo/java-samples.svg?branch=master)](https://travis-ci.org/Eulbobo/java-samples)
 ===================
 
 Introduction
@@ -28,5 +28,5 @@ Spring
 
 Exemple complet
 -------------
-> - [complete-example](complete-example) : mini-projet contenant tous ces élements
+> - [complete-example](complete-example) : mini-projet contenant tous ces Ã©lements
 
