@@ -1,4 +1,4 @@
-Exemples java [![Build Status](https://travis-ci.org/Eulbobo/java-samples.svg?branch=master)](https://travis-ci.org/Eulbobo/java-samples)
+Exemples java [![Build Status](https://travis-ci.org/Eulbobo/java-samples.svg?branch=master)](https://travis-ci.org/Eulbobo/java-samples) [![Coverage Status](https://coveralls.io/repos/github/Eulbobo/java-samples/badge.svg?branch=master)](https://coveralls.io/github/Eulbobo/java-samples?branch=master)
 ===================
 
 Introduction
