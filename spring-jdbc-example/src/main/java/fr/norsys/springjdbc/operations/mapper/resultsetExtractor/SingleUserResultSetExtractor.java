@@ -9,10 +9,10 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import fr.norsys.springjdbc.beans.User;
 
 /**
- * Un résultSetExtractor permet d'extraire des données depuis un resultSet
- * Spring nous laisse gérer le parcours complet du résultSet
+ * Un resultSetExtractor permet d'extraire des donnÃ©es depuis un resultSet
+ * Spring nous laisse gÃ©rer le parcours complet du rÃ©sultSet
  *
- * On peut renvoyer ce qu'on veut : ici, un élément unique
+ * On peut renvoyer ce qu'on veut : ici, un Ã©lÃ©ment unique
  */
 public class SingleUserResultSetExtractor implements ResultSetExtractor<User> {
 

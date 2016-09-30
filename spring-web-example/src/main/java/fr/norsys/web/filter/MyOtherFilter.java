@@ -14,9 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Ici on déclare un filtre en dehors du contexte Spring
+ * Ici on dÃ©clare un filtre en dehors du contexte Spring
  *
- * Pas besoin de le déclarer en @Component
+ * Pas besoin de le dÃ©clarer en @Component
  *
  * Il n'est pas visible depuis Spring, mais visible par le conteneur
  */

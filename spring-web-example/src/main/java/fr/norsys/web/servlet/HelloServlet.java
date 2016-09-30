@@ -15,16 +15,16 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import fr.norsys.web.service.ISpeakService;
 
 /**
- * Première façon de configurer une servlet : on utilise une méthode d'initialisation
+ * PremiÃ©re faÃ§on de configurer une servlet : on utilise une mÃ©thode d'initialisation
  *
- * Nous avons utilisé l'annotation @Controller pour préciser le rôle de la servlet.
- * On aurait aussi bien pu indiquer @Component. Il est nécessaire de préciser qu'il s'agit un bean Spring grâce à cette
+ * Nous avons utilisÃ© l'annotation @Controller pour prÃ©ciser le rÃ´le de la servlet.
+ * On aurait aussi bien pu indiquer @Component. Il est nÃ©cessaire de prÃ©ciser qu'il s'agit un bean Spring grÃ©ce Ã  cette
  * annotation
  *
  * C'est une simple servlet, donc on peut l'initialiser directement avec @WebServlet
  * Le tag @WebServlet correspond au mapping suivant dans web.xml :
  *
- * <!-- déclaration de la servlet bonjour et de son mapping standard -->
+ * <!-- dÃ©claration de la servlet bonjour et de son mapping standard -->
  * <servlet>
  * <servlet-name>hello</servlet-name>
  * <servlet-class>fr.norsys.web.servlet.HelloServlet</servlet-class>
@@ -55,16 +55,16 @@ public class HelloServlet extends HttpServlet {
     }
 
     /**
-     * Cette méthode init pourrait être déplacée dans une classe abstraite
+     * Cette mÃ©thode init pourrait Ãªtre dÃ©placÃ©e dans une classe abstraite
      *
      * @see javax.servlet.GenericServlet#init()
      */
     @Override
     public void init() throws ServletException {
         super.init();
-        // déclenchement de l'autowiring de la classe
+        // dÃ©clenchement de l'autowiring de la classe
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-        // on ne peut pas faire d'autowire par constructeur dans ce cas là
+        // on ne peut pas faire d'autowire par constructeur dans ce cas lÃ 
     }
 
 }

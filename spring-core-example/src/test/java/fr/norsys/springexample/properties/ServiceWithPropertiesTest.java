@@ -18,12 +18,12 @@ import fr.norsys.springexample.properties.elements.service.ServiceWithProperties
 public class ServiceWithPropertiesTest {
 
     /**
-     * Définition du cadre de test
+     * DÃ©finition du cadre de test
      */
     @Configuration
     @ComponentScan("fr.norsys.springexample.properties")
     static class ContextConfiguration {
-        // config de base : on récupère donc aussi la config présente dans les sources
+        // config de base : on rÃ©cupÃ©re donc aussi la config prÃ©sente dans les sources
     }
 
     @Autowired

@@ -21,14 +21,14 @@ import fr.norsys.aop.domain.service.UserService;
 import fr.norsys.configuration.ApplicationConfigurationWithAspect;
 
 /**
- * Test d'intégration du service : ici, nous avons des aspects invisibles qui pourtant ont une action sur le comportement
- * Les résultats ne sont pas les mêmes que ceux attendus lors des tests unitaires
+ * Test d'intÃ©gration du service : ici, nous avons des aspects invisibles qui pourtant ont une action sur le comportement
+ * Les rÃ©sultats ne sont pas les mÃ©mes que ceux attendus lors des tests unitaires
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ApplicationConfigurationWithAspect.class, loader = AnnotationConfigContextLoader.class)
 public class UserServiceImpl_withAspects_IT {
 
-    /** package protected pour faciliter l'accès depuis les anonymous inner class */
+    /** package protected pour faciliter l'accÃ¨s depuis les anonymous inner class */
     @Autowired
     UserService userService;
 

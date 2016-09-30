@@ -15,14 +15,14 @@ public class SimpleApplicationExample {
 
     public static void main(final String[] args) {
         LOGGER.info("===========================================================");
-        // récupération du contexte via les annotations à partir d'un package
+        // rÃ©cupÃ©ration du contexte via les annotations Ã  partir d'un package
         ApplicationContext context = new AnnotationConfigApplicationContext("fr.norsys.springexample.simple");
         LOGGER.info("===========================================================");
-        // notre contexte est chargé
+        // notre contexte est chargÃ©
         LOGGER.info("context is loaded : {}", context);
 
         LOGGER.info("-----------------------------------------------------------");
-        // récupération d'une classe annotée unique
+        // rÃ©cupÃ©ration d'une classe annotÃ©e unique
         BeanSimpleService service = context.getBean(BeanService.class);
         LOGGER.info("On a le service : {}", service);
 

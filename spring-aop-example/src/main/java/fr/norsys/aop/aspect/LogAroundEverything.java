@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * Déclaration d'un aspect de type Around
+ * DÃ©claration d'un aspect de type Around
  *
- * On le déclare avec l'annotation @Aspect pour définir que c'est un aspect, et avec l'annotation @Component pour rendre
+ * On le dÃ©clare avec l'annotation @Aspect pour dÃ©finir que c'est un aspect, et avec l'annotation @Component pour rendre
  * l'objet disponible dans le contexte Spring
  */
 @Aspect
@@ -24,16 +24,16 @@ public class LogAroundEverything {
     private static final Logger LOGGER = LoggerFactory.getLogger(LogAroundEverything.class);
 
     /**
-     * Ici, nous décrivons deux éléments
-     * - le point d'entrée grâce à l'annotation @Around qui indique une exécution "autour" d'un point avec une
+     * Ici, nous dÃ©crivons deux Ã©lÃ©ments
+     * - le point d'entrÃ©e grÃ¢ce Ã  l'annotation @Around qui indique une exÃ©cution "autour" d'un point avec une
      * expression aspectJ
-     * - le traitement à effectuer
+     * - le traitement Ã  effectuer
      *
-     * La méthode est statique, mais elle pourrait aussi ne pas l'être.
-     * La méthode est publique, mais elle pourrait aussi être private.
+     * La mÃ©thode est statique, mais elle pourrait aussi ne pas l'Ãªtre.
+     * La mÃ©thode est publique, mais elle pourrait aussi Ãªtre private.
      *
-     * @param joinPoint le point d'entrée inspecté correspondant à l'expression aspectJ
-     * @return ce qui est retourné par la méthode
+     * @param joinPoint le point d'entrÃ©e inspectÃ© correspondant Ã  l'expression aspectJ
+     * @return ce qui est retournÃ© par la mÃ©thode
      * @throws Throwable pour renvoyer tout de suite les exceptions qui ont lieu
      */
     @Around("execution(* *(..))")
@@ -43,7 +43,7 @@ public class LogAroundEverything {
         LOGGER.info("About to enter {} with parameters {}", joinPoint.getSignature().toShortString(),
                 joinPoint.getArgs());
         try {
-            // si on ne retourne rien, tout ce qui est récupéré est 'null'
+            // si on ne retourne rien, tout ce qui est rÃ©cupÃ©rÃ© est 'null'
             return joinPoint.proceed();
         } finally {
             LOGGER.info("Exiting {}, elapsed time : {}ms", joinPoint.getSignature().toShortString(),
@@ -52,28 +52,28 @@ public class LogAroundEverything {
     }
 
     /**
-     * Définition d'un Pointcut : une définition de règles spécifiques qui peuvent être utilisées seules ou avec
+     * DÃ©finition d'un Pointcut : une dÃ©finition de rÃ©gles spÃ©cifiques qui peuvent Ãªtre utilisÃ©es seules ou avec
      * d'autres dans un Advice
      *
-     * Ici, la définition du pointcut est une méthode non statique, mais elle aurait pu l'être.
-     * La méthode est privée, mais elle aurait aussi pu être publique
+     * Ici, la dÃ©finition du pointcut est une mÃ©thode non statique, mais elle aurait pu l'Ãªtre.
+     * La mÃ©thode est privÃ©e, mais elle aurait aussi pu Ãªtre publique
      */
     @Pointcut("within(fr.norsys..*)")
     private void insideNorsys() {
-        // un pointcut est juste une signature de méthode
+        // un pointcut est juste une signature de mÃ©thode
     }
 
     /**
-     * Dans cette déclaration d'aspect, on utilise le nom du pointcut défini plus haut comme règle pour intercepter les
+     * Dans cette dÃ©claration d'aspect, on utilise le nom du pointcut dÃ©fini plus haut comme rÃ©gle pour intercepter les
      * appels.
-     * Avec le tag @Before, toutes les méthodes correspondant à l'expression du @PointCut insideNorsys() seront pris.
+     * Avec le tag @Before, toutes les mÃ©thodes correspondant Ã  l'expression du @PointCut insideNorsys() seront pris.
      *
-     * Donc tout ce qui est à l'intérieur du package fr.norsys.* et déclaré dans Spring sera intercepté ici
+     * Donc tout ce qui est Ã© l'intÃ©rieur du package fr.norsys.* et dÃ©clarÃ© dans Spring sera interceptÃ© ici
      *
-     * Ici, la méthode est statique et utilise un PointCut qui ne l'est pas sans aucun problème.
-     * La méthode est privée
+     * Ici, la mÃ©thode est statique et utilise un PointCut qui ne l'est pas sans aucun problÃ¨me.
+     * La mÃ©thode est privÃ©e
      *
-     * @param joinPoint le JoinPoint correspondant à l'expression
+     * @param joinPoint le JoinPoint correspondant Ã© l'expression
      * @throws Throwable
      */
     @Before("insideNorsys()")
@@ -83,8 +83,8 @@ public class LogAroundEverything {
     }
 
     /**
-     * On déclare un advice de type After basé sur l'expression insideNorsys()
-     * Pas de paramètre, donc dans ce cas, on n'aura pas d'information sur la méthode d'où on vient de sortie
+     * On dÃ©clare un advice de type After basÃ© sur l'expression insideNorsys()
+     * Pas de paramÃ¨tre, donc dans ce cas, on n'aura pas d'information sur la mÃ©thode d'oÃ¹ on vient de sortir
      */
     @After("insideNorsys()")
     private static void logAfterWithoutParams() {

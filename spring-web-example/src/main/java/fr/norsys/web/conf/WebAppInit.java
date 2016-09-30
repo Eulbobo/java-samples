@@ -21,34 +21,34 @@ import fr.norsys.web.support.HttpServletHandler;
 
 /**
  * Initialisation du servlet context
- * On Ètend {@link WebApplicationInitializer} pour permettre le chargement du contexte au dÈmarrage
+ * On √©tend {@link WebApplicationInitializer} pour permettre le chargement du contexte au d√©marrage
  *
- * DÈfinitions des servlets et filtres
+ * D√©finitions des servlets et filtres
  */
 public class WebAppInit implements WebApplicationInitializer {
 
     @Override
     public void onStartup(final ServletContext servletContext) throws ServletException {
-        // dÈclaration contexte Spring Web
+        // d√©claration contexte Spring Web
         WebApplicationContext context = getContext();
         servletContext.addListener(new ContextLoaderListener(context));
-        // dÈclaration servlets et filtres
+        // d√©claration servlets et filtres
         declareServlets(servletContext);
         declareFilters(servletContext);
     }
 
     /**
-     * DÈfinition contexte Spring
+     * D√©finition contexte Spring
      */
     private AnnotationConfigWebApplicationContext getContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        // on prÈcise la classe de configuration principale
+        // on pr√©cise la classe de configuration principale
         context.register(ApplicationConfiguration.class);
         return context;
     }
 
     /**
-     * Ajout d'une dÈfinition de Servlet au contexte
+     * Ajout d'une d√©finition de Servlet au contexte
      */
     private static <T extends HttpServlet> void addServlet(final ServletContext servletContext,
             final String servletName,
@@ -60,7 +60,7 @@ public class WebAppInit implements WebApplicationInitializer {
     }
 
     /**
-     * Ajout d'une dÈfinition de Filter au contexte
+     * Ajout d'une d√©finition de Filter au contexte
      */
     private static <T extends Filter> void addFilter(final ServletContext servletContext, final String filterName,
             final Class<T> filterClass, final String... mappings) {
@@ -72,7 +72,7 @@ public class WebAppInit implements WebApplicationInitializer {
     }
 
     /**
-     * DÈclaration des filtres
+     * D√©claration des filtres
      *
      * Equivalent web.xml :
      *
@@ -86,21 +86,21 @@ public class WebAppInit implements WebApplicationInitializer {
      * <url-pattern>/*</url-pattern>
      * </filter-mapping>
      *
-     * Ici, on dÈclare les filtres pas directement annotÈes par @WebFilter
-     * Le nom du filtre correspond au nom du bean Spring (par dÈfaut, le nom de la classe)
+     * Ici, on d√©clare les filtres pas directement annot√©es par @WebFilter
+     * Le nom du filtre correspond au nom du bean Spring (par d√©faut, le nom de la classe)
      */
     private static void declareFilters(final ServletContext servletContext) {
         addFilter(servletContext, "myFilter", DelegatingFilterProxy.class, "/*");
     }
 
     /**
-     * DÈclaration des Servlets
+     * D√©claration des Servlets
      *
      * Equivalent web.xml :
      *
-     * <!-- DÈclaration d'une servlet gÈrÈe par HttpRequestHandlerServlet -->
+     * <!-- D√©claration d'une servlet g√©r√©e par HttpRequestHandlerServlet -->
      * <servlet>
-     * <!-- on doit utiliser le nom du bean qui implÈmente HttpRequestHandler -->
+     * <!-- on doit utiliser le nom du bean qui impl√©mente HttpRequestHandler -->
      * <servlet-name>goodbyeServlet</servlet-name>
      * <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
      * </servlet>
@@ -109,9 +109,9 @@ public class WebAppInit implements WebApplicationInitializer {
      * <url-pattern>/goodBye</url-pattern>
      * </servlet-mapping>
      *
-     * <!-- DÈclaration d'une servlet gÈrÈe par HttpServletHandler -->
+     * <!-- D√©claration d'une servlet g√©r√©e par HttpServletHandler -->
      * <servlet>
-     * <!-- MÍme principe, on passe en nom de servlet un bean qui Ètend HttpServlet -->
+     * <!-- M√©me principe, on passe en nom de servlet un bean qui √©tend HttpServlet -->
      * <servlet-name>stillAliveServlet</servlet-name>
      * <!-- Ici, on utilise notre propre Handler de servlets -->
      * <servlet-class>fr.norsys.web.support.HttpServletHandler</servlet-class>
@@ -121,11 +121,11 @@ public class WebAppInit implements WebApplicationInitializer {
      * <url-pattern>/stillAlive</url-pattern>
      * </servlet-mapping>
      *
-     * Ici, on dÈclare les servlets pas directement annotÈes par @WebServlet
+     * Ici, on d√©clare les servlets pas directement annot√©es par @WebServlet
      */
     private static void declareServlets(final ServletContext servletContext) {
-        // la servlet Hello est dÈj‡ configurÈe par annotation
-        // la servlet anotherServlet est dÈj‡ configurÈe par annotation dans AnotherServletMapping
+        // la servlet Hello est d√©j√† configur√©e par annotation
+        // la servlet anotherServlet est d√©j√© configur√©e par annotation dans AnotherServletMapping
         addServlet(servletContext, "goodbyeServlet", HttpRequestHandlerServlet.class, "/goodBye");
         addServlet(servletContext, "stillAliveServlet", HttpServletHandler.class, "/stillAlive");
     }

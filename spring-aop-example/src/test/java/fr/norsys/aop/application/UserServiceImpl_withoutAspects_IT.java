@@ -20,14 +20,14 @@ import fr.norsys.aop.domain.service.UserService;
 import fr.norsys.configuration.ApplicationConfigurationWithoutAspect;
 
 /**
- * Nous faisons ici un test d'intégration de notre service SANS les aspects branchés
+ * Nous faisons ici un test d'intÃ©gration de notre service SANS les aspects branchÃ©s
  * Les changements se font sentir au niveau des exceptions
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ApplicationConfigurationWithoutAspect.class, loader = AnnotationConfigContextLoader.class)
 public class UserServiceImpl_withoutAspects_IT {
 
-    /** package protected pour faciliter l'accès depuis les anonymous inner class */
+    /** package protected pour faciliter l'accÃ¨s depuis les anonymous inner class */
     @Autowired
     UserService userService;
 

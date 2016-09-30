@@ -15,20 +15,20 @@ public class LogByParameters {
     private static final Logger LOGGER = LoggerFactory.getLogger(LogByParameters.class);
 
     /**
-     * Définition d'un Pointcut : une définition de règles spécifiques qui peuvent être utilisées seules ou avec
+     * DÃ©finition d'un Pointcut : une dÃ©finition de rÃ©gles spÃ©cifiques qui peuvent Ãªtre utilisÃ©es seules ou avec
      * d'autres dans un Advice
      *
-     * Ici, la définition du pointcut est une méthode non statique, mais elle aurait pu l'être.
-     * La méthode est privée, mais elle aurait aussi pu être publique
+     * Ici, la dÃ©finition du pointcut est une mÃ©thode non statique, mais elle aurait pu l'Ãªtre.
+     * La mÃ©thode est privÃ©e, mais elle aurait aussi pu Ãªtre publique
      */
     @Pointcut("within(fr.norsys.aop.application..*)")
     private void insideNorsysServices() {
-        // un pointcut est juste une signature de méthode
+        // un pointcut est juste une signature de mÃ©thode
     }
 
     /**
-     * Ici, on crée une règle où on dit qu'on veut un aspect sur les Bean Spring dans le package
-     * fr.norsys.aop.application auquel on passe on a un paramètre unique de type Long
+     * Ici, on crÃ©e une rÃ©gle oÃ¹ on dit qu'on veut un aspect sur les Bean Spring dans le package
+     * fr.norsys.aop.application auquel on passe on a un paramÃ¨tre unique de type Long
      */
     @Before("insideNorsysServices() && args(longValue)")
     private static void logForLong(final Long longValue) {
@@ -36,16 +36,16 @@ public class LogByParameters {
     }
 
     /**
-     * Définition d'un pointcut pour lequel on a un seul argument de type Long
+     * DÃ©finition d'un pointcut pour lequel on a un seul argument de type Long
      */
     @Pointcut("args(longValue)")
     private void withLongParameter(final Long longValue) {
-        // un pointcut est juste une signature de méthode
+        // un pointcut est juste une signature de mÃ©thode
     }
 
     /**
-     * Ici, on crée une règle où on dit qu'on veut un aspect sur les Bean Spring dans le package
-     * fr.norsys.aop.application auquel on passe on a un paramètre unique de type Long
+     * Ici, on crÃ©e une rÃ©gle oÃ¹ on dit qu'on veut un aspect sur les Bean Spring dans le package
+     * fr.norsys.aop.application auquel on passe on a un paramÃ¨tre unique de type Long
      *
      * Et on rajoute en plus des infos sur le join point
      */

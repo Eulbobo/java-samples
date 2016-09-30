@@ -17,7 +17,7 @@ public class Application {
     }
 
     /**
-     * Executez celle classe, et accédez au résultat via l'url
+     * Executez celle classe, et accÃ©dez au rÃ©sultat via l'url
      * http://localhost:8090/
      *
      * @param args

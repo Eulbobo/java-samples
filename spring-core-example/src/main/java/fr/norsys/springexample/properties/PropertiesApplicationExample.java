@@ -13,14 +13,14 @@ public class PropertiesApplicationExample {
 
     public static void main(final String[] args) {
         LOGGER.info("===========================================================");
-        // récupération du contexte via les annotations à partir d'un package
+        // rÃ©cupÃ©ration du contexte via les annotations Ã  partir d'un package
         ApplicationContext context = new AnnotationConfigApplicationContext("fr.norsys.springexample.properties");
         LOGGER.info("===========================================================");
-        // notre contexte est chargé
+        // notre contexte est chargÃ©
         LOGGER.info("context is loaded : {}", context);
 
         LOGGER.info("-----------------------------------------------------------");
-        // récupération d'une classe annotée unique
+        // rÃ©cupÃ©ration d'une classe annotÃ©e unique
         ServiceWithProperties service = context.getBean(ServiceWithProperties.class);
         LOGGER.info("On a le service : {}", service);
 

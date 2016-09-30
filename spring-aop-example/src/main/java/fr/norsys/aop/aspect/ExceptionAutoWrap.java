@@ -16,35 +16,35 @@ public class ExceptionAutoWrap {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionAutoWrap.class);
 
     /**
-     * Définition d'un Pointcut : une définition de règles spécifiques qui peuvent être utilisées seules ou avec
+     * DÃ©finition d'un Pointcut : une dÃ©finition de rÃªgles spÃ©cifiques qui peuvent Ãªtre utilisÃ©es seules ou avec
      * d'autres dans un Advice
      *
-     * Ici, la définition du pointcut est une méthode non statique, mais elle aurait pu l'être.
-     * La méthode est privée, mais elle aurait aussi pu être publique
+     * Ici, la dÃ©finition du pointcut est une mÃ©thode non statique, mais elle aurait pu l'Ãªtre.
+     * La mÃ©thode est privÃ©e, mais elle aurait aussi pu Ãªtre publique
      */
     @Pointcut("within(fr.norsys..*)")
     private void insideNorsys() {
-        // un pointcut est juste une signature de méthode
+        // un pointcut est juste une signature de mÃ©thode
     }
 
     /**
-     * Définition d'un Pointcut : l'exécution de la méthode UserServiceImpl.thisWillFailMiserabily()
+     * DÃ©finition d'un Pointcut : l'exÃ©cution de la mÃ©thode UserServiceImpl.thisWillFailMiserabily()
      */
     @Pointcut("execution(void fr.norsys.aop.application.UserServiceImpl.thisWillFailMiserabily()))")
     private void failingMethod() {
-        // un pointcut est juste une signature de méthode
+        // un pointcut est juste une signature de mÃ©thode
     }
 
     /**
-     * Toutes les exceptions renvoyées au sein d'un bean Spring sera automatiquement Wrappe en exception de domaine
+     * Toutes les exceptions renvoyÃ©es au sein d'un bean Spring sera automatiquement Wrappe en exception de domaine
      * C'EST PAS UNE BONNE IDEE !
      *
      *  C'est juste pour l'exemple
      *
      *
-     * Ici, on voit que le point d'entrée est "insideNorsys", donc dans le package fr.norsys.. et qui ne correspond pas
+     * Ici, on voit que le point d'entrÃ©e est "insideNorsys", donc dans le package fr.norsys.. et qui ne correspond pas
      * au pointcut "failingMethod()"
-     * Ca permet de tout de suite voir l'intérêt de créer des pointcuts nommés clairements afin que les expressions sur
+     * Ca permet de tout de suite voir l'intÃ©rÃ©t de crÃ©er des pointcuts nommÃ©s clairements afin que les expressions sur
      * les advices soient clairs.
      */
     @AfterThrowing(pointcut = "insideNorsys() && !failingMethod()", throwing = "exception")
@@ -57,12 +57,12 @@ public class ExceptionAutoWrap {
     }
 
     /**
-     * Toutes les RuntimeException renvoyées au sein d'un bean Spring sera automatiquement encapsulées en Exception standard
+     * Toutes les RuntimeException renvoyÃ©es au sein d'un bean Spring sera automatiquement encapsulÃ©es en Exception standard
      * C'EST PAS UNE BONNE IDEE !
      *
-     * Le système génère alors automatiquement une {@link java.lang.reflect.UndeclaredThrowableException} de type
-     * Runtime pour réussir à respecter le fait qu'une Checked Exception remonte à un endroit où il ne devrait pas y en
-     * avoir sans être explicitement gérée
+     * Le systÃ©me gÃ©nÃ©re alors automatiquement une {@link java.lang.reflect.UndeclaredThrowableException} de type
+     * Runtime pour rÃ©ussir Ã© respecter le fait qu'une Checked Exception remonte Ã© un endroit oÃ© il ne devrait pas y en
+     * avoir sans Ãªtre explicitement gÃ©rÃ©e
      *
      * C'est juste pour l'exemple
      */

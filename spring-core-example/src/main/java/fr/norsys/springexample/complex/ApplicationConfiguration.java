@@ -10,10 +10,10 @@ import fr.norsys.springexample.domain.BeanSimpleRepositoryInterface;
 @Configuration
 public class ApplicationConfiguration {
 
-    // Ici, nous allons configurer plusieurs implémentation de notre repository
+    // Ici, nous allons configurer plusieurs implÃ©mentation de notre repository
 
     /**
-     * Le nom de la méthode permet de référencer le bean
+     * Le nom de la mthode permet de rÃ©fÃ©rencer le bean
      * Ici, nous configurons le bean aSimpleImplementation
      */
     @Bean
@@ -22,7 +22,7 @@ public class ApplicationConfiguration {
     }
 
     /**
-     * Le nom de la méthode permet de référencer le bean
+     * Le nom de la mÃ©thode permet de rÃ©fÃ©rencer le bean
      * Ici, nous configurons le bean anotherSimpleImplementation
      */
     @Bean
@@ -31,7 +31,7 @@ public class ApplicationConfiguration {
     }
 
     /**
-     * Le nom de la méthode permet de référencer le bean
+     * Le nom de la mÃ©thode permet de rÃ©fÃ©rencer le bean
      * Ici, nous configurons le bean method_name_is_the_key_to_identify_bean
      */
     @Bean

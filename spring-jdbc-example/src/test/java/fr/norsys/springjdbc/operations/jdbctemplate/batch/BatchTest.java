@@ -36,7 +36,7 @@ public class BatchTest {
     @Test
     public void should_fail_with_batch_size_bigger_than_element_count() {
         try {
-            // 3 éléments dans la liste, on doit avoir une erreur au moment d'accéder à l'élément d'index 3
+            // 3 Ã©lÃ©ments dans la liste, on doit avoir une erreur au moment d'accÃ©der Ã  l'Ã©lÃ©ment d'index 3
             batch.updateUsersWithBatchSize(12, first(), second(), third());
             failBecauseExceptionWasNotThrown(ArrayIndexOutOfBoundsException.class);
         } catch (ArrayIndexOutOfBoundsException e) {

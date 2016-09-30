@@ -17,40 +17,40 @@ import fr.norsys.springexample.domain.BeanSimpleService;
 import fr.norsys.springexample.simple.elements.repository.DummyRepository;
 
 /**
- * Deux annotations sont utilisées :
- * - @RunWith(SpringJUnit4ClassRunner.class) : on déclare lancer le test avec un runner spécifique
- * - @ContextConfiguration(loader = AnnotationConfigContextLoader.class) : on déclare le chargement du contexte par
+ * Deux annotations sont utilisÃ©es :
+ * - @RunWith(SpringJUnit4ClassRunner.class) : on dÃ©clare lancer le test avec un runner spÃ©cifique
+ * - @ContextConfiguration(loader = AnnotationConfigContextLoader.class) : on dÃ©clare le chargement du contexte par
  *
- * Ce test est un test d'intégration : il permet de valider toute la chaine de fonctionnement avec une vraie
- * implémentation.
- * Il doit servir à tester les cas généraux fonctionnels identifiés
+ * Ce test est un test d'intÃ©gration : il permet de valider toute la chaine de fonctionnement avec une vraie
+ * implÃ©mentation.
+ * Il doit servir Ã  tester les cas gÃ©nÃ©raux fonctionnels identifiÃ©s
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class)
 public class BeanServiceIT {
 
     /**
-     * Définition du cadre de test
+     * DÃ©finition du cadre de test
      */
     @Configuration
     static class ContextConfiguration {
 
         /**
-         * Définition d'un repository
-         * On est obligé de le déclarer vu qu'on ne passe pas via les annotations générales
-         * Tout ce qui n'est pas défini ici n'existe pas dans le scope de test
+         * DÃ©finition d'un repository
+         * On est obligÃ© de le dÃ©clarer vu qu'on ne passe pas via les annotations gÃ©nÃ©rales
+         * Tout ce qui n'est pas dÃ©fini ici n'existe pas dans le scope de test
          */
         @Bean
         public BeanSimpleRepositoryInterface testService() {
-            // normalement ici il faudrait être branché sur une source de données réelles
+            // normalement ici il faudrait Ãªtre branchÃ© sur une source de donnÃ©es rÃ©elles
             // donc H2 ou autre
             return new DummyRepository();
         }
 
         /**
-         * Définition du bean testé
-         * On est obligé de le déclarer vu qu'on ne passe pas via les annotations générales
-         * Tout ce qui n'est pas défini ici n'existe pas dans le scope de test
+         * DÃ©finition du bean testÃ©
+         * On est obligÃ© de le dÃ©clarer vu qu'on ne passe pas via les annotations gÃ©nÃ©rales
+         * Tout ce qui n'est pas dÃ©fini ici n'existe pas dans le scope de test
          */
         @Bean
         public BeanSimpleService service(final BeanSimpleRepositoryInterface repository) {
@@ -69,9 +69,9 @@ public class BeanServiceIT {
     }
 
     /**
-     * Ce test échoue parce qu'on n'a pas testé correctement notre repository !
-     * Fonctionnellement, on ne veut pas de bean en passant un ID négatif
-     * On sait que le service fait son travail vu qu'il en délègue beaucoup au repository
+     * Ce test Ã©choue parce qu'on n'a pas testÃ© correctement notre repository !
+     * Fonctionnellement, on ne veut pas de bean en passant un ID nÃ©gatif
+     * On sait que le service fait son travail vu qu'il en dÃ©lÃ©gue beaucoup au repository
      */
     @Test
     public void should_not_get_a_bean_with_negative_value() {

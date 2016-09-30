@@ -22,7 +22,7 @@ public class ComplexService implements BeanSimpleService {
     /**
      * Constructeur avec un autowiring par qualifier
      *
-     * Ici, une annotation dans le constructeur permet d'indiquer quelle implémentation on veut
+     * Ici, une annotation dans le constructeur permet d'indiquer quelle implÃ©mentation on veut
      */
     @Autowired
     public ComplexService(final @Qualifier("firstRepo") BeanSimpleRepositoryInterface repoOne,

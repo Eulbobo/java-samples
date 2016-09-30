@@ -14,9 +14,9 @@ import fr.norsys.springjdbc.beans.User;
 import fr.norsys.springjdbc.operations.mapper.rowmapper.UserRowMapper;
 
 /**
- * Attention, la méthode queryForObject renvoie un objet unique ou :
- * - un EmptyResultDataAccessException si la requête ne renvoie pas de résultat
- * - un IncorrectResultSizeDataAccessException si la requête renvoie plus d'un résultat
+ * Attention, la mÃ©thode queryForObject renvoie un objet unique ou :
+ * - un EmptyResultDataAccessException si la requÃªte ne renvoie pas de rÃ©sultat
+ * - un IncorrectResultSizeDataAccessException si la requÃ©te renvoie plus d'un rÃ©sultat
  */
 @Repository
 public class QueryForObject {
@@ -29,7 +29,7 @@ public class QueryForObject {
     }
 
     /**
-     * On récupère un objet unique de type integer avec un paramètre
+     * On rÃ©cupÃ©re un objet unique de type integer avec un paramÃ¨tre
      *
      * @return nombre de colonnes dans la table
      */
@@ -39,7 +39,7 @@ public class QueryForObject {
     }
 
     /**
-     * On récupère un objet unique de type integer avec un paramètre
+     * On rÃ©cupÃ©re un objet unique de type integer avec un paramÃ¨tre
      *
      * @return nombre de colonnes dans la table
      */
@@ -49,7 +49,7 @@ public class QueryForObject {
     }
 
     /**
-     * On récupère un objet unique de type integer
+     * On rÃ©cupÃ©re un objet unique de type integer
      *
      * @return nombre de colonnes dans la table
      */
@@ -58,14 +58,14 @@ public class QueryForObject {
     }
 
     /**
-     * récupération du nombre d'utilisateur avec un ID donné
+     * rÃ©cupÃ©ration du nombre d'utilisateur avec un ID donnÃ©
      */
     public Integer usersWithId(final int id) {
         return jdbcTemplate.queryForObject("select count(1) from users where id = ?", Integer.class, id);
     }
 
     /**
-     * Utilisation d'un RowMapper pour récupérer un objet
+     * Utilisation d'un RowMapper pour rÃ©cupÃ©rer un objet
      *
      * @return premier user
      */
@@ -74,7 +74,7 @@ public class QueryForObject {
     }
 
     /**
-     * Utilisation d'un RowMapper pour récupérer un objet
+     * Utilisation d'un RowMapper pour rÃ©cupÃ©rer un objet
      *
      * @return premier user
      */
@@ -88,7 +88,7 @@ public class QueryForObject {
     private static final class LocalUserRowMapper implements RowMapper<User> {
 
         public LocalUserRowMapper() {
-            // On créé un constructeur public pour permettre la visibilité directe par la classe contenant cet classe
+            // On crÃ©Ã© un constructeur public pour permettre la visibilitÃ© directe par la classe contenant cet classe
         }
 
         @Override

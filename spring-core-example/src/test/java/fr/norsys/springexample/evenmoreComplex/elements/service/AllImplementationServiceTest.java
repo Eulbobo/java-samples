@@ -21,10 +21,10 @@ import fr.norsys.springexample.evenmoreComplex.ComplexConfiguration;
 
 /**
  * On remarque dans le @ContextConfiguration une nouvelle information : classes=ComplexConfiguration.class
- * Cette configuration permet de déterminer la configuration à utiliser pour notre test
- * Ca peut permettre de mutualiser les configuration de test pour différentes classes à tester
+ * Cette configuration permet de dÃ©terminer la configuration Ã  utiliser pour notre test
+ * Ca peut permettre de mutualiser les configuration de test pour diffÃ©rentes classes Ã  tester
  *
- * On est ici dans un test unitaire, on n'injecte pas les éléments : on mock !
+ * On est ici dans un test unitaire, on n'injecte pas les Ã©lÃ©ments : on mock !
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ComplexConfiguration.class, loader = AnnotationConfigContextLoader.class)

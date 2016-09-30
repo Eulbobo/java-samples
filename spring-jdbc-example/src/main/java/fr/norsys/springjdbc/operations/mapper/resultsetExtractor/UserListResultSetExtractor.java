@@ -11,17 +11,17 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import fr.norsys.springjdbc.beans.User;
 
 /**
- * Un résultSetExtractor permet d'extraire des données depuis un resultSet
- * Spring nous laisse gérer le parcours complet du résultSet
+ * Un rÃ©sultSetExtractor permet d'extraire des donnÃ©es depuis un resultSet
+ * Spring nous laisse gÃ©rer le parcours complet du resultSet
  *
- * On peut renvoyer ce qu'on veut : ici, une liste d'éléments
+ * On peut renvoyer ce qu'on veut : ici, une liste d'Ã©lÃ©ments
  */
 public class UserListResultSetExtractor implements ResultSetExtractor<List<User>> {
 
     @Override
     public List<User> extractData(final ResultSet rs) throws SQLException, DataAccessException {
         List<User> users = new ArrayList<User>();
-        // c'est à nous de gérer le parcours
+        // c'est Ã  nous de gÃ©rer le parcours
         while (rs.next()){
             User extracted = new User();
             extracted.setId(rs.getInt("ID"));

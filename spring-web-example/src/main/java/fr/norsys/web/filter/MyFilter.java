@@ -19,7 +19,7 @@ import fr.norsys.web.service.ISpeakService;
 /**
  * Ceci est un filtre avec autowiring
  *
- * Mais uniquement parce qu'il est utilisé par un {@link org.springframework.web.filter.DelegatingFilterProxy} dans la
+ * Mais uniquement parce qu'il est utilisÃ© par un {@link org.springframework.web.filter.DelegatingFilterProxy} dans la
  * configuration {@link fr.norsys.web.conf.WebAppInit#declareFilters}
  *
  * Il est visible de Spring, mais pas directement du conteneur

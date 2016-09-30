@@ -9,8 +9,8 @@ import org.junit.Test;
 import fr.norsys.aop.domain.exception.DomainException;
 
 /**
- * On peut tester les aspects dans la mesure où ils ont une action visible et notable sur le comportement du code en
- * général.
+ * On peut tester les aspects dans la mesure oÃ¹ ils ont une action visible et notable sur le comportement du code en
+ * gÃ©nÃ©ral.
  */
 public class ExceptionAutoWrapTest {
 

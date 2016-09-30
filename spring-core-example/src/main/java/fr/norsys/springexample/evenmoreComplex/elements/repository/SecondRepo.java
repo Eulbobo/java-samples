@@ -14,7 +14,7 @@ public class SecondRepo implements BeanSimpleRepositoryInterface {
 
     @Override
     public BeanSimple getById(final Long id) {
-        LOGGER.info("récupération id {}", id);
+        LOGGER.info("r\u00e9cup\u00e9ration id {}", id);
         return new BeanSimple(id, String.valueOf(id));
     }
 

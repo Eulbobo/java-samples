@@ -14,8 +14,8 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * Cette servlet permet de prendre en charge les autres HttpServlet en leur permettant de l'injection de dépendances
- * C'est une copie de {@link org.springframework.web.context.support.HttpRequestHandlerServlet} pour gérer les {@link HttpServlet}
+ * Cette servlet permet de prendre en charge les autres HttpServlet en leur permettant de l'injection de dÃ©pendances
+ * C'est une copie de {@link org.springframework.web.context.support.HttpRequestHandlerServlet} pour gÃ©rer les {@link HttpServlet}
  */
 public class HttpServletHandler extends HttpServlet {
 

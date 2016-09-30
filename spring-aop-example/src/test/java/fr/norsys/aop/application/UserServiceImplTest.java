@@ -20,7 +20,7 @@ import fr.norsys.aop.persistence.UserDao;
 
 /**
  * Test unitaire du service sans l'injection Spring : on teste le comportement normal du service
- * tel que décrit dans le code source
+ * tel que dÃ©crit dans le code source
  */
 public class UserServiceImplTest {
 

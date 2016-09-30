@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import fr.norsys.web.service.ISpeakService;
 
 /**
- * Même configuration que pour {@link StillAliveServlet} : utilisation de
+ * MÃªme configuration que pour {@link StillAliveServlet} : utilisation de
  * {@link fr.norsys.web.support.HttpServletHandler} dans la config
  * {@link fr.norsys.web.conf.servlet.AnotherServletMapping}
  */

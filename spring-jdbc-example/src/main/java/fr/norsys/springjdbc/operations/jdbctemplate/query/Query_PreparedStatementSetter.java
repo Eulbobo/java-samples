@@ -14,10 +14,10 @@ import fr.norsys.springjdbc.beans.User;
 import fr.norsys.springjdbc.operations.mapper.resultsetExtractor.SingleUserResultSetExtractor;
 
 /**
- * Le PreparedStatementSetter permet de fixer des valeurs à un preparedStatement
- * Son usage est implicite dès qu'une requête possède des paramètres
- * Son usage peut être utile dans certains cas particuliers (utilisation de plusieurs fois le même paramètre)
- * On l'utilise plus dans les exécutions de type batchUpdate
+ * Le PreparedStatementSetter permet de fixer des valeurs Ã  un preparedStatement
+ * Son usage est implicite dÃ¨s qu'une requÃªte possÃ¨de des paramÃ¨tres
+ * Son usage peut Ãªtre utile dans certains cas particuliers (utilisation de plusieurs fois le mÃªme paramÃ¨tre)
+ * On l'utilise plus dans les exÃ©cutions de type batchUpdate
  */
 @Repository
 public class Query_PreparedStatementSetter {
@@ -37,7 +37,7 @@ public class Query_PreparedStatementSetter {
 
             @Override
             public void setValues(final PreparedStatement ps) throws SQLException {
-                // on peut utiliser la varialbe 'id' ici uniquement parce qu'elle est déclarée comme final
+                // on peut utiliser la variable 'id' ici uniquement parce qu'elle est dÃ©clarÃ©e comme final
                 ps.setInt(1, id);
             }
         };

@@ -13,21 +13,21 @@ import org.springframework.web.HttpRequestHandler;
 import fr.norsys.web.service.ISpeakService;
 
 /**
- * Autre façon de gérer l'autowire dans une pseudo servlet : en implémentant HttpRequestHandler
+ * Autre faÃ§on de gÃ©rer l'autowire dans une pseudo servlet : en implÃ©mentant HttpRequestHandler
  *
- * La définition dans le fichier web.xml indique qu'on utilise la classe HttpRequestHandlerServlet
- * Cette servlet sert de point d'entrée générique et permet de charger les classes
+ * La dÃ©finition dans le fichier web.xml indique qu'on utilise la classe HttpRequestHandlerServlet
+ * Cette servlet sert de point d'entrÃ©e gÃ©nÃ©rique et permet de charger les classes
  *
- * Intérêts :
- * - plus d'héritage
+ * IntÃ©rÃ©ts :
+ * - plus d'hÃ©ritage
  * - autowiring direct
  * - configuration simple
  *
- * Inconvénients :
- * - On n'a plus qu'une seule méthode handleRequest (que ce soit get, post, ou autre)
+ * InconvÃ©nients :
+ * - On n'a plus qu'une seule mÃ©thode handleRequest (que ce soit get, post, ou autre)
  *
- * Si on voulait faire une servlet qui peut gérer get/post/..., il faudrait refaire un Handler spécifique
- * qui permet de gérer ces cas, ou créer un HttpRequestHandler spécifique qui permet cette gestion
+ * Si on voulait faire une servlet qui peut gÃ©rer get/post/..., il faudrait refaire un Handler spÃ©cifique
+ * qui permet de gÃ©rer ces cas, ou crÃ©er un HttpRequestHandler spÃ©cifique qui permet cette gestion
  */
 @Controller
 public class GoodbyeServlet implements HttpRequestHandler {

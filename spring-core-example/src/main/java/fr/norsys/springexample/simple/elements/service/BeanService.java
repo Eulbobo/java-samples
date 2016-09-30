@@ -8,7 +8,7 @@ import fr.norsys.springexample.domain.BeanSimpleRepositoryInterface;
 import fr.norsys.springexample.domain.BeanSimpleService;
 
 /**
- * Cette classe est déclarée comme un @Service car elle sert à la manipulation des données
+ * Cette classe est dÃ©clarÃ©e comme un @Service car elle sert Ã  la manipulation des donnÃ©es
  */
 @Service
 public class BeanService implements BeanSimpleService {
@@ -16,11 +16,11 @@ public class BeanService implements BeanSimpleService {
     private final BeanSimpleRepositoryInterface repository;
 
     /**
-     * On note l'autowired sur le constructeur plutôt que sur le champ
+     * On note l'autowired sur le constructeur plutÃ´t que sur le champ
      *
-     * Intérêts :
+     * IntÃ©rÃªts :
      *  - on peut mocker facilement
-     *  - on ne dépend pas de spring pour tester unitairement
+     *  - on ne dÃ©pend pas de spring pour tester unitairement
      *
      * @param repository
      */

@@ -1,7 +1,7 @@
 package fr.norsys.web.service;
 
 /**
- * Interface de service à implémenter
+ * Interface de service Ã  implÃ©menter
  */
 public interface ISpeakService {
 

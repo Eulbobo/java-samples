@@ -16,73 +16,73 @@ public class ComplexApplicationExample {
 
     public static void main(final String[] args) {
         LOGGER.info("===========================================================");
-        // récupération du contexte via les annotations à partir d'un package
+        // rÃ©cupÃ©ration du contexte via les annotations Ã  partir d'un package
         ApplicationContext context = new AnnotationConfigApplicationContext("fr.norsys.springexample.complex");
         LOGGER.info("===========================================================");
-        // notre contexte est chargé
+        // notre contexte est chargÃ©
         LOGGER.info("context is loaded : {}", context);
 
         LOGGER.info("-----------------------------------------------------------");
         BeanSimpleRepositoryInterface repository = null;
         try {
-            LOGGER.info("tentative de récupération d'un repository sans préciser le nom");
+            LOGGER.info("tentative de r\u00e9cup\u00e9ration d'un repository sans pr\u00e9ciser le nom");
             repository = context.getBean(BeanSimpleRepositoryInterface.class);
             isTrue(false, "Ca aurait du planter");
         } catch (Exception e) {
-            LOGGER.error("Ca a foiré", e);
+            LOGGER.error("Ca a foir\u00e9", e);
         }
 
         LOGGER.info("-----------------------------------------------------------");
-        // récupération par le nom : celui de la méthode dans la configuration
+        // rÃ©cupÃ©ration par le nom : celui de la mÃ©thode dans la configuration
         repository = context.getBean("aSimpleImplementation", BeanSimpleRepositoryInterface.class);
         testRepo(repository);
 
         LOGGER.info("-----------------------------------------------------------");
-        // récupération par le nom : un autre dans la configuration
+        // rÃ©cupÃ©ration par le nom : un autre dans la configuration
         repository = context.getBean("anotherSimpleImplementation", BeanSimpleRepositoryInterface.class);
         testRepo(repository);
 
         LOGGER.info("-----------------------------------------------------------");
-        // récupération par le nom : encore une fois, en castant, parce que ça marche aussi
+        // rÃ©cupÃ©ration par le nom : encore une fois, en castant, parce que Ã§a marche aussi
         repository = (BeanSimpleRepositoryInterface) context.getBean("method_name_is_the_key_to_identify_bean");
         testRepo(repository);
 
         LOGGER.info("-----------------------------------------------------------");
-        // récupération par le nom : configuré sur l'annotation
+        // rÃ©cupÃ©ration par le nom : configurÃ© sur l'annotation
         repository = context.getBean("fffff", BeanSimpleRepositoryInterface.class);
         testRepo(repository);
 
         LOGGER.info("-----------------------------------------------------------");
         try {
-            LOGGER.info("tentative de récupération d'un repository dont le nom n'existe pas");
+            LOGGER.info("tentative de r\u00e9cup\u00e9ration d'un repository dont le nom n'existe pas");
             repository = context.getBean("SimpleRepository", BeanSimpleRepositoryInterface.class);
             isTrue(false, "Ca aurait du planter");
         } catch (Exception e) {
-            LOGGER.error("Ca a foiré", e);
+            LOGGER.error("Ca a foir\u00e9", e);
         }
 
         LOGGER.info("-----------------------------------------------------------");
-        // vous savez quoi? Il existe une cinquième configuration implicite : simpleRepository
+        // vous savez quoi? Il existe une cinquiÃ©me configuration implicite : simpleRepository
         repository = context.getBean("simpleRepository", BeanSimpleRepositoryInterface.class);
         LOGGER.info("On a le repository : {}", repository);
         testRepo(repository);
 
         LOGGER.info("-----------------------------------------------------------");
-        // et un sixième !
+        // et un sixiÃ©me !
         repository = context.getBean("anotherSimpleRepository", BeanSimpleRepositoryInterface.class);
         LOGGER.info("On a le repository : {}", repository);
         testRepo(repository);
     }
 
     /**
-     * Quelques opérations avec le repositoryu chargé
+     * Quelques opÃ©rations avec le repositoryu chargÃ©
      * @param repository
      */
     private static void testRepo(final BeanSimpleRepositoryInterface repository) {
         LOGGER.info("On a le repository : {}", repository);
         // utilisation du repo
         BeanSimple bean = repository.getById(0L);
-        LOGGER.info("Bean reçu du repository : {}", bean);
+        LOGGER.info("Bean re\u00e7u du repository : {}", bean);
 
         bean.setId(5L);
         bean.setName("le nouveau");

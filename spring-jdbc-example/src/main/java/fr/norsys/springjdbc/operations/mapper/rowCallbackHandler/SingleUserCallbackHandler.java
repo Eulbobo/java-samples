@@ -8,13 +8,13 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 import fr.norsys.springjdbc.beans.User;
 
 /**
- * Un callbackHandler est appelé au moment du traitement du resultSet
- * Spring gère le parcours du resultSet
- * La méthode processRow renvoie un void : à nous de trouver un moyen de traiter le résultat
+ * Un callbackHandler est appelÃ© au moment du traitement du resultSet
+ * Spring gÃ©re le parcours du resultSet
+ * La mÃ©thode processRow renvoie un void : Ã  nous de trouver un moyen de traiter le rÃ©sultat
  */
 public class SingleUserCallbackHandler implements RowCallbackHandler {
 
-    // dans cette implémentation, nous stockons un résultat accessible par getter
+    // dans cette implÃ©mentation, nous stockons un rÃ©sultat accessible par getter
     private User result;
 
     @Override

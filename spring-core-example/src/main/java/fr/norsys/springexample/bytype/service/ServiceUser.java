@@ -11,8 +11,8 @@ public class ServiceUser {
     private final BeanInterface<String> anotherService;
 
     /**
-     * Les noms des paramètres ne correspondent à rien de connu dans la configuration
-     * L'autowiring se fait donc par type : Spring recherche spécifiquement des classes finales implémentant
+     * Les noms des paramÃ¨tres ne correspondent Ã  rien de connu dans la configuration
+     * L'autowiring se fait donc par type : Spring recherche spÃ©cifiquement des classes finales implÃ©mentant
      * respectivement BeanInterface<Integer> et BeanInterface<String>
      */
     @Autowired

@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class ApplicationTestConfiguration {
 
     /**
-     * Création de la datasource de test
+     * CrÃ©ation de la datasource de test
      * @return datasource pour les tests
      */
     @Bean
@@ -33,7 +33,7 @@ public class ApplicationTestConfiguration {
     }
 
     /**
-     * Définition d'un transaction manager pour les tests
+     * DÃ©finition d'un transaction manager pour les tests
      */
     @Bean
     public DataSourceTransactionManager txManager(final DataSource dataSource){

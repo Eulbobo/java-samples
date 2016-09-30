@@ -17,35 +17,35 @@ public class ByTypeApplicationExample {
 
     public static void main(final String[] args) {
         LOGGER.info("===========================================================");
-        // récupération du contexte via les annotations à partir d'un package
+        // rÃ©cupÃ©ration du contexte via les annotations Ã  partir d'un package
         ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         LOGGER.info("===========================================================");
-        // notre contexte est chargé
+        // notre contexte est chargÃ©
         LOGGER.info("context is loaded : {}", context);
 
         LOGGER.info("-----------------------------------------------------------");
-        // exemple de récupération de tous les services
+        // exemple de rÃ©cupÃ©ration de tous les services
         Map<String, BeanInterface> beanInterfaces = context.getBeansOfType(BeanInterface.class);
         for (Entry<String, BeanInterface> entry : beanInterfaces.entrySet()){
             testRepo(entry.getValue());
         }
 
         LOGGER.info("-----------------------------------------------------------");
-        // pruve de l'autowiring par type
+        // preuve de l'autowiring par type
         ServiceUser service = context.getBean(ServiceUser.class);
         testRepo(service.getSomeService());
         testRepo(service.getAnotherService());
     }
 
     /**
-     * Quelques opérations avec le repository chargé
+     * Quelques opÃ©rations avec le repository chargÃ©
      * @param repository
      */
     private static <T> void testRepo(final BeanInterface<T> repository) {
         LOGGER.info("On a le repository : {}", repository);
         // utilisation du repo
         T bean = repository.getBean();
-        LOGGER.info("Bean reçu du repository : {}", bean);
+        LOGGER.info("Bean re\u00e7u du repository : {}", bean);
         // autre utilisation du repo
         repository.saveBean(bean);
     }

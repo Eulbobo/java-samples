@@ -6,14 +6,14 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**
- * On défini le fichier de properties à utiliser dans la configuration
+ * On dÃ©fini le fichier de properties Ã  utiliser dans la configuration
  */
 @Configuration
 @PropertySource("application.properties")
 public class ApplicationConfiguration {
 
     /**
-     * Il faut définir un PropertySourcesPlaceHolder pour tranduire les ${xxx} selon leur valeur de configuration
+     * Il faut dÃ©finir un PropertySourcesPlaceHolder pour traduire les ${xxx} selon leur valeur de configuration
      */
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigIn() {

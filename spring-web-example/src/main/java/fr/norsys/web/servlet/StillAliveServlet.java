@@ -15,19 +15,19 @@ import fr.norsys.web.service.ISpeakService;
 /**
  * Cette classe est une servlet classique
  *
- * Elle implémente doGet uniquement, toute autre méthode renverra une erreur 405
+ * Elle implÃ©mente doGet uniquement, toute autre mÃ©thode renverra une erreur 405
  *
  *
  * Tout se passe dans la configuration et l'utilisation de la classe HttpServletHandler
  * {@link fr.norsys.web.conf.WebAppInit#declareServlets}
  *
- * Intérêts :
- * - on défini précisement les méthodes à utiliser (doGet, doPost, ...)
+ * IntÃ©rÃ©ts :
+ * - on dÃ©fini prÃ©cisement les mÃ©thodes Ã  utiliser (doGet, doPost, ...)
  * - autowiring direct
  * - configuration simple
  *
- * Inconvénients :
- * - On étend HttpServlet
+ * InconvÃ©nients :
+ * - On Ã©tend HttpServlet
  */
 @Controller
 public class StillAliveServlet extends HttpServlet {

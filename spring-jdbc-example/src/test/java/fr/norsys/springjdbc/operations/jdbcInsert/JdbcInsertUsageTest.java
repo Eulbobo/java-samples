@@ -54,7 +54,7 @@ public class JdbcInsertUsageTest {
 
         User expectedInsert = user()
                 .withId(5)
-                // si la propriété du bean s'était appelée email au lieu de mail, on aurait eu le mail inséré
+                // si la propriÃ©tÃ© du bean s'Ã©tait appelÃ©e email au lieu de mail, on aurait eu le mail insÃ©rÃ©
                 .withMail(null)
                 .withName("DODO")
                 .build();

@@ -8,8 +8,9 @@ import fr.norsys.springexample.domain.BeanSimple;
 import fr.norsys.springexample.domain.BeanSimpleRepositoryInterface;
 
 /**
- * Cette classe est déclarée comme un @Repository puisqu'il permet l'accês aux données (JDBC par exemple)
- * Si on crée une autre classe @Repository qui implémente BeanSimpleRepositoryInterface, l'application ne démarrera pas sans un peu de configuration
+ * Cette classe est dÃ©clarÃ©e comme un @Repository puisqu'il permet l'accÃ©s aux donnÃ©es (JDBC par exemple)
+ * Si on crÃ©e une autre classe @Repository qui implÃ©mente BeanSimpleRepositoryInterface, l'application ne dÃ©marrera pas
+ * sans un peu de configuration
  */
 @Repository
 public class DummyRepository implements BeanSimpleRepositoryInterface {
@@ -18,14 +19,14 @@ public class DummyRepository implements BeanSimpleRepositoryInterface {
 
     @Override
     public BeanSimple getById(final Long id) {
-        LOGGER.info("Oui, bien sûr, voici le bean d'ID", id);
+        LOGGER.info("Oui, bien s\u00fbr, voici le bean d'ID", id);
         return new BeanSimple(id, String.valueOf(id));
     }
 
     @Override
     public void save(final BeanSimple bean) {
         // Meh.
-        LOGGER.info("Oui, bien sûr, j'ai sauvegardé ton bean : {}", bean);
+        LOGGER.info("Oui, bien s\u00fbr, j'ai sauvegard\u00e9 ton bean : {}", bean);
     }
 
 }

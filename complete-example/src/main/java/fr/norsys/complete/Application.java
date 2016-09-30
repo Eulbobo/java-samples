@@ -15,10 +15,10 @@ public class Application {
 
     public static void main(final String[] args) throws SQLException {
         LOGGER.info("===========================================================");
-        // récupération du contexte via les annotations à partir d'un package
+        // rÃ©cupÃ©ration du contexte via les annotations Ã  partir d'un package
         ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         LOGGER.info("===========================================================");
-        // notre contexte est chargé
+        // notre contexte est chargÃ©
         LOGGER.info("context is loaded : {}", context);
 
         LOGGER.info("-----------------------------------------------------------");

@@ -22,7 +22,7 @@ public class JdbcInsertUsage {
     /**
      * Initialisation du {@link SimpleJdbcInsert}
      *
-     * Tant qu'il n'a pas été exécuté, on peut modifier ses paramètre avec les méthodes withXXX
+     * Tant qu'il n'a pas Ã©tÃ© exÃ©cutÃ©, on peut modifier ses paramÃ¨tre avec les mÃ©thodes withXXX
      */
     @Autowired
     public JdbcInsertUsage(final DataSource dataSource) {
@@ -31,11 +31,11 @@ public class JdbcInsertUsage {
     }
 
     /**
-     * Création d'un user avec le bean properties
+     * CrÃ©ation d'un user avec le bean properties
      *
-     * Le système se base sur le nom des champs pour faire le mapping d'insertion entre les colonnes et les champs
+     * Le systÃ©me se base sur le nom des champs pour faire le mapping d'insertion entre les colonnes et les champs
      *
-     * Ici, on ne pourra donc JAMAIS insérer l'adresse mail parce que la valeur dans le bean s'appelle "mail" tandis que
+     * Ici, on ne pourra donc JAMAIS insÃ©rer l'adresse mail parce que la valeur dans le bean s'appelle "mail" tandis que
      * le champ en base s'appelle "email"
      *
      * C'est magique, mais pas trop

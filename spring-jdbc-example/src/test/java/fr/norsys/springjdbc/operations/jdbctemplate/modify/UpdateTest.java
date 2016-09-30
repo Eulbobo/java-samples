@@ -27,7 +27,7 @@ public class UpdateTest {
     private QueryForObject query;
 
     /**
-     * Deux annotations ici : la méthode est transactionnelle et la transaction sera rollbackée à la fin du test
+     * Deux annotations ici : la mÃ©thode est transactionnelle et la transaction sera rollbackÃ©e Ã  la fin du test
      */
     @Transactional
     @Rollback

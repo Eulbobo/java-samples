@@ -20,8 +20,8 @@ import fr.norsys.springjdbc.ApplicationTestConfiguration;
 import fr.norsys.springjdbc.beans.User;
 
 /**
- * On a configuré le test pour récupérer directement une instance de notre objet testé
- * On aurait aussi pu l'instancier à chaque test avec le jdbcTemplate passé en injection par spring-test
+ * On a configurÃ© le test pour rÃ©cupÃ©rer directement une instance de notre objet testÃ©
+ * On aurait aussi pu l'instancier Ã  chaque test avec le jdbcTemplate passÃ© en injection par spring-test
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ApplicationTestConfiguration.class, loader = AnnotationConfigContextLoader.class)

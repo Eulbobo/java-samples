@@ -8,9 +8,9 @@ import org.springframework.jdbc.core.RowMapper;
 import fr.norsys.springjdbc.beans.User;
 
 /**
- * Un row mapper permet de faire correspondre un résultset avec un objet
- * Le rownum permet de connaitre le numéro de la ligne lue (si on veut l'utiliser)
- * C'est Spring qui gère le parcours du resultSet
+ * Un row mapper permet de faire correspondre un resultset avec un objet
+ * Le rownum permet de connaitre le numÃ©ro de la ligne lue (si on veut l'utiliser)
+ * C'est Spring qui gÃ©re le parcours du resultSet
  */
 public class UserRowMapper implements RowMapper<User> {
 
@@ -20,7 +20,7 @@ public class UserRowMapper implements RowMapper<User> {
         // On utilise le nom des colonnes dans ce RowMapper
         // on pourrait aussi utiliser l'index, mais dans une classe externe, c'est dangereux
         extracted.setId(rs.getInt("ID"));
-        // Les noms des colonnes devraient être plus parlantes dans une classe externe afin d'assurer la compatibilité
+        // Les noms des colonnes devraient Ãªtre plus parlantes dans une classe externe afin d'assurer la compatibilitÃ©
         // par exemple USER_NAME
         extracted.setName(rs.getString("NAME"));
         extracted.setMail(rs.getString("EMAIL"));
