@@ -85,7 +85,7 @@ public class PresentationSpecificitesSlf4JTest {
 
         // On prend le pari que ça dure PLUS DE 10 secondes
         assertThat(elapsed)
-            .isGreaterThan(10000l);
+            .isGreaterThanOrEqualTo(10000l);
 
         TEST_LOGGER.info("Elapsed time with info level : {}ms", elapsed);
     }
