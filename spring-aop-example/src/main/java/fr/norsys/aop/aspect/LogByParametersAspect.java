@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class LogByParameters {
+public class LogByParametersAspect {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LogByParameters.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LogByParametersAspect.class);
 
     /**
      * Définition d'un Pointcut : une définition de régles spécifiques qui peuvent être utilisées seules ou avec

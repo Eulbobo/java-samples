@@ -182,6 +182,7 @@
 				    <excludes>
 				        <exclude>**/*Application*.*</exclude>
 				        <exclude>**/*Configuration*.*</exclude>
+				         <exclude>**/*Aspect.*</exclude>
 				    </excludes>
 				</configuration>
 				<executions>

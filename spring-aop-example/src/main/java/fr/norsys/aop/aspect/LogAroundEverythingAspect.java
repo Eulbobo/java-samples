@@ -19,9 +19,9 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-public class LogAroundEverything {
+public class LogAroundEverythingAspect {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LogAroundEverything.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LogAroundEverythingAspect.class);
 
     /**
      * Ici, nous décrivons deux éléments
