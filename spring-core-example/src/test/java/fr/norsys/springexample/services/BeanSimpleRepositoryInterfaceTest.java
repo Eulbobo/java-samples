@@ -20,6 +20,7 @@ import fr.norsys.springexample.domain.BeanSimpleRepositoryInterface;
 import fr.norsys.springexample.evenmoreComplex.elements.repository.FirstRepo;
 import fr.norsys.springexample.evenmoreComplex.elements.repository.SecondRepo;
 import fr.norsys.springexample.evenmoreComplex.elements.repository.ThirdRepo;
+import fr.norsys.springexample.services.provider.BeanSimpleRepositoryFactory;
 import fr.norsys.springexample.simple.elements.repository.DummyRepository;
 
 /**
@@ -54,18 +55,12 @@ public class BeanSimpleRepositoryInterfaceTest {
      * On passe des classes, donc on doit récupérer une instance => reflexion
      */
     private BeanSimpleRepositoryInterface getInterface() {
-        BeanSimpleRepositoryInterface returnService = null;
-        try {
-            returnService = testedService.newInstance();
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | SecurityException e) {
-            throw new RuntimeException(e);
-        }
-        return returnService;
+        return BeanSimpleRepositoryFactory.getInstance(testedService);
     }
 
     @Test
     public void should_get_bean_when_asking_for_id_8() {
-        BeanSimpleRepositoryInterface repo = new DummyRepository();
+        BeanSimpleRepositoryInterface repo = getInterface();
         BeanSimple bean = repo.getById(Long.valueOf(8l));
 
         assertThat(bean).isNotNull()
@@ -75,7 +70,7 @@ public class BeanSimpleRepositoryInterfaceTest {
 
     @Test
     public void should_save_bean_properly() {
-        final BeanSimpleRepositoryInterface repo = new DummyRepository();
+        final BeanSimpleRepositoryInterface repo = getInterface();
 
         final BeanSimple bean = new BeanSimple(Long.valueOf(1l), "one");
 
