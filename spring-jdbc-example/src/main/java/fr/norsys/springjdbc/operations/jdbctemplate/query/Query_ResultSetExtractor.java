@@ -13,8 +13,8 @@ import fr.norsys.springjdbc.operations.mapper.resultsetExtractor.SingleUserResul
 import fr.norsys.springjdbc.operations.mapper.resultsetExtractor.UserListResultSetExtractor;
 
 /**
- * L'usage d'un résultSetExtractor permet de récupérer ce que l'on veut d'une requête
- * La logique de parcours du résultat est dans l'extractor, sa logique doit donc correspondre à celle de la requête
+ * L'usage d'un rÃ©sultSetExtractor permet de rÃ©cupÃ©rer ce que l'on veut d'une requÃªte
+ * La logique de parcours du rÃ©sultat est dans l'extractor, sa logique doit donc correspondre Ã  celle de la requÃ©te
  */
 @Repository
 public class Query_ResultSetExtractor {
@@ -27,7 +27,7 @@ public class Query_ResultSetExtractor {
     }
 
     /**
-     * Récupération d'un résultat unique
+     * RÃ©cupÃ©ration d'un rÃ©sultat unique
      * @return User
      */
     public User getUniqueUser(){
@@ -35,7 +35,7 @@ public class Query_ResultSetExtractor {
     }
 
     /**
-     * Récupération d'un résultat unique avec un paramètre
+     * RÃ©cupÃ©ration d'un rÃ©sultat unique avec un paramÃ¨tre
      * @return User
      */
     public User getUniqueUserById(final int id){
@@ -43,7 +43,7 @@ public class Query_ResultSetExtractor {
     }
 
     /**
-     * Récupération d'une liste de résultats
+     * RÃ©cupÃ©ration d'une liste de rÃ©sultats
      * @return User
      */
     public List<User> getAllUsers(){
@@ -51,24 +51,24 @@ public class Query_ResultSetExtractor {
     }
 
 
-    // Ci dessous, des exemples de mauvais liens potentiels entre l'extrator et la requête
+    // Ci dessous, des exemples de mauvais liens potentiels entre l'extrator et la requÃ©te
 
     /**
-     * Récupération d'un résultat unique depuis une liste
+     * RÃ©cupÃ©ration d'un rÃ©sultat unique depuis une liste
      *
-     * Le SingleUserResultSetExtractor renvoie le premier élément
-     * Mais la requête ne limite pas le nombre de résultats renvoyés
+     * Le SingleUserResultSetExtractor renvoie le premier Ã©lÃ©ment
+     * Mais la requÃ©te ne limite pas le nombre de rÃ©sultats renvoyÃ©s
      *
-     * --> le résultat dépend du bon vouloir de l'ordre renvoyé par la base
+     * --> le rÃ©sultat dÃ©pend du bon vouloir de l'ordre renvoyÃ© par la base
      */
     public User getFirstUserFromAll(){
         return jdbcTemplate.query("select * from users", new SingleUserResultSetExtractor());
     }
 
     /**
-     * Récupération d'une liste de résultats même si elle ne renvoie qu'un seul élément
+     * RÃ©cupÃ©ration d'une liste de rÃ©sultats mÃ©me si elle ne renvoie qu'un seul Ã©lÃ©ment
      *
-     * Si on s'attend à un seul User, autant récupérer directement un user unique
+     * Si on s'attend Ã  un seul User, autant rÃ©cupÃ©rer directement un user unique
      *
      * @return User
      */
@@ -77,7 +77,7 @@ public class Query_ResultSetExtractor {
     }
 
     /**
-     * Récupération d'une liste de résultats vide
+     * RÃ©cupÃ©ration d'une liste de rÃ©sultats vide
      *
      * @return User
      */

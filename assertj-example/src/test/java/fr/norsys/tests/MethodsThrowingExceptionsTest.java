@@ -6,6 +6,7 @@ package fr.norsys.tests;
 
 // on note l'utilisation d'import static qui permet de ne pas préciser Assertions à chaque appel
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
 import org.assertj.core.api.Assertions;
@@ -17,16 +18,6 @@ import fr.norsys.tests.exceptions.DiceException;
 import fr.norsys.tests.exceptions.RandomException;
 
 public class MethodsThrowingExceptionsTest {
-
-    @Test
-    public void should_not_raise_any_exception_when_passing_false() {
-        MethodsThrowingExceptions method = new MethodsThrowingExceptions(74);
-
-        method.thisMethodMayFail(false);
-        // Test sans assertions...
-        // parce que c'est un void et qu'on ne peut tester que l'exception
-        // sinon, il faudrait tester le retour
-    }
 
     @Test
     public void should_raise_RandomException_when_calling_thisMethodWillFail() {
@@ -113,6 +104,20 @@ public class MethodsThrowingExceptionsTest {
                 .isInstanceOf(RandomException.class)
                 .isExactlyInstanceOf(DiceException.class)
                 .hasMessageContaining("21 failures yet");
+    }
+
+    @Test
+    public void should_not_raise_any_exception_when_passing_false() {
+        final MethodsThrowingExceptions method = new MethodsThrowingExceptions(74);
+
+        Throwable thrownByMethod = catchThrowable(new ThrowingCallable() {
+            @Override
+            public void call() throws Throwable {
+                method.thisMethodMayFail(false);
+            }
+        });
+
+        assertThat(thrownByMethod).isNull();
     }
 
 }

@@ -57,6 +57,14 @@ public class ClassWithSimpleMethodsTest {
     }
 
     @Test
+    public void should_get_19_when_string_size_is_19() {
+        int stringSize = stringSize(1234567890123456789l);
+
+        assertThat(stringSize)
+                .isEqualTo(19);
+    }
+
+    @Test
     public void should_get_1_when_getting_size_of_negative_number() {
         int stringSize = stringSize(-4141414141414141l);
 
@@ -106,6 +114,20 @@ public class ClassWithSimpleMethodsTest {
 
         assertThat(buffer)
                 .containsSequence(expectedBuffer);
+    }
+
+    @Test
+    public void should_get_string_min_long_value() {
+        // ARRANGE
+        long valueToTest = Long.MIN_VALUE;
+
+        // ACT
+        String result = reallySimpleMethod(valueToTest);
+
+        // ASSERT
+        String expectedResult = "-9223372036854775808";
+
+        assertThat(result).isEqualTo(expectedResult);
     }
 
 }

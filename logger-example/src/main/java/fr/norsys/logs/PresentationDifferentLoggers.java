@@ -3,25 +3,29 @@ package fr.norsys.logs;
 public class PresentationDifferentLoggers {
 
     /**
-     * D\u00e9claration logger java.util standard
-     * Il est configur\u00e9 avec le fichier logging.properties
+     * Déclaration logger java.util standard
+     * Il est configuré avec le fichier logging.properties
      */
     private static final java.util.logging.Logger CORE_LOGGER = java.util.logging.Logger
             .getLogger(PresentationDifferentLoggers.class.getName());
 
     /**
-     * D\u00e9claration logger Log4J
-     * Il est configur\u00e9 avec le fichier log4j.properties
+     * Déclaration logger Log4J
+     * Il est configuré avec le fichier log4j.properties
      */
     private static final org.apache.log4j.Logger LOG4J_LOGGER = org.apache.log4j.Logger
             .getLogger(PresentationDifferentLoggers.class);
 
     /**
-     * D\u00e9claration logger SLF4J
-     * On utilise slf4j avec l'impl\u00e9mentation log4j, donc ce logger utilise aussi log4j.properties
+     * Déclaration logger SLF4J
+     * On utilise slf4j avec l'implémentation log4j, donc ce logger utilise aussi log4j.properties
      */
     private static final org.slf4j.Logger SLF4J_LOGGER = org.slf4j.LoggerFactory
             .getLogger(PresentationDifferentLoggers.class);
+
+    private PresentationDifferentLoggers() {
+        // private constructor
+    }
 
     /**
      * Utilisation simple des logs
@@ -71,10 +75,10 @@ public class PresentationDifferentLoggers {
     /**
      * Les deux exemples ci-dessous sont de mauvaises pratiques
      *
-     * Le fait de tester si un niveau de log est actif ne r\u00e9duit pas le temps de traitement.
-     * Pire, selon l'impl\u00e9mentation de logger utilis\u00e9, vous pouvez perdre des informations.
+     * Le fait de tester si un niveau de log est actif ne réduit pas le temps de traitement.
+     * Pire, selon l'implémentation de logger utilisé, vous pouvez perdre des informations.
      *
-     * Le seul gain possible est si le message est coûteux à construire (autre que simple concat\u00e9nation de chaîne)
+     * Le seul gain possible est si le message est coûteux à construire (autre que simple concaténation de chaîne)
      */
     public static void desMauvaisesPratiques() {
         // NE PAS FAIRE
@@ -98,10 +102,10 @@ public class PresentationDifferentLoggers {
     }
 
     /**
-     * Cette m\u00e9thode permet de montrer que l'on peut param\u00e9trer un niveau de log
+     * Cette méthode permet de montrer que l'on peut paramétrer un niveau de log
      * programmatiquement avec java.logging ou log4j.
      *
-     * On ne peut pas avec SLF4J (mais l'utilisation des Markers permet de faire à peu pr\u00e8s la même chose)
+     * On ne peut pas avec SLF4J (mais l'utilisation des Markers permet de faire à peu près la même chose)
      *
      * @param priorityParameter
      * @param levelParameter
@@ -118,11 +122,11 @@ public class PresentationDifferentLoggers {
 
         CORE_LOGGER.log(levelParameter, "CORE : Du log selon le param\u00e8tre");
         LOG4J_LOGGER.log(priorityParameter, "LOG4 : Du log selon le param\u00e8tre");
-        // Pas de param\u00e9trage hors API dans SLF4J
+        // Pas de paramétrage hors API dans SLF4J
     }
 
     /**
-     * M\u00e9thode levant une exception pour les tests
+     * Méthode levant une exception pour les tests
      *
      * @throws Exception
      */
@@ -131,7 +135,7 @@ public class PresentationDifferentLoggers {
     }
 
     /**
-     * M\u00e9thode qui cr\u00e9\u00e9 un log d'erreur
+     * Méthode qui créé un log d'erreur
      */
     public static void logErreur() {
         try {
@@ -146,7 +150,7 @@ public class PresentationDifferentLoggers {
     }
 
     /**
-     * M\u00e9thode qui cr\u00e9\u00e9 un log d'erreur avec message concatene
+     * Méthode qui créé un log d'erreur avec message concatene
      */
     public static void logErreurAvecMessageConcatene() {
         try {
@@ -157,18 +161,18 @@ public class PresentationDifferentLoggers {
             LOG4J_LOGGER.error("LOG4 : Une exception ! : " + e.getMessage(), e);
             // on ne peut pas utiliser {} quand on remonte l'exception de base
             SLF4J_LOGGER.error("SLF4J : Une exception ! : " + e.getMessage(), e);
-            // D'un autre côt\u00e9, le message est d\u00e9jà en root cause
+            // D'un autre côté, le message est déjà en root cause
         }
     }
 
     /**
-     * M\u00e9thode qui cr\u00e9\u00e9e un log avec un message construit
+     * Méthode qui créée un log avec un message construit
      */
     public static void logErreurAvecMessageConstruit() {
         try {
             methodeQuiPete();
         } catch (Exception e) {
-            // Formattage de chaine de caract\u00e8re
+            // Formattage de chaine de caractère
             String message = String.format("Une exception s'est produite : %s", e.getMessage());
             CORE_LOGGER.log(java.util.logging.Level.SEVERE, message, e);
             LOG4J_LOGGER.error(message, e);
@@ -177,14 +181,15 @@ public class PresentationDifferentLoggers {
     }
 
     /**
-     * M\u00e9thode qui cr\u00e9\u00e9 un log avec des param\u00e8tres pour la construction du message
+     * Méthode qui créé un log avec des paramètres pour la construction du message
      *
      * @param premierParametre
      * @param deuxiemeParametre
      */
     public static void logAvecDesParametres(final String premierParametre, final Integer deuxiemeParametre) {
-        // CORE : Doit lister dans l'ordre tous les param\u00e8tres
-        CORE_LOGGER.log(java.util.logging.Level.INFO, "CORE : Premier param\u00e8tre : {0}, deuxi\u00e8me param\u00e8tre : {1}",
+        // CORE : Doit lister dans l'ordre tous les paramètres
+        CORE_LOGGER.log(java.util.logging.Level.INFO,
+                "CORE : Premier param\u00e8tre : {0}, deuxi\u00e8me param\u00e8tre : {1}",
                 new Object[] { premierParametre, deuxiemeParametre });
 
         // LOG4J : aucun moyen de l'API de formatter du texte

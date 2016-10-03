@@ -9,6 +9,9 @@ public class PresentationSpecificitesSlf4J {
     /** declaration logger Log4J */
     private static final Logger SL4J_LOGGER = LoggerFactory.getLogger(PresentationSpecificitesSlf4J.class);
 
+    private PresentationSpecificitesSlf4J(){
+        // private constructor to prevent instanciation
+    }
 
     // --------------- UTILISATION DE MDC ---------------
     public static void utilisationMdc(){

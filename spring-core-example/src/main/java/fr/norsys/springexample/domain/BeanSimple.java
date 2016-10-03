@@ -9,10 +9,6 @@ public class BeanSimple {
 
     private String name;
 
-    public BeanSimple(){
-        // default empty constructor
-    }
-
     public BeanSimple(final Long id, final String name) {
         this.id = id;
         this.name = name;

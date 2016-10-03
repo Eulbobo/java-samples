@@ -1,5 +1,6 @@
 package fr.norsys.logs;
 
+import static fr.norsys.logs.PresentationDifferentLoggers.desMauvaisesPratiques;
 import static fr.norsys.logs.PresentationDifferentLoggers.duParametrageDeLog;
 import static fr.norsys.logs.PresentationDifferentLoggers.logAvecDesParametres;
 import static fr.norsys.logs.PresentationDifferentLoggers.logErreur;
@@ -15,6 +16,12 @@ public class PresentationDifferentLoggersTest {
     public void should_display_simple_logs(){
         // A noter que vous ne verrez les logs CORE en dessous de INFO qu'avec la commande mvn test
         logSimple();
+    }
+
+    @Test
+    public void should_display_bad_practices(){
+        // mauvaises pratiques
+        desMauvaisesPratiques();
     }
 
     @Test

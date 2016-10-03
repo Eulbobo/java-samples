@@ -12,7 +12,11 @@ public class ThreadWait {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ThreadWait.class);
 
-    public static void sleep(final long millis){
+    private ThreadWait() {
+        // private constructor
+    }
+
+    public static void sleep(final long millis) {
         try {
             Thread.sleep(millis);
         } catch (final InterruptedException e) {
@@ -20,7 +24,7 @@ public class ThreadWait {
         }
     }
 
-    public static void sleep(){
+    public static void sleep() {
         sleep(ThreadLocalRandom.current().nextInt(100));
     }
 }

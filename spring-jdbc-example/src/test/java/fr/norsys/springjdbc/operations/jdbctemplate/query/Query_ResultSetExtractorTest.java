@@ -80,4 +80,12 @@ public class Query_ResultSetExtractorTest {
                 .isEqualTo(second());
     }
 
+    @Test
+    public void should_get_null_when_asking_by_id_with_parameter_556() {
+        User user = queryResultSetExtractor.getUniqueUserById(556);
+
+        assertThat(user)
+                .isNull();
+    }
+
 }

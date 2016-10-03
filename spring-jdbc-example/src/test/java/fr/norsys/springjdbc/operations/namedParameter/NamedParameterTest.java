@@ -86,7 +86,7 @@ public class NamedParameterTest {
     @Transactional
     @Rollback
     @Test
-    public void should_update_known_user_wihout_mapping() {
+    public void should_update_known_user_without_mapping() {
         User userBefore = namedParameter.getUser(1);
         userBefore.setName("DADA");
 
@@ -102,6 +102,28 @@ public class NamedParameterTest {
     public void should_find_user_when_searching_by_example_with_name_Julien() {
         User userExample = new User();
         userExample.setName("Julien");
+
+        List<User> resultList = namedParameter.findUsersByExample(userExample);
+        assertThat(resultList)
+                .hasSize(1)
+                .containsOnly(first());
+    }
+
+    @Test
+    public void should_find_user_when_searching_by_example_with_id_1() {
+        User userExample = new User();
+        userExample.setId(1);
+
+        List<User> resultList = namedParameter.findUsersByExample(userExample);
+        assertThat(resultList)
+                .hasSize(1)
+                .containsOnly(first());
+    }
+
+    @Test
+    public void should_find_user_when_searching_by_example_with_email() {
+        User userExample = new User();
+        userExample.setMail("julien@norsys.fr");
 
         List<User> resultList = namedParameter.findUsersByExample(userExample);
         assertThat(resultList)

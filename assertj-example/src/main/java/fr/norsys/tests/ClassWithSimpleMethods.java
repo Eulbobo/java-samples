@@ -35,7 +35,11 @@ public class ClassWithSimpleMethods {
         '7', '7', '7', '7', '7', '7', '7', '7', '7', '7',
         '8', '8', '8', '8', '8', '8', '8', '8', '8', '8',
         '9', '9', '9', '9', '9', '9', '9', '9', '9', '9',
-    } ;
+    };
+
+    private ClassWithSimpleMethods(){
+        // prevents instanciation
+    }
 
     public static String reallySimpleMethod(final long i) {
         if (i == Long.MIN_VALUE) {
