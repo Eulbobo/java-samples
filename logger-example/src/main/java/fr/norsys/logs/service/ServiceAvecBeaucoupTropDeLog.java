@@ -1,4 +1,4 @@
-package fr.norsys.logs;
+package fr.norsys.logs.service;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -7,25 +7,27 @@ import java.util.List;
 
 import org.slf4j.Logger;
 
-public class ServiceAvecBeaucoupTropDeLog {
+import fr.norsys.logs.InterfaceAvecDesMethodes;
+
+public class ServiceAvecBeaucoupTropDeLog extends AbstractServiceInterface {
 
     /** declaration logger SLF4J */
     private static final Logger SLF4J_LOGGER = getLogger(ServiceAvecBeaucoupTropDeLog.class);
 
-    private final InterfaceAvecDesMethodes repository;
-
     public ServiceAvecBeaucoupTropDeLog(final InterfaceAvecDesMethodes repository) {
-        this.repository = repository;
+        super(repository);
     }
 
+    @Override
     public String maMethodeQuiRenvoieUnString() {
         // pas besoin de loger l'entrée/sortie d'une méthode : on peut faire ça par aspect
         SLF4J_LOGGER.debug("calling method");
-        final String result = this.repository.methodeDansInterface(Integer.valueOf(0));
+        final String result = repository.methodeDansInterface(Integer.valueOf(0));
         SLF4J_LOGGER.debug("method result : {}", result);
         return result;
     }
 
+    @Override
     public boolean hasObjectForId(final Object element, final String id) {
         SLF4J_LOGGER.debug("calling method with parameter object {} and id {}", element, id);
         final List<Object> objects = repository.recuperationDesDonnees(id);
@@ -47,6 +49,7 @@ public class ServiceAvecBeaucoupTropDeLog {
         return hasObject;
     }
 
+    @Override
     public void validationDonneesForId(final String id) {
         // Au final, ici on a plus de log que de code réel
         SLF4J_LOGGER.debug("calling method with parameter {}", id);
