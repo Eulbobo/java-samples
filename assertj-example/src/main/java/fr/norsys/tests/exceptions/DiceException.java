@@ -2,17 +2,8 @@ package fr.norsys.tests.exceptions;
 
 public class DiceException extends RandomException {
 
-    public DiceException() {
-        super();
-    }
-
-    public DiceException(final String message, final Throwable cause) {
-        super(message, cause);
-    }
-
-    public DiceException(final String message) {
-        super(message);
-    }
+    /** serial version UID for class */
+    private static final long serialVersionUID = -9116320837813406106L;
 
     public DiceException(final Throwable cause) {
         super(cause);

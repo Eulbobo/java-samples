@@ -14,7 +14,6 @@ public class BeanSimple {
         this.name = name;
     }
 
-
     /**
      * @return the id
      */
