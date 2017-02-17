@@ -17,6 +17,7 @@
 		<li><spring:message code="page.home.message.with.hard.coded.parameter" arguments="paramètre en dur"/></li>
 		<li><spring:message code="page.home.message.with.el.parameter" arguments="${message}"/></li>
 		<li><a href="<spring:url value="${link}"/>"><spring:message code="${messageLink}"/></a></li>
+		<li><a href="<spring:url value="thingsAndStuff"/>">thingsAndStuff</a></li>
 	</ul>
 </body>
 </html>

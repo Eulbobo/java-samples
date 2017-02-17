@@ -11,6 +11,7 @@ import org.springframework.context.NoSuchMessageException;
  * <p>
  * Société : CNAMTS
  * </p>
+ *
  * @author NORSYS
  */
 public class FailSafeMessageSource implements MessageSource {
@@ -19,7 +20,7 @@ public class FailSafeMessageSource implements MessageSource {
 
     private final MessageSource source;
 
-    public FailSafeMessageSource(final MessageSource source){
+    public FailSafeMessageSource(final MessageSource source) {
         this.source = source;
     }
 
@@ -33,7 +34,8 @@ public class FailSafeMessageSource implements MessageSource {
     }
 
     @Override
-    public String getMessage(final String code, final Object[] args, final Locale locale) throws NoSuchMessageException {
+    public String getMessage(final String code, final Object[] args, final Locale locale)
+            throws NoSuchMessageException {
         try {
             return source.getMessage(code, args, locale);
         } catch (NoSuchMessageException e) {
@@ -42,7 +44,8 @@ public class FailSafeMessageSource implements MessageSource {
     }
 
     @Override
-    public String getMessage(final MessageSourceResolvable resolvable, final Locale locale) throws NoSuchMessageException {
+    public String getMessage(final MessageSourceResolvable resolvable, final Locale locale)
+            throws NoSuchMessageException {
         try {
             return source.getMessage(resolvable, locale);
         } catch (NoSuchMessageException e) {
@@ -52,7 +55,7 @@ public class FailSafeMessageSource implements MessageSource {
 
     private static String getUnknownMessages(final String... codes) {
         StringBuilder sb = new StringBuilder();
-        for (String code : codes){
+        for (String code : codes) {
             sb.append(getUnknownMessage(code));
             sb.append('\n');
         }

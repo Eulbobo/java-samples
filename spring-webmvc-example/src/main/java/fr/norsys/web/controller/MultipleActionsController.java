@@ -10,17 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.norsys.web.support.MessageSupport;
-
 @Controller
 @RequestMapping(value = "/multipleActions")
 public class MultipleActionsController {
 
-    private final MessageSupport messageSupport;
+    private final MessageSource messageSource;
 
     @Autowired
     public MultipleActionsController(final MessageSource messageSource) {
-        this.messageSupport = new MessageSupport(messageSource);
+        this.messageSource = messageSource;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -38,8 +36,8 @@ public class MultipleActionsController {
     public ModelAndView clicBoutonValidation(final Locale locale) {
 
         ModelAndView model = new ModelAndView("multipleActionsResult");
-        model.addObject("content",
-                messageSupport.getMessage(locale, "controller.multipleactions.message", "bouton_validation"));
+        model.addObject("content", messageSource.getMessage("controller.multipleactions.message",
+                new Object[] { "bouton_validation" }, locale));
 
         return model;
     }
@@ -56,7 +54,8 @@ public class MultipleActionsController {
             @RequestParam("bouton_annulation") final String param) {
 
         ModelAndView model = new ModelAndView("multipleActionsResult");
-        model.addObject("content", messageSupport.getMessage(locale, "controller.multipleactions.message", param));
+        model.addObject("content",
+                messageSource.getMessage("controller.multipleactions.message", new Object[] { param }, locale));
 
         return model;
     }
@@ -72,7 +71,8 @@ public class MultipleActionsController {
     public ModelAndView clicBoutonAction1(final Locale locale, @RequestParam("bouton") final String param) {
 
         ModelAndView model = new ModelAndView("multipleActionsResult");
-        model.addObject("content", messageSupport.getMessage(locale, "controller.multipleactions.message", param));
+        model.addObject("content",
+                messageSource.getMessage("controller.multipleactions.message", new Object[] { param }, locale));
 
         return model;
     }

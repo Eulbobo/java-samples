@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Greeting {
 
     @NotNull
-    @Digits(integer=10, fraction = 0)
+    @Digits(integer = 10, fraction = 0)
     private Long id;
 
     @NotEmpty

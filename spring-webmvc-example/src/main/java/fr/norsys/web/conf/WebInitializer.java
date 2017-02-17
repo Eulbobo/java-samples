@@ -7,6 +7,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * <p>
  * Société : CNAMTS
  * </p>
+ *
  * @author NORSYS
  */
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
