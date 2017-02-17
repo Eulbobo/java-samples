@@ -9,5 +9,6 @@
     <p>${greetingForm.id}</p>
     <p>${greetingForm.content}</p>
     <p><a href="<spring:url value="/greeting"/>"><spring:message code="page.result.new.message"/></a></p>
+    <p><a href="<spring:url value="/"/>"><spring:message code="general.back.home"/></a></p>
 </body>
 </html>

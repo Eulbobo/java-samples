@@ -21,5 +21,6 @@
 			<input type="submit" value="<spring:message code="button.submit"/>" /> <input type="reset" value="<spring:message code="button.reset"/>" />
 		</p>
 	</form:form>
+	<p><a href="<spring:url value="/"/>"><spring:message code="general.back.home"/></a></p>
 </body>
 </html>

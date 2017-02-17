@@ -28,14 +28,10 @@ public class MultipleActionsController {
         return "multipleActions";
     }
 
-    // <input type="submit" name="validation" value="Validation" /><br/>
-    // <input type="submit" name="annulation" value="Annulation" /><br/>
-    // <input type="submit" name="bouton" value="Action1" /><br/>
-    // <input type="submit" name="bouton" value="Action2" />
-
     /**
-     * On vérifier la présence du champ nommé "validation", quelle que soit sa valeur
+     * On vérifier la présence du champ nommé "bouton_validation", quelle que soit sa valeur
      *
+     * @param Locale pour la traduction
      * @return Redirection vers multipleActionsResult
      */
     @RequestMapping(method = RequestMethod.POST, params = "bouton_validation")
@@ -49,10 +45,10 @@ public class MultipleActionsController {
     }
 
     /**
-     * On vérifier la présence du champ nommé "annulation", quelle que soit sa valeur
+     * On vérifier la présence du champ nommé "bouton_annulation", quelle que soit sa valeur
      *
-     * @param Locale
-     * @param param : la valeur du paramètre du bouton (totalement overkill ici)
+     * @param Locale pour la traduction
+     * @param param : la valeur du paramètre du bouton
      * @return Redirection vers multipleActionsResult
      */
     @RequestMapping(method = RequestMethod.POST, params = "bouton_annulation")
@@ -68,7 +64,7 @@ public class MultipleActionsController {
     /**
      * On vérifier la présence du champ nommé "bouton", quelle que soit sa valeur
      *
-     * @param Locale
+     * @param Locale pour la traduction
      * @param param : la valeur du paramètre du bouton
      * @return Redirection vers multipleActionsResult
      */
@@ -80,22 +76,5 @@ public class MultipleActionsController {
 
         return model;
     }
-
-//    /**
-//     * On vérifier la présence du champ nommé "bouton", quelle que soit sa valeur
-//     *
-//     * @param Locale
-//     * @param param : la valeur du paramètre du bouton
-//     * @return Redirection vers multipleActionsResult
-//     */
-//    @RequestMapping(method = RequestMethod.POST, params = "bouton={valeurBouton}")
-//    public ModelAndView clicBoutonAction2(final Locale locale,
-//            @RequestParam("valeurBouton") final String param) {
-//
-//        ModelAndView model = new ModelAndView("multipleActionsResult");
-//        model.addObject("content", messageSupport.getMessage(locale, "controller.multipleactions.message", param));
-//
-//        return model;
-//    }
 
 }

@@ -19,16 +19,24 @@ public class Hello {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView welcome() {
         ModelAndView model = new ModelAndView("HelloWorldPage");
+        // message affiché en haut de page HelloWorldPage.jsp
         model.addObject("message", "Welcome here");
-
+        // lien vers la page /helloWorld qui affiche "hello world" (méthode helloWorld() )
+        model.addObject("link", "helloWorld");
+        // on met la valeur de la clé de traduction du lien correspondant dans une variable : vers HelloWorld
+        model.addObject("messageLink", "page.home.function.helloWorld");
         return model;
     }
 
     @RequestMapping(path = "/helloWorld", method = RequestMethod.GET)
     public ModelAndView helloWorld() {
         ModelAndView model = new ModelAndView("HelloWorldPage");
+        // message affiché en haut de page HelloWorldPage.jsp
         model.addObject("message", "hello world");
-
+        // lien vers la page / qui affiche "Welcome here" (méthode welcome() )
+        model.addObject("link", "/");
+        // on met la valeur de la clé de traduction du lien dans une variable : retour vers home
+        model.addObject("messageLink", "page.home.function.root");
         return model;
     }
 

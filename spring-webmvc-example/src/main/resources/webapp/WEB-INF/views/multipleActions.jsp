@@ -16,5 +16,6 @@
 			<input type="submit" name="bouton" value="Action4" />
 		</p>
 	</form:form>
+	<p><a href="<spring:url value="/"/>"><spring:message code="general.back.home"/></a></p>
 </body>
 </html>
