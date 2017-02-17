@@ -9,6 +9,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import fr.norsys.web.support.FailSafeMessageSource;
+
 /**
  * Fichier de configuration Spring
  */
@@ -29,6 +31,6 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("messages");
-        return messageSource;
+        return new FailSafeMessageSource(messageSource);
     }
 }
