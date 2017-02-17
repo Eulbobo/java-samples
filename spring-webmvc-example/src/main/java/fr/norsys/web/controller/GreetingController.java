@@ -28,4 +28,21 @@ public class GreetingController {
 
         return "result";
     }
+
+    @RequestMapping(value="/greeting", method=RequestMethod.POST, params="content=bob")
+    public String greetingSubmitForBob(@ModelAttribute("greetingForm") @Valid final Greeting greetingForm, final BindingResult result) {
+        if (result.hasErrors()){
+            return "greeting";
+        }
+        greetingForm.setContent("Hello bob");
+
+        return "result";
+    }
+
+    @RequestMapping(value="/greeting", method=RequestMethod.POST, params="id=12")
+    public String greetingWithoutValidation(@ModelAttribute("greetingForm") final Greeting greetingForm) {
+        greetingForm.setContent("We didn't validate anything");
+
+        return "result";
+    }
 }
